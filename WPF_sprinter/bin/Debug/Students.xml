@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfStudent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Student>
+    <Id>5615661</Id>
+    <Firstname>dsfg</Firstname>
+    <Lastname>dfg</Lastname>
+    <Middlename>fs</Middlename>
+    <Cource>4</Cource>
+    <Type>dfgd</Type>
+    <Department>4238389</Department>
+  </Student>
+  <Student>
+    <Id>2665992</Id>
+    <Firstname>retyrey2</Firstname>
+    <Lastname>ryret2</Lastname>
+    <Middlename>reytrety2</Middlename>
+    <Cource>36542</Cource>
+    <Department>2348814</Department>
+  </Student>
+  <Student>
+    <Id>1153197</Id>
+    <Firstname>asfs2</Firstname>
+    <Lastname>sadf2</Lastname>
+    <Middlename>asdf2</Middlename>
+    <Cource>2</Cource>
+    <Department>2348814</Department>
+  </Student>
+  <Student>
+    <Id>4899444</Id>
+    <Firstname>fewf</Firstname>
+    <Lastname>ewafw</Lastname>
+    <Middlename>aswefwfwfae</Middlename>
+    <Cource>0</Cource>
+    <Department>3367528</Department>
+  </Student>
+</ArrayOfStudent>

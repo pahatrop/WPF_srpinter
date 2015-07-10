@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfTeacher xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Teacher>
+    <Id>1367275</Id>
+    <Firstname>dsfg</Firstname>
+    <Lastname>dfg</Lastname>
+    <Middlename>fs</Middlename>
+    <Specialty>dfgd</Specialty>
+    <Department>4238389</Department>
+  </Teacher>
+  <Teacher>
+    <Id>4564081</Id>
+    <Firstname>dasf</Firstname>
+    <Lastname>sdfas</Lastname>
+    <Middlename>sdfs</Middlename>
+    <Specialty>sdf</Specialty>
+    <Department>2348814</Department>
+  </Teacher>
+  <Teacher>
+    <Id>5271716</Id>
+    <Firstname>wetewr2</Firstname>
+    <Lastname>ewrterw2</Lastname>
+    <Middlename>erwtewr2</Middlename>
+    <Specialty>rete2</Specialty>
+    <Department>2348814</Department>
+  </Teacher>
+</ArrayOfTeacher>

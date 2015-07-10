@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfUniversity xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <University>
+    <Id>2759547</Id>
+    <Name>cfu</Name>
+    <Address>dfa</Address>
+    <Level>4</Level>
+  </University>
+  <University>
+    <Id>7247735</Id>
+    <Name>cfu</Name>
+    <Address>dfa</Address>
+    <Level>4</Level>
+  </University>
+  <University>
+    <Id>294982</Id>
+    <Name>terr</Name>
+    <Address>sadfdasff</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>4044647</Id>
+    <Name>ewfwaf</Name>
+    <Address>sefs</Address>
+    <Level>43</Level>
+  </University>
+</ArrayOfUniversity>
