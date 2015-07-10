@@ -10,18 +10,10 @@
   </Teacher>
   <Teacher>
     <Id>4564081</Id>
-    <Firstname>dasf</Firstname>
-    <Lastname>sdfas</Lastname>
-    <Middlename>sdfs</Middlename>
-    <Specialty>sdf</Specialty>
-    <Department>2348814</Department>
-  </Teacher>
-  <Teacher>
-    <Id>5271716</Id>
-    <Firstname>wetewr2</Firstname>
-    <Lastname>ewrterw2</Lastname>
-    <Middlename>erwtewr2</Middlename>
-    <Specialty>rete2</Specialty>
+    <Firstname>Денис</Firstname>
+    <Lastname>Цветков</Lastname>
+    <Middlename>Олегович</Middlename>
+    <Specialty>мат.анализ</Specialty>
     <Department>2348814</Department>
   </Teacher>
 </ArrayOfTeacher>

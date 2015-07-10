@@ -30,7 +30,7 @@
         <TextBox Margin="10" Grid.Column="1" Grid.Row="2" Text="{Binding studentLastname, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBox Margin="10" Grid.Column="1" Grid.Row="3" Text="{Binding studentMiddlename, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBox Margin="10" Grid.Column="1" Grid.Row="4" Text="{Binding studentCource, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBox Margin="10" Grid.Column="1" Grid.Row="5" Text="{Binding studentDepartment, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Margin="10" Grid.Column="1" Grid.Row="5" Text="{Binding studentType, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Button Margin="0,0,20,10" Width="100" Height="35" Click="Close" Command="{Binding Path=actionEditStudent, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="7">Save</Button>
     </Grid>

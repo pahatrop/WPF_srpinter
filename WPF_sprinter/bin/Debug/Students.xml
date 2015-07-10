@@ -10,27 +10,29 @@
     <Department>4238389</Department>
   </Student>
   <Student>
-    <Id>2665992</Id>
-    <Firstname>retyrey2</Firstname>
-    <Lastname>ryret2</Lastname>
-    <Middlename>reytrety2</Middlename>
-    <Cource>36542</Cource>
-    <Department>2348814</Department>
-  </Student>
-  <Student>
-    <Id>1153197</Id>
-    <Firstname>asfs2</Firstname>
-    <Lastname>sadf2</Lastname>
-    <Middlename>asdf2</Middlename>
-    <Cource>2</Cource>
-    <Department>2348814</Department>
-  </Student>
-  <Student>
     <Id>4899444</Id>
     <Firstname>fewf</Firstname>
     <Lastname>ewafw</Lastname>
     <Middlename>aswefwfwfae</Middlename>
     <Cource>0</Cource>
     <Department>3367528</Department>
+  </Student>
+  <Student>
+    <Id>2665992</Id>
+    <Firstname>Андрей</Firstname>
+    <Lastname>Веревкин</Lastname>
+    <Middlename>Васильевич</Middlename>
+    <Cource>5</Cource>
+    <Type>заочная</Type>
+    <Department>2348814</Department>
+  </Student>
+  <Student>
+    <Id>1448301</Id>
+    <Firstname>Алексей</Firstname>
+    <Lastname>Николаев</Lastname>
+    <Middlename>Генадиевич</Middlename>
+    <Cource>0</Cource>
+    <Type>очная</Type>
+    <Department>2348814</Department>
   </Student>
 </ArrayOfStudent>

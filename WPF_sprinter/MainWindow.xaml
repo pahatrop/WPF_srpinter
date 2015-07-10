@@ -16,13 +16,61 @@
             <ColumnDefinition Width="80"/>
         </Grid.ColumnDefinitions>
 
-        <ListBox ItemsSource="{Binding AllUniversities}" SelectedIndex="{Binding SelectedUniversity, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" Grid.Column="0" BorderBrush="#f00" Margin="10,10,9,3" Grid.RowSpan="2"></ListBox>
-
+        <ListBox ItemsSource="{Binding AllUniversities}" SelectedIndex="{Binding SelectedUniversity, UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" BorderBrush="#436EEE" Margin="10,10,9,3" Grid.RowSpan="2">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="3" Width="300">
+                        <TextBlock Margin="10, 0,0,0" Grid.Row="0" Grid.Column="0" FontWeight="Bold" FontSize="18" Text="{Binding Path=Name}" Foreground="#073784"/>
+                        <TextBlock Margin="10,30,0,0" Grid.Row="0" Grid.Column="0" FontWeight="Normal" FontSize="15" Text="Address: "/>
+                        <TextBlock Margin="100,30,0,0" Grid.Row="0" Grid.Column="0" FontWeight="Normal" FontSize="15" Text="{Binding Path=Address}" TextWrapping="Wrap"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+  
         <GridSplitter Grid.Column="1" HorizontalAlignment="Left" Height="689" VerticalAlignment="Top" Width="3" Margin="1,0,0,0" Grid.RowSpan="3"/>
-        <ListBox ItemsSource="{Binding AllDepartments}" SelectedIndex="{Binding SelectedDepartment, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" Grid.Column="1" Grid.Row="0" BorderBrush="#f00" Margin="10,10,10,0" Grid.RowSpan="1"></ListBox>
-        <ListBox ItemsSource="{Binding AllStudents}" SelectedIndex="{Binding SelectedStudent, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Lastname" Grid.Column="1" Grid.Row="1" BorderBrush="#f00" Margin="10,10,0,3" Width="10000" HorizontalAlignment="Left"/>
+        <ListBox ItemsSource="{Binding AllDepartments}" SelectedIndex="{Binding SelectedDepartment, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="0" BorderBrush="#436EEE" Margin="10,10,10,0" Grid.RowSpan="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="3" Width="300">
+                        <TextBlock Margin="10, 0,0,0" Grid.Row="0" Grid.Column="0" FontSize="18" Text="{Binding Path=Name}" Foreground="#073784"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox ItemsSource="{Binding AllStudents}" SelectedIndex="{Binding SelectedStudent, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" BorderBrush="#436EEE" Margin="10,10,0,3" Width="10000" HorizontalAlignment="Left">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="3" Width="300">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Margin="10, 0,0,0" Grid.Row="0" FontSize="16" Text="{Binding Path=Firstname}" Foreground="#073784"/>
+                        <TextBlock Margin="10, 0,0,0" Grid.Row="1" FontSize="16" Text="{Binding Path=Lastname}" Foreground="#073784"/>
+                        <TextBlock Margin="10, 0,0,0" Grid.Row="2" FontSize="13" Text="{Binding Path=Type}" Foreground="#4A708B"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <TextBlock Background="#fff" Grid.Column="1" Width="100" HorizontalAlignment="Right" Grid.Row="1"></TextBlock>
-        <ListBox ItemsSource="{Binding AllTeachers}" SelectedIndex="{Binding SelectedTeacher, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Lastname" Grid.Column="1" Grid.Row="1" BorderBrush="#f00" Margin="0,10,10,3" Width="400" HorizontalAlignment="Right"/>
+        <ListBox ItemsSource="{Binding AllTeachers}" SelectedIndex="{Binding SelectedTeacher, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" BorderBrush="#436EEE" Margin="0,10,10,3" Width="400" HorizontalAlignment="Right">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="3" Width="300">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Margin="10, 0,0,0" Grid.Row="0" FontSize="16" Text="{Binding Path=Firstname}" Foreground="#073784"/>
+                        <TextBlock Margin="10, 0,0,0" Grid.Row="1" FontSize="16" Text="{Binding Path=Lastname}" Foreground="#073784"/>
+                        <TextBlock Margin="10, 0,0,0" Grid.Row="2" FontSize="13" Text="{Binding Path=Specialty}" Foreground="#4A708B"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         
         <Button Command="{Binding Path=actionShowCreateUniversity , Mode=OneWay}" Grid.Column="0" Grid.Row="2" Width="100" Margin="7,7,0,7" HorizontalAlignment="Left">Create</Button>
         <Button Command="{Binding Path=actionShowEditUniversity , Mode=OneWay}" Grid.Column="0" Grid.Row="2" Width="100" Margin="0,7" HorizontalAlignment="Center">Edit</Button>

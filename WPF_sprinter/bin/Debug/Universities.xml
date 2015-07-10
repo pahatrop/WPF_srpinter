@@ -2,26 +2,20 @@
 <ArrayOfUniversity xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <University>
     <Id>2759547</Id>
-    <Name>cfu</Name>
-    <Address>dfa</Address>
+    <Name>Таврическая академия</Name>
+    <Address>Симферополь. ул Киевская проспект Вернадского</Address>
     <Level>4</Level>
   </University>
   <University>
-    <Id>7247735</Id>
-    <Name>cfu</Name>
-    <Address>dfa</Address>
-    <Level>4</Level>
-  </University>
-  <University>
-    <Id>294982</Id>
-    <Name>terr</Name>
-    <Address>sadfdasff</Address>
+    <Id>9425789</Id>
+    <Name>КГМУ им. Георгиевского</Name>
+    <Address>ул Севастопольская 2</Address>
     <Level>0</Level>
   </University>
   <University>
-    <Id>4044647</Id>
-    <Name>ewfwaf</Name>
-    <Address>sefs</Address>
-    <Level>43</Level>
+    <Id>341359</Id>
+    <Name>Физико-технический институт</Name>
+    <Address>Симферополь. </Address>
+    <Level>3</Level>
   </University>
 </ArrayOfUniversity>

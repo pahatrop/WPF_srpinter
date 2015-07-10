@@ -2,12 +2,12 @@
 <ArrayOfDepartment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Department>
     <Id>2348814</Id>
-    <Name>werte</Name>
+    <Name>Факультет математики и информатики</Name>
     <University>2759547</University>
   </Department>
   <Department>
     <Id>3367528</Id>
-    <Name>new2</Name>
+    <Name>Славянской филологии</Name>
     <University>2759547</University>
   </Department>
 </ArrayOfDepartment>
