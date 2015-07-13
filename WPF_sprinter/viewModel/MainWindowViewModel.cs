@@ -24,7 +24,7 @@ namespace WPF_sprinter
         public List<Student> AllStudents { get { return allStudents; } }
         public List<Teacher> AllTeachers { get { return allTeachers; } }
 
-        
+
 
         private int universitySelected = 0;
         private int departmentSelected = 0;
@@ -48,7 +48,7 @@ namespace WPF_sprinter
         private ICommand _actionRemoveTeacher;
 
         private bool _canExecute;
-        
+
         private bool _canExecuteAddUniversity;
         private bool _canExecuteEditUniversity;
         private bool _canExecuteRemoveUniversity;
@@ -64,7 +64,7 @@ namespace WPF_sprinter
         private bool _canExecuteAddTeacher;
         private bool _canExecuteEditTeacher;
         private bool _canExecuteRemoveTeacher;
-        
+
         public bool canExecuteAddUniversity
         {
             get { return _canExecuteAddUniversity; }
@@ -186,18 +186,33 @@ namespace WPF_sprinter
             allStudents = delg.EndInvoke(asyncRes);
             studentsViewModel();
         }
+        private void GetAllDepartmentsCallback(IAsyncResult asyncRes)
+        {
+            AsyncResult ares = (AsyncResult)asyncRes;
+            DepartmentMethodDelegate delg = (DepartmentMethodDelegate)ares.AsyncDelegate;
+            allDepartments = delg.EndInvoke(asyncRes);
+            departmentsViewModel();
+        }
 
         public void UniversitiesViewModel()
         {
-                UniversityMethodDelegate sd = AppDelegate.Instance.dataController.GetAllUniversities;
-                IAsyncResult asyncRes = sd.BeginInvoke(new AsyncCallback(GetAllUniversitiesCallback), null);
+            UniversityMethodDelegate sd = AppDelegate.Instance.dataController.GetAllUniversities;
+            IAsyncResult asyncRes = sd.BeginInvoke(new AsyncCallback(GetAllUniversitiesCallback), null);
         }
         public void StudentsViewModel()
         {
-            if (departmentSelected < allDepartments.Count)
+            if (allDepartments != null)
             {
                 StudentMethodDelegate sd = AppDelegate.Instance.dataController.GetAllStudents;
                 IAsyncResult asyncRes = sd.BeginInvoke(allDepartments[departmentSelected].Id, new AsyncCallback(GetAllStudentsCallback), null);
+            }
+        }
+        public void DepartmentsViewModel()
+        {
+            if (allUniversities.Count > 0)
+            {
+                DepartmentMethodDelegate sd = AppDelegate.Instance.dataController.GetAllDepartments;
+                IAsyncResult asyncRes = sd.BeginInvoke(allUniversities[universitySelected].Id, new AsyncCallback(GetAllDepartmentsCallback), null);
             }
         }
 
@@ -205,7 +220,7 @@ namespace WPF_sprinter
         {
             if (departmentSelected < allDepartments.Count)
             {
-                if(allStudents.Count>0)
+                if (allStudents.Count > 0)
                 {
                     _canExecuteEditStudent = true;
                     _canExecuteRemoveStudent = true;
@@ -230,7 +245,7 @@ namespace WPF_sprinter
         }
         public void TeachersViewModel()
         {
-            if (departmentSelected < allDepartments.Count)
+            /*if (departmentSelected < allDepartments.Count)
             {
                 allTeachers = AppDelegate.Instance.dataController.GetAllTeachers(allDepartments[departmentSelected].Id);
                 _canExecuteAddTeacher = true;
@@ -255,7 +270,7 @@ namespace WPF_sprinter
             RaisePropertyChanged("canExecuteAddTeacher");
             RaisePropertyChanged("canExecuteEditTeacher");
             RaisePropertyChanged("canExecuteRemoveTeacher");
-            RaisePropertyChanged("AllTeachers");
+            RaisePropertyChanged("AllTeachers");*/
         }
         public void universitiesViewModel()
         {
@@ -279,13 +294,12 @@ namespace WPF_sprinter
             RaisePropertyChanged("canExecuteRemoveUniversity");
             RaisePropertyChanged("AllUniversities");
         }
-        public void DepartmentsViewModel()
+        public void departmentsViewModel()
         {
             if (allUniversities.Count > 0)
             {
-                allDepartments = AppDelegate.Instance.dataController.GetAllDepartments(allUniversities[universitySelected].Id);
                 _canExecuteAddDepartment = true;
-                if(allDepartments.Count>0)
+                if (allDepartments.Count > 0)
                 {
                     _canExecuteEditDepartment = true;
                     _canExecuteRemoveDepartment = true;
@@ -317,7 +331,7 @@ namespace WPF_sprinter
             UniversitiesViewModel();
             RaisePropertyChanged("AllUniversities");
         }
-        
+
 
         public ICommand actionShowEditUniversity
         {
@@ -431,7 +445,7 @@ namespace WPF_sprinter
             {
                 return _actionShowCreateStudent ?? (_actionShowCreateStudent = new CommandHandler(() =>
                 {
-                    if (departmentSelected != -1 && allDepartments != null && allDepartments.Count>0) new CreateStudent(allDepartments[departmentSelected].Id).ShowDialog();
+                    if (departmentSelected != -1 && allDepartments != null && allDepartments.Count > 0) new CreateStudent(allDepartments[departmentSelected].Id).ShowDialog();
                     studentSelected = 0;
                     StudentsViewModel();
                 }, _canExecute));
