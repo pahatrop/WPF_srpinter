@@ -382,7 +382,10 @@ namespace WPF_sprinter
                 {
                     if (allStudents != null)
                     {
-                        new EditStudent(allStudents[studentSelected]).ShowDialog();
+                        if (studentSelected != -1)
+                        {
+                            new EditStudent(allStudents[studentSelected]).ShowDialog();
+                        }
                     }
                     StudentsViewModel();
                 }, _canExecute));
@@ -408,7 +411,10 @@ namespace WPF_sprinter
                 {
                     if (allStudents != null)
                     {
-                        new XmlDataProvider().RemoveStudent(allStudents[studentSelected].Id);
+                        if (studentSelected != -1)
+                        {
+                            new XmlDataProvider().RemoveStudent(allStudents[studentSelected].Id);
+                        }
                     }
                     StudentsViewModel();
                 }, _canExecute));
@@ -449,7 +455,10 @@ namespace WPF_sprinter
                 {
                     if (allTeachers != null)
                     {
-                        new XmlDataProvider().RemoveTeacher(allTeachers[teacherSelected].Id);
+                        if (teacherSelected != -1)
+                        {
+                            new XmlDataProvider().RemoveTeacher(allTeachers[teacherSelected].Id);
+                        }
                     }
                     TeachersViewModel();
                 }, _canExecute));

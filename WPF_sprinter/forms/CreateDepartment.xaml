@@ -1,7 +1,7 @@
 ﻿<Window x:Class="WPF_sprinter.forms.CreateDepartment"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="EditUniversity" Height="262" Width="565">
+        Title="EditUniversity" Height="262" Width="565" MinHeight="262" MinWidth="565">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="281*"/>
@@ -9,13 +9,13 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
-            <RowDefinition Height="200"/>
+            <RowDefinition Height="200*"/>
         </Grid.RowDefinitions>
         <GroupBox Header="Edit department" Margin="10" Grid.RowSpan="2" Grid.ColumnSpan="2">
         </GroupBox>
-        <TextBlock Margin="20,84" Grid.Column="0" Grid.Row="1" Text="Department name:"/>
+        <TextBlock Height="35" Margin="20,84" Grid.Column="0" Grid.Row="1" Text="Department name:"/>
 
-        <TextBox Margin="20,84" Grid.Column="1" Grid.Row="1" Text="{Binding departmentName, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Height="35" Margin="20,84" Grid.Column="1" Grid.Row="1" Text="{Binding departmentName, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Button Margin="0,0,20,20" Width="100" Height="35" Click="Close" Command="{Binding Path=actionCreateDepartment, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="1">Save</Button>
     </Grid>

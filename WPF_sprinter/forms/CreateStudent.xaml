@@ -4,8 +4,9 @@
         Title="EditUniversity" Height="433" Width="565">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="281*"/>
-            <ColumnDefinition Width="276*"/>
+            <ColumnDefinition Width="152"/>
+            <ColumnDefinition Width="366*"/>
+            <ColumnDefinition Width="21*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
@@ -15,16 +16,16 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
-        <GroupBox Header="Edit department" Margin="10,10,10,-51" Grid.ColumnSpan="2" Grid.RowSpan="7">
+        <GroupBox Header="Edit department" Margin="10,10,10,17" Grid.ColumnSpan="3" Grid.RowSpan="8">
         </GroupBox>
-        
-        <TextBlock Margin="10" Grid.Column="0" Grid.Row="1" Text="Firstname:"/>
-        <TextBlock Margin="10" Grid.Column="0" Grid.Row="2" Text="Lastname:"/>
-        <TextBlock Margin="10" Grid.Column="0" Grid.Row="3" Text="Middlename:"/>
-        <TextBlock Margin="10" Grid.Column="0" Grid.Row="4" Text="Cource:"/>
-        <TextBlock Margin="10" Grid.Column="0" Grid.Row="5" Text="Type:"/>
+
+        <TextBlock Padding="10,0,0,0" Margin="10" Grid.Column="0" Grid.Row="1" Text="Firstname:"/>
+        <TextBlock Padding="10,0,0,0" Margin="10" Grid.Column="0" Grid.Row="2" Text="Lastname:"/>
+        <TextBlock Padding="10,0,0,0" Margin="10" Grid.Column="0" Grid.Row="3" Text="Middlename:"/>
+        <TextBlock Padding="10,0,0,0" Margin="10" Grid.Column="0" Grid.Row="4" Text="Cource:"/>
+        <TextBlock Padding="10,0,0,0" Margin="10" Grid.Column="0" Grid.Row="5" Text="Type:"/>
 
         <TextBox Margin="10" Grid.Column="1" Grid.Row="1" Text="{Binding studentFirstname, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBox Margin="10" Grid.Column="1" Grid.Row="2" Text="{Binding studentLastname, UpdateSourceTrigger=PropertyChanged}"/>
@@ -32,6 +33,6 @@
         <TextBox Margin="10" Grid.Column="1" Grid.Row="4" Text="{Binding studentCource, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBox Margin="10" Grid.Column="1" Grid.Row="5" Text="{Binding studentType, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Button Margin="0,0,20,10" Width="100" Height="35" Click="Close" Command="{Binding Path=actionCreateStudent, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="7">Save</Button>
+        <Button Margin="0,0,0,23" Width="100" Height="35" Click="Close" Command="{Binding Path=actionCreateStudent, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="7">Save</Button>
     </Grid>
 </Window>
