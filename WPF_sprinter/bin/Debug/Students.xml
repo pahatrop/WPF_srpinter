@@ -18,4 +18,13 @@
     <Type>керкур</Type>
     <Department>4512009</Department>
   </Student>
+  <Student>
+    <Id>2290119</Id>
+    <Firstname>hgkj</Firstname>
+    <Lastname>ghk</Lastname>
+    <Middlename>hjk</Middlename>
+    <Cource>0</Cource>
+    <Type>hgk</Type>
+    <Department>6157187</Department>
+  </Student>
 </ArrayOfStudent>

@@ -1,91 +1,107 @@
 ﻿<Window x:Class="WPF_sprinter.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="729.15" Width="1268">
+        Title="MainWindow" MinHeight="510.15" MinWidth="1164.5" Height="748" Width="1380.5">
     <Grid>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="328*"/>
             <RowDefinition Height="323*"/>
-            <RowDefinition Height="48"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400" MinWidth="320" MaxWidth="500"/>
+            <ColumnDefinition Width="360" MinWidth="280" MaxWidth="400"/>
             <ColumnDefinition/>
-            <ColumnDefinition Width="80"/>
         </Grid.ColumnDefinitions>
 
-        <ListBox ItemsSource="{Binding AllUniversities}" SelectedIndex="{Binding SelectedUniversity, UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" BorderBrush="#436EEE" Margin="10,10,9,3" Grid.RowSpan="2">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid Margin="3" Width="300">
-                        <TextBlock Margin="10, 0,0,0" Grid.Row="0" Grid.Column="0" FontWeight="Bold" FontSize="18" Text="{Binding Path=Name}" Foreground="#073784"/>
-                        <TextBlock Margin="10,30,0,0" Grid.Row="0" Grid.Column="0" FontWeight="Normal" FontSize="15" Text="Address: "/>
-                        <TextBlock Margin="100,30,0,0" Grid.Row="0" Grid.Column="0" FontWeight="Normal" FontSize="15" Text="{Binding Path=Address}" TextWrapping="Wrap"/>
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-  
+        <GroupBox Header="Universities" Grid.RowSpan="2" Grid.Column="0" Margin="5" BorderBrush="#4876FF">
+            <DockPanel LastChildFill="true">
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Height="40">
+                    <Button IsEnabled="{Binding canExecuteAddUniversity}" Command="{Binding Path=actionShowCreateUniversity , Mode=OneWay}" Margin="10,7,0,7" Padding="10,3,10,3">Create</Button>
+                    <Button IsEnabled="{Binding canExecuteEditUniversity}" Command="{Binding Path=actionShowEditUniversity , Mode=OneWay}" Margin="10,7" Padding="10,3,10,3">Edit</Button>
+                    <Button IsEnabled="{Binding canExecuteRemoveUniversity}" Command="{Binding Path=actionRemoveUniversity , Mode=OneWay}" Margin="0,7,0,7" Padding="10,3,10,3">Remove</Button>
+                </StackPanel>
+                <ListBox DockPanel.Dock="Top" ItemsSource="{Binding AllUniversities}" SelectedIndex="{Binding SelectedUniversity, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#4876FF" Margin="5">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="3" Width="300">
+                                <TextBlock Margin="10, 0,0,0" Grid.Row="0" Grid.Column="0" FontWeight="Bold" FontSize="18" Text="{Binding Path=Name}" Foreground="#073784"/>
+                                <TextBlock Margin="10,30,0,0" Grid.Row="0" Grid.Column="0" FontWeight="Normal" FontSize="15" Text="Address: "/>
+                                <TextBlock Margin="100,30,0,0" Grid.Row="0" Grid.Column="0" FontWeight="Normal" FontSize="15" Text="{Binding Path=Address}" TextWrapping="Wrap"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+        </GroupBox>
+
+
         <GridSplitter Grid.Column="1" HorizontalAlignment="Left" Height="689" VerticalAlignment="Top" Width="3" Margin="1,0,0,0" Grid.RowSpan="3"/>
-        <ListBox ItemsSource="{Binding AllDepartments}" SelectedIndex="{Binding SelectedDepartment, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="0" BorderBrush="#436EEE" Margin="10,10,10,0" Grid.RowSpan="1">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid Margin="3" Width="300">
-                        <TextBlock Margin="10, 0,0,0" Grid.Row="0" Grid.Column="0" FontSize="18" Text="{Binding Path=Name}" Foreground="#073784"/>
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <ListBox ItemsSource="{Binding AllStudents}" SelectedIndex="{Binding SelectedStudent, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" BorderBrush="#436EEE" Margin="10,10,0,3" Width="10000" HorizontalAlignment="Left">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid Margin="3" Width="300">
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Margin="10, 0,0,0" Grid.Row="0" FontSize="16" Text="{Binding Path=Firstname}" Foreground="#073784"/>
-                        <TextBlock Margin="10, 0,0,0" Grid.Row="1" FontSize="16" Text="{Binding Path=Lastname}" Foreground="#073784"/>
-                        <TextBlock Margin="10, 0,0,0" Grid.Row="2" FontSize="13" Text="{Binding Path=Type}" Foreground="#4A708B"/>
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <TextBlock Background="#fff" Grid.Column="1" Width="100" HorizontalAlignment="Right" Grid.Row="1"></TextBlock>
-        <ListBox ItemsSource="{Binding AllTeachers}" SelectedIndex="{Binding SelectedTeacher, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" BorderBrush="#436EEE" Margin="0,10,10,3" Width="400" HorizontalAlignment="Right">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid Margin="3" Width="300">
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Margin="10, 0,0,0" Grid.Row="0" FontSize="16" Text="{Binding Path=Firstname}" Foreground="#073784"/>
-                        <TextBlock Margin="10, 0,0,0" Grid.Row="1" FontSize="16" Text="{Binding Path=Lastname}" Foreground="#073784"/>
-                        <TextBlock Margin="10, 0,0,0" Grid.Row="2" FontSize="13" Text="{Binding Path=Specialty}" Foreground="#4A708B"/>
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
 
-        <Button IsEnabled="{Binding canExecuteAddUniversity}" Command="{Binding Path=actionShowCreateUniversity , Mode=OneWay}" Grid.Column="0" Grid.Row="2" Width="100" Margin="7,7,0,7" HorizontalAlignment="Left">Create</Button>
-        <Button IsEnabled="{Binding canExecuteEditUniversity}" Command="{Binding Path=actionShowEditUniversity , Mode=OneWay}" Grid.Column="0" Grid.Row="2" Width="100" Margin="0,7" HorizontalAlignment="Center">Edit</Button>
-        <Button IsEnabled="{Binding canExecuteRemoveUniversity}" Command="{Binding Path=actionRemoveUniversity , Mode=OneWay}" Grid.Column="0" Grid.Row="2" Width="100" Margin="0,7,7,7" HorizontalAlignment="Right">Remove</Button>
+        <GroupBox Header="Departments" Grid.Column="1" Grid.Row="0" Grid.RowSpan="1" Margin="5" BorderBrush="#4876FF">
+            <DockPanel LastChildFill="true">
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Height="40">
+                    <Button IsEnabled="{Binding canExecuteAddDepartment}" Command="{Binding Path=actionShowCreateDepartment , Mode=OneWay}" Margin="10,7,0,7" Padding="10,3,10,3">Create</Button>
+                    <Button IsEnabled="{Binding canExecuteEditDepartment}" Command="{Binding Path=actionShowEditDepartment , Mode=OneWay}" Margin="10,7" Padding="10,3,10,3">Edit</Button>
+                    <Button IsEnabled="{Binding canExecuteRemoveDepartment}" Command="{Binding Path=actionRemoveDepartment , Mode=OneWay}" Margin="0,7,0,7" Padding="10,3,10,3">Remove</Button>
+                </StackPanel>
+                <ListBox DockPanel.Dock="Top" ItemsSource="{Binding AllDepartments}" SelectedIndex="{Binding SelectedDepartment, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#436EEE" Margin="10,10,10,0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="3" Width="300">
+                                <TextBlock Margin="10, 0,0,0" Grid.Row="0" Grid.Column="0" FontSize="18" Text="{Binding Path=Name}" Foreground="#073784"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+        </GroupBox>
 
-        <Button IsEnabled="{Binding canExecuteAddDepartment}" Command="{Binding Path=actionShowCreateDepartment , Mode=OneWay}" Grid.Column="2" Grid.Row="0" Width="70" Height="30" Margin="0,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">Create</Button>
-        <Button IsEnabled="{Binding canExecuteEditDepartment}" Command="{Binding Path=actionShowEditDepartment , Mode=OneWay}" Grid.Column="2" Grid.Row="0" Width="70" Height="30" Margin="0,50,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">Edit</Button>
-        <Button IsEnabled="{Binding canExecuteRemoveDepartment}" Command="{Binding Path=actionRemoveDepartment , Mode=OneWay}" Grid.Column="2" Grid.Row="0" Width="70" Height="30" Margin="0,90,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">Remove</Button>
+        <GroupBox Header="Students / teachers" Grid.Column="1" Grid.Row="1" Margin="5" BorderBrush="#4876FF">
+            <DockPanel LastChildFill="true">
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Height="40">
+                    <Button IsEnabled="{Binding canExecuteAddStudent}" Command="{Binding Path=actionShowCreateStudent , Mode=OneWay}" Margin="10,7,0,7" Padding="10,3,10,3" HorizontalAlignment="Left">Create</Button>
+                    <Button IsEnabled="{Binding canExecuteEditStudent}" Command="{Binding Path=actionShowEditStudent , Mode=OneWay}" Margin="10,7" Padding="10,3,10,3" HorizontalAlignment="Left">Edit</Button>
+                    <Button IsEnabled="{Binding canExecuteRemoveStudent}" Command="{Binding Path=actionRemoveStudent , Mode=OneWay}" Margin="0,7,0,7" Padding="10,3,10,3" HorizontalAlignment="Left">Remove</Button>
 
-        <Button IsEnabled="{Binding canExecuteAddStudent}" Command="{Binding Path=actionShowCreateStudent , Mode=OneWay}" Grid.Column="1" Grid.Row="2" Width="80" Margin="10,7,0,7" HorizontalAlignment="Left">Create</Button>
-        <Button IsEnabled="{Binding canExecuteEditStudent}" Command="{Binding Path=actionShowEditStudent , Mode=OneWay}" Grid.Column="1" Grid.Row="2" Width="80" Margin="100,7,0,7" HorizontalAlignment="Left">Edit</Button>
-        <Button IsEnabled="{Binding canExecuteRemoveStudent}" Command="{Binding Path=actionRemoveStudent , Mode=OneWay}" Grid.Column="1" Grid.Row="2" Width="80" Margin="190,7,0,7" HorizontalAlignment="Left">Remove</Button>
+                    <Button IsEnabled="{Binding canExecuteAddTeacher}" Command="{Binding Path=actionShowCreateTeacher , Mode=OneWay}" Margin="230,7,0,7" Padding="10,3,10,3" HorizontalAlignment="Right">Create</Button>
+                    <Button IsEnabled="{Binding canExecuteEditTeacher}" Command="{Binding Path=actionShowEditTeacher , Mode=OneWay}" Margin="10,7" Padding="10,3,10,3" HorizontalAlignment="Right">Edit</Button>
+                    <Button IsEnabled="{Binding canExecuteRemoveTeacher}" Command="{Binding Path=actionRemoveTeacher , Mode=OneWay}" Margin="0,7,0,7" Padding="10,3,10,3" HorizontalAlignment="Right">Remove</Button>
+                </StackPanel>
+                <ListBox DockPanel.Dock="Left" Width="400" ItemsSource="{Binding AllStudents}" SelectedIndex="{Binding SelectedStudent, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#436EEE" Margin="10,10,0,3">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="3" Width="300">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Margin="10, 0,0,0" Grid.Row="0" FontSize="16" Text="{Binding Path=Firstname}" Foreground="#073784"/>
+                                <TextBlock Margin="10, 0,0,0" Grid.Row="1" FontSize="16" Text="{Binding Path=Lastname}" Foreground="#073784"/>
+                                <TextBlock Margin="10, 0,0,0" Grid.Row="2" FontSize="13" Text="{Binding Path=Type}" Foreground="#4A708B"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <ListBox DockPanel.Dock="Right" MinWidth="300" ItemsSource="{Binding AllTeachers}" SelectedIndex="{Binding SelectedTeacher, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#436EEE" Margin="0,10,10,3">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="3" Width="300">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Margin="10, 0,0,0" Grid.Row="0" FontSize="16" Text="{Binding Path=Firstname}" Foreground="#073784"/>
+                                <TextBlock Margin="10, 0,0,0" Grid.Row="1" FontSize="16" Text="{Binding Path=Lastname}" Foreground="#073784"/>
+                                <TextBlock Margin="10, 0,0,0" Grid.Row="2" FontSize="13" Text="{Binding Path=Specialty}" Foreground="#4A708B"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
 
-        <Button IsEnabled="{Binding canExecuteAddTeacher}" Command="{Binding Path=actionShowCreateTeacher , Mode=OneWay}" Grid.Column="1" Grid.Row="2" Width="80" Margin="0,7,190,7" HorizontalAlignment="Right">Create</Button>
-        <Button IsEnabled="{Binding canExecuteEditTeacher}" Command="{Binding Path=actionShowEditTeacher , Mode=OneWay}" Grid.Column="1" Grid.Row="2" Width="80" Margin="0,7,100,7" HorizontalAlignment="Right">Edit</Button>
-        <Button IsEnabled="{Binding canExecuteRemoveTeacher}" Command="{Binding Path=actionRemoveTeacher , Mode=OneWay}" Grid.Column="1" Grid.Row="2" Width="80" Margin="0,7,10,7" HorizontalAlignment="Right">Remove</Button>
+            </DockPanel>
+        </GroupBox>
     </Grid>
 </Window>

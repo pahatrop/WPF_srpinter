@@ -16,4 +16,12 @@
     <Specialty>керкр</Specialty>
     <Department>4512009</Department>
   </Teacher>
+  <Teacher>
+    <Id>823713</Id>
+    <Firstname>hgkj</Firstname>
+    <Lastname>ghjk</Lastname>
+    <Middlename>hjk</Middlename>
+    <Specialty>hjk</Specialty>
+    <Department>6157187</Department>
+  </Teacher>
 </ArrayOfTeacher>
