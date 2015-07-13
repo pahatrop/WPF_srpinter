@@ -2,8 +2,20 @@
 <ArrayOfUniversity xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <University>
     <Id>5733837</Id>
-    <Name>ewgeg</Name>
-    <Address>erge</Address>
-    <Level>0</Level>
+    <Name>Таврическая академия</Name>
+    <Address>ул. Киевская проспект Вернадского</Address>
+    <Level>4</Level>
+  </University>
+  <University>
+    <Id>275359</Id>
+    <Name>КГМУ им.Георгиевского</Name>
+    <Address>ул Киевская</Address>
+    <Level>2</Level>
+  </University>
+  <University>
+    <Id>7181383</Id>
+    <Name>Академия биоресурсов</Name>
+    <Address>поселок Аграрный</Address>
+    <Level>2</Level>
   </University>
 </ArrayOfUniversity>

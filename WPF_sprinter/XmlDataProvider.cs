@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using System.Windows;
+using System.Threading;
 
 namespace WPF_sprinter
 {
-    class XmlDataProvider
+    public class XmlDataProvider : IDataProvider
     {
         private static string fs_xml_file_Universities = "Universities.xml";
         private static string fs_xml_file_Departments = "Departments.xml";
@@ -29,6 +30,7 @@ namespace WPF_sprinter
 
         public List<University> GetAllUniversities()
         {
+            System.Threading.Thread.Sleep(3000);
             try
             {
                 List<University> universities = new List<University>();
@@ -135,6 +137,7 @@ namespace WPF_sprinter
 
         public List<Student> GetAllStudents(int id = -1)
         {
+            System.Threading.Thread.Sleep(3000);
             try
             {
                 List<Student> students = new List<Student>();

@@ -79,7 +79,7 @@ namespace WPF_sprinter
             {
                 return _actionEditTeacher ?? (_actionEditTeacher = new CommandHandler(() =>
                 {
-                    new XmlDataProvider().EditTeacher(new Teacher(_teacherId, _teacherFirstname, _teacherLastname, _teacherMiddlename, _teacherSpecialty, _teacherDepartment));
+                    AppDelegate.Instance.dataController.EditTeacher(new Teacher(_teacherId, _teacherFirstname, _teacherLastname, _teacherMiddlename, _teacherSpecialty, _teacherDepartment));
                 }, _canExecute));
             }
         }

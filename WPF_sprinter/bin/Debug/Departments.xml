@@ -2,7 +2,17 @@
 <ArrayOfDepartment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Department>
     <Id>9279008</Id>
-    <Name>egregeew</Name>
+    <Name>Математики и информатики</Name>
+    <University>5733837</University>
+  </Department>
+  <Department>
+    <Id>605890</Id>
+    <Name>Истории</Name>
+    <University>5733837</University>
+  </Department>
+  <Department>
+    <Id>178739</Id>
+    <Name>Управления</Name>
     <University>5733837</University>
   </Department>
 </ArrayOfDepartment>

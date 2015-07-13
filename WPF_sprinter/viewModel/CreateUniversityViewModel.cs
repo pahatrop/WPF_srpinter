@@ -64,7 +64,7 @@ namespace WPF_sprinter
             {
                 return _actionCreateUniversity ?? (_actionCreateUniversity = new CommandHandler(() =>
                 {
-                    new XmlDataProvider().CreateNewUniversity(new University(-1, _universityName, _universityAddress, _universityLevel));
+                    AppDelegate.Instance.dataController.CreateNewUniversity(new University(-1, _universityName, _universityAddress, _universityLevel));
                 }, _canExecute));
             }
         }

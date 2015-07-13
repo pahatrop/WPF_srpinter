@@ -57,7 +57,7 @@ namespace WPF_sprinter
             {
                 return _actionEditDepartment ?? (_actionEditDepartment = new CommandHandler(() =>
                 {
-                    new XmlDataProvider().EditDepartment(new Department(_departmentId, _departmentName, _departmentUniversity));
+                    AppDelegate.Instance.dataController.EditDepartment(new Department(_departmentId, _departmentName, _departmentUniversity));
 
                 }, _canExecute));
             }

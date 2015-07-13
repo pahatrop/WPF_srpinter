@@ -54,7 +54,7 @@ namespace WPF_sprinter
             {
                 return _actionCreateDepartment ?? (_actionCreateDepartment = new CommandHandler(() =>
                 {
-                    new XmlDataProvider().CreateNewDepartment(new Department(-1, _departmentName, _departmentUniversity));
+                    AppDelegate.Instance.dataController.CreateNewDepartment(new Department(-1, _departmentName, _departmentUniversity));
                 }, _canExecute));
             }
         }

@@ -53,8 +53,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppDelegate.cs" />
     <Compile Include="CommandHandler.cs" />
-    <Compile Include="Datacontroller.cs" />
+    <Compile Include="DataController.cs" />
     <Compile Include="forms\EditTeacher.xaml.cs">
       <DependentUpon>EditTeacher.xaml</DependentUpon>
     </Compile>
@@ -79,6 +80,7 @@
     <Compile Include="forms\EditUniversity.xaml.cs">
       <DependentUpon>EditUniversity.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IDataProvider.cs" />
     <Compile Include="viewModel\EditTeacherViewModel.cs" />
     <Compile Include="viewModel\CreateTeacherViewModel.cs" />
     <Compile Include="viewModel\EditStudentViewModel.cs" />

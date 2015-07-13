@@ -82,7 +82,7 @@ namespace WPF_sprinter
             {
                 return _actionCreateStudent ?? (_actionCreateStudent = new CommandHandler(() =>
                 {
-                    new XmlDataProvider().CreateNewStudent(new Student(-1, _studentFirstname, _studentLastname, _studentMiddlename, _studentCource, _studentType, _studentDepartment));
+                    AppDelegate.Instance.dataController.CreateNewStudent(new Student(-1, _studentFirstname, _studentLastname, _studentMiddlename, _studentCource, _studentType, _studentDepartment));
                 }, _canExecute));
             }
         }

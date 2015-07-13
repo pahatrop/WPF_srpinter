@@ -45,7 +45,7 @@
                     <Button IsEnabled="{Binding canExecuteEditDepartment}" Command="{Binding Path=actionShowEditDepartment , Mode=OneWay}" Margin="10,7" Padding="10,3,10,3">Edit</Button>
                     <Button IsEnabled="{Binding canExecuteRemoveDepartment}" Command="{Binding Path=actionRemoveDepartment , Mode=OneWay}" Margin="0,7,0,7" Padding="10,3,10,3">Remove</Button>
                 </StackPanel>
-                <ListBox DockPanel.Dock="Top" ItemsSource="{Binding AllDepartments}" SelectedIndex="{Binding SelectedDepartment, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#fff" Margin="10,10,10,0">
+                <ListBox DockPanel.Dock="Top" ItemsSource="{Binding AllDepartments, IsAsync=True}" SelectedIndex="{Binding SelectedDepartment, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#fff" Margin="10,10,10,0">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid Margin="3" Width="300">

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using WPF_sprinter.forms;
+using System.Diagnostics;
+using System.Threading;
+using System.Runtime.Remoting.Messaging;
 
 namespace WPF_sprinter
 {
@@ -164,12 +167,44 @@ namespace WPF_sprinter
             }
         }
 
+
+        delegate List<University> UniversityMethodDelegate();
+        delegate List<Department> DepartmentMethodDelegate(int id);
+        delegate List<Student> StudentMethodDelegate(int id);
+
+        private void GetAllUniversitiesCallback(IAsyncResult asyncRes)
+        {
+            AsyncResult ares = (AsyncResult)asyncRes;
+            UniversityMethodDelegate delg = (UniversityMethodDelegate)ares.AsyncDelegate;
+            allUniversities = delg.EndInvoke(asyncRes);
+            universitiesViewModel();
+        }
+        private void GetAllStudentsCallback(IAsyncResult asyncRes)
+        {
+            AsyncResult ares = (AsyncResult)asyncRes;
+            StudentMethodDelegate delg = (StudentMethodDelegate)ares.AsyncDelegate;
+            allStudents = delg.EndInvoke(asyncRes);
+            studentsViewModel();
+        }
+
+        public void UniversitiesViewModel()
+        {
+                UniversityMethodDelegate sd = AppDelegate.Instance.dataController.GetAllUniversities;
+                IAsyncResult asyncRes = sd.BeginInvoke(new AsyncCallback(GetAllUniversitiesCallback), null);
+        }
         public void StudentsViewModel()
         {
             if (departmentSelected < allDepartments.Count)
             {
-                allStudents = new XmlDataProvider().GetAllStudents(allDepartments[departmentSelected].Id);
-                _canExecuteAddStudent = true;
+                StudentMethodDelegate sd = AppDelegate.Instance.dataController.GetAllStudents;
+                IAsyncResult asyncRes = sd.BeginInvoke(allDepartments[departmentSelected].Id, new AsyncCallback(GetAllStudentsCallback), null);
+            }
+        }
+
+        public void studentsViewModel()
+        {
+            if (departmentSelected < allDepartments.Count)
+            {
                 if(allStudents.Count>0)
                 {
                     _canExecuteEditStudent = true;
@@ -197,7 +232,7 @@ namespace WPF_sprinter
         {
             if (departmentSelected < allDepartments.Count)
             {
-                allTeachers = new XmlDataProvider().GetAllTeachers(allDepartments[departmentSelected].Id);
+                allTeachers = AppDelegate.Instance.dataController.GetAllTeachers(allDepartments[departmentSelected].Id);
                 _canExecuteAddTeacher = true;
                 if (allTeachers.Count > 0)
                 {
@@ -222,9 +257,8 @@ namespace WPF_sprinter
             RaisePropertyChanged("canExecuteRemoveTeacher");
             RaisePropertyChanged("AllTeachers");
         }
-        public void UniversitysViewModel()
+        public void universitiesViewModel()
         {
-            allUniversities = new XmlDataProvider().GetAllUniversities();
             if (allUniversities.Count > 0)
             {
                 _canExecuteAddUniversity = true;
@@ -249,7 +283,7 @@ namespace WPF_sprinter
         {
             if (allUniversities.Count > 0)
             {
-                allDepartments = new XmlDataProvider().GetAllDepartments(allUniversities[universitySelected].Id);
+                allDepartments = AppDelegate.Instance.dataController.GetAllDepartments(allUniversities[universitySelected].Id);
                 _canExecuteAddDepartment = true;
                 if(allDepartments.Count>0)
                 {
@@ -264,7 +298,7 @@ namespace WPF_sprinter
             }
             else
             {
-                allDepartments = new XmlDataProvider().GetAllDepartments(-1);
+                allDepartments = AppDelegate.Instance.dataController.GetAllDepartments(-1);
                 _canExecuteAddDepartment = false;
                 _canExecuteEditDepartment = false;
                 _canExecuteRemoveDepartment = false;
@@ -280,7 +314,7 @@ namespace WPF_sprinter
         public MainWindowViewModel()
         {
             _canExecute = true;
-            UniversitysViewModel();
+            UniversitiesViewModel();
             RaisePropertyChanged("AllUniversities");
         }
         
@@ -293,7 +327,7 @@ namespace WPF_sprinter
                 {
                     new EditUniversity(allUniversities[universitySelected]).ShowDialog();
                     universitySelected = 0;
-                    UniversitysViewModel();
+                    UniversitiesViewModel();
                 }, _canExecute));
             }
         }
@@ -305,7 +339,7 @@ namespace WPF_sprinter
                 {
                     new CreateUniversity().ShowDialog();
                     universitySelected = 0;
-                    UniversitysViewModel();
+                    UniversitiesViewModel();
                 }, _canExecute));
             }
         }
@@ -315,9 +349,9 @@ namespace WPF_sprinter
             {
                 return _actionRemoveUniversity ?? (_actionRemoveUniversity = new CommandHandler(() =>
                 {
-                    new XmlDataProvider().RemoveUniversity(allUniversities[universitySelected].Id);
+                    AppDelegate.Instance.dataController.RemoveUniversity(allUniversities[universitySelected].Id);
                     universitySelected = 0;
-                    UniversitysViewModel();
+                    UniversitiesViewModel();
                 }, _canExecute));
             }
         }
@@ -350,7 +384,7 @@ namespace WPF_sprinter
                     universitySelected = 0;
                     departmentSelected = 0;
                     DepartmentsViewModel();
-                    UniversitysViewModel();
+                    UniversitiesViewModel();
                 }, _canExecute));
             }
         }
@@ -364,12 +398,12 @@ namespace WPF_sprinter
                     {
                         if (allDepartments.Count > departmentSelected)
                         {
-                            new XmlDataProvider().RemoveDepartment(allDepartments[departmentSelected].Id);
+                            AppDelegate.Instance.dataController.RemoveDepartment(allDepartments[departmentSelected].Id);
                         }
                     }
                     universitySelected = 0;
                     DepartmentsViewModel();
-                    UniversitysViewModel();
+                    UniversitiesViewModel();
                 }, _canExecute));
             }
         }
@@ -413,7 +447,7 @@ namespace WPF_sprinter
                     {
                         if (studentSelected != -1)
                         {
-                            new XmlDataProvider().RemoveStudent(allStudents[studentSelected].Id);
+                            AppDelegate.Instance.dataController.RemoveStudent(allStudents[studentSelected].Id);
                         }
                     }
                     StudentsViewModel();
@@ -457,7 +491,7 @@ namespace WPF_sprinter
                     {
                         if (teacherSelected != -1)
                         {
-                            new XmlDataProvider().RemoveTeacher(allTeachers[teacherSelected].Id);
+                            AppDelegate.Instance.dataController.RemoveTeacher(allTeachers[teacherSelected].Id);
                         }
                     }
                     TeachersViewModel();
