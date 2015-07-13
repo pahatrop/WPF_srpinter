@@ -84,6 +84,7 @@ namespace WPF_sprinter
 
         public List<Department> GetAllDepartments(int id = -1)
         {
+            System.Threading.Thread.Sleep(3000);
             try
             {
                 List<Department> departments = new List<Department>();
@@ -191,6 +192,7 @@ namespace WPF_sprinter
 
         public List<Teacher> GetAllTeachers(int id = -1)
         {
+            System.Threading.Thread.Sleep(3000);
             try
             {
                 List<Teacher> teachers = new List<Teacher>();
