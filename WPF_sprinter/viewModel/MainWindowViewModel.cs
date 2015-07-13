@@ -203,8 +203,11 @@ namespace WPF_sprinter
         {
             if (allDepartments != null)
             {
-                StudentMethodDelegate sd = AppDelegate.Instance.dataController.GetAllStudents;
-                IAsyncResult asyncRes = sd.BeginInvoke(allDepartments[departmentSelected].Id, new AsyncCallback(GetAllStudentsCallback), null);
+                if (departmentSelected < allDepartments.Count)
+                {
+                    StudentMethodDelegate sd = AppDelegate.Instance.dataController.GetAllStudents;
+                    IAsyncResult asyncRes = sd.BeginInvoke(allDepartments[departmentSelected].Id, new AsyncCallback(GetAllStudentsCallback), null);
+                }
             }
         }
         public void DepartmentsViewModel()
