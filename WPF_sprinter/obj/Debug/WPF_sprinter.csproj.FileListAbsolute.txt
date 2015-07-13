@@ -1,7 +1,6 @@
 C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\bin\Debug\WPF_sprinter.exe.config
 C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\bin\Debug\WPF_sprinter.exe
 C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\bin\Debug\WPF_sprinter.pdb
-C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\WPF_sprinter.csprojResolveAssemblyReference.cache
 C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\forms\EditTeacher.baml
 C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\forms\CreateTeacher.baml
 C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\forms\EditStudent.baml

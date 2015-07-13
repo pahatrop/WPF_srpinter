@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfStudent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Student>
+    <Id>5769015</Id>
+    <Firstname>fdsbdfb</Firstname>
+    <Lastname>dfb</Lastname>
+    <Middlename>dfb</Middlename>
+    <Cource>0</Cource>
+    <Type>dfbd</Type>
+    <Department>9279008</Department>
+  </Student>
+</ArrayOfStudent>

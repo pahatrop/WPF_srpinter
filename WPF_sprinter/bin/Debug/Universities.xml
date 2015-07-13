@@ -1,3 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfUniversity xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <University>
+    <Id>5733837</Id>
+    <Name>ewgeg</Name>
+    <Address>erge</Address>
+    <Level>0</Level>
+  </University>
 </ArrayOfUniversity>

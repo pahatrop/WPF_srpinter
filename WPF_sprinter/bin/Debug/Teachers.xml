@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfTeacher xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Teacher>
+    <Id>92117</Id>
+    <Firstname>dfbdsb</Firstname>
+    <Lastname>dfbdf</Lastname>
+    <Middlename>dfbdbf</Middlename>
+    <Specialty>db</Specialty>
+    <Department>9279008</Department>
+  </Teacher>
+</ArrayOfTeacher>

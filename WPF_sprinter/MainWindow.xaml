@@ -21,7 +21,7 @@
                     <Button IsEnabled="{Binding canExecuteEditUniversity}" Command="{Binding Path=actionShowEditUniversity , Mode=OneWay}" Margin="10,7" Padding="10,3,10,3">Edit</Button>
                     <Button IsEnabled="{Binding canExecuteRemoveUniversity}" Command="{Binding Path=actionRemoveUniversity , Mode=OneWay}" Margin="0,7,0,7" Padding="10,3,10,3">Remove</Button>
                 </StackPanel>
-                <ListBox DockPanel.Dock="Top" ItemsSource="{Binding AllUniversities}" SelectedIndex="{Binding SelectedUniversity, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#4876FF" Margin="5">
+                <ListBox DockPanel.Dock="Top" ItemsSource="{Binding AllUniversities}" SelectedIndex="{Binding SelectedUniversity, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#fff" Margin="5">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid Margin="3" Width="300">
@@ -45,7 +45,7 @@
                     <Button IsEnabled="{Binding canExecuteEditDepartment}" Command="{Binding Path=actionShowEditDepartment , Mode=OneWay}" Margin="10,7" Padding="10,3,10,3">Edit</Button>
                     <Button IsEnabled="{Binding canExecuteRemoveDepartment}" Command="{Binding Path=actionRemoveDepartment , Mode=OneWay}" Margin="0,7,0,7" Padding="10,3,10,3">Remove</Button>
                 </StackPanel>
-                <ListBox DockPanel.Dock="Top" ItemsSource="{Binding AllDepartments}" SelectedIndex="{Binding SelectedDepartment, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#436EEE" Margin="10,10,10,0">
+                <ListBox DockPanel.Dock="Top" ItemsSource="{Binding AllDepartments}" SelectedIndex="{Binding SelectedDepartment, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#fff" Margin="10,10,10,0">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid Margin="3" Width="300">
@@ -68,7 +68,7 @@
                     <Button IsEnabled="{Binding canExecuteEditTeacher}" Command="{Binding Path=actionShowEditTeacher , Mode=OneWay}" Margin="10,7" Padding="10,3,10,3" HorizontalAlignment="Right">Edit</Button>
                     <Button IsEnabled="{Binding canExecuteRemoveTeacher}" Command="{Binding Path=actionRemoveTeacher , Mode=OneWay}" Margin="0,7,0,7" Padding="10,3,10,3" HorizontalAlignment="Right">Remove</Button>
                 </StackPanel>
-                <ListBox DockPanel.Dock="Left" Width="400" ItemsSource="{Binding AllStudents}" SelectedIndex="{Binding SelectedStudent, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#436EEE" Margin="10,10,0,3">
+                <ListBox DockPanel.Dock="Left" Width="400" ItemsSource="{Binding AllStudents}" SelectedIndex="{Binding SelectedStudent, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#fff" Margin="10,10,0,3">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid Margin="3" Width="300">
@@ -84,7 +84,7 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <ListBox DockPanel.Dock="Right" MinWidth="300" ItemsSource="{Binding AllTeachers}" SelectedIndex="{Binding SelectedTeacher, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#436EEE" Margin="0,10,10,3">
+                <ListBox DockPanel.Dock="Right" MinWidth="300" ItemsSource="{Binding AllTeachers}" SelectedIndex="{Binding SelectedTeacher, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#fff" Margin="0,10,10,3">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid Margin="3" Width="300">
