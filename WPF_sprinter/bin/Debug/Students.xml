@@ -1,38 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfStudent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Student>
-    <Id>5615661</Id>
-    <Firstname>dsfg</Firstname>
-    <Lastname>dfg</Lastname>
-    <Middlename>fs</Middlename>
-    <Cource>4</Cource>
-    <Type>dfgd</Type>
-    <Department>4238389</Department>
-  </Student>
-  <Student>
-    <Id>4899444</Id>
-    <Firstname>fewf</Firstname>
-    <Lastname>ewafw</Lastname>
-    <Middlename>aswefwfwfae</Middlename>
+    <Id>847186</Id>
+    <Firstname>цупкуц</Firstname>
+    <Lastname>уцкпуцкп</Lastname>
+    <Middlename>укпуцп</Middlename>
     <Cource>0</Cource>
-    <Department>3367528</Department>
+    <Type>укпуцкп</Type>
+    <Department>4953922</Department>
   </Student>
   <Student>
-    <Id>2665992</Id>
-    <Firstname>Андрей</Firstname>
-    <Lastname>Веревкин</Lastname>
-    <Middlename>Васильевич</Middlename>
-    <Cource>5</Cource>
-    <Type>заочная</Type>
-    <Department>2348814</Department>
-  </Student>
-  <Student>
-    <Id>1448301</Id>
-    <Firstname>Алексей</Firstname>
-    <Lastname>Николаев</Lastname>
-    <Middlename>Генадиевич</Middlename>
+    <Id>3851616</Id>
+    <Firstname>куеркр</Firstname>
+    <Lastname>керк</Lastname>
+    <Middlename>керке</Middlename>
     <Cource>0</Cource>
-    <Type>очная</Type>
-    <Department>2348814</Department>
+    <Type>керкур</Type>
+    <Department>4512009</Department>
   </Student>
 </ArrayOfStudent>

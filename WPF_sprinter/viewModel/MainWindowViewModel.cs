@@ -45,12 +45,82 @@ namespace WPF_sprinter
         private ICommand _actionRemoveTeacher;
 
         private bool _canExecute;
+        
+        private bool _canExecuteAddUniversity;
+        private bool _canExecuteEditUniversity;
+        private bool _canExecuteRemoveUniversity;
+
+        private bool _canExecuteAddDepartment;
+        private bool _canExecuteEditDepartment;
+        private bool _canExecuteRemoveDepartment;
+
+        private bool _canExecuteAddStudent;
+        private bool _canExecuteEditStudent;
+        private bool _canExecuteRemoveStudent;
+
+        private bool _canExecuteAddTeacher;
+        private bool _canExecuteEditTeacher;
+        private bool _canExecuteRemoveTeacher;
+        
+        public bool canExecuteAddUniversity
+        {
+            get { return _canExecuteAddUniversity; }
+        }
+        public bool canExecuteEditUniversity
+        {
+            get { return _canExecuteEditUniversity; }
+        }
+        public bool canExecuteRemoveUniversity
+        {
+            get { return _canExecuteRemoveUniversity; }
+        }
+
+        public bool canExecuteAddDepartment
+        {
+            get { return _canExecuteAddDepartment; }
+        }
+        public bool canExecuteEditDepartment
+        {
+            get { return _canExecuteEditDepartment; }
+        }
+        public bool canExecuteRemoveDepartment
+        {
+            get { return _canExecuteRemoveDepartment; }
+        }
+
+        public bool canExecuteAddStudent
+        {
+            get { return _canExecuteAddStudent; }
+        }
+        public bool canExecuteEditStudent
+        {
+            get { return _canExecuteEditStudent; }
+        }
+        public bool canExecuteRemoveStudent
+        {
+            get { return _canExecuteRemoveStudent; }
+        }
+
+        public bool canExecuteAddTeacher
+        {
+            get { return _canExecuteAddTeacher; }
+        }
+        public bool canExecuteEditTeacher
+        {
+            get { return _canExecuteEditTeacher; }
+        }
+        public bool canExecuteRemoveTeacher
+        {
+            get { return _canExecuteRemoveTeacher; }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void RaisePropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
+
         public int SelectedUniversity
         {
             get { return universitySelected; }
@@ -96,35 +166,124 @@ namespace WPF_sprinter
 
         public void StudentsViewModel()
         {
-            allStudents = new XmlDataProvider().GetAllStudents(allDepartments[departmentSelected].Id);
+            if (departmentSelected < allDepartments.Count)
+            {
+                allStudents = new XmlDataProvider().GetAllStudents(allDepartments[departmentSelected].Id);
+                _canExecuteAddStudent = true;
+                if(allStudents.Count>0)
+                {
+                    _canExecuteEditStudent = true;
+                    _canExecuteRemoveStudent = true;
+                }
+                else
+                {
+                    _canExecuteEditStudent = false;
+                    _canExecuteRemoveStudent = false;
+                }
+            }
+            else
+            {
+                allStudents = null;
+                _canExecuteAddStudent = false;
+                _canExecuteEditStudent = false;
+                _canExecuteRemoveStudent = false;
+            }
+            RaisePropertyChanged("canExecuteAddStudent");
+            RaisePropertyChanged("canExecuteEditStudent");
+            RaisePropertyChanged("canExecuteRemoveStudent");
             RaisePropertyChanged("AllStudents");
         }
         public void TeachersViewModel()
         {
-            allTeachers = new XmlDataProvider().GetAllTeachers(allDepartments[departmentSelected].Id);
+            if (departmentSelected < allDepartments.Count)
+            {
+                allTeachers = new XmlDataProvider().GetAllTeachers(allDepartments[departmentSelected].Id);
+                _canExecuteAddTeacher = true;
+                if (allTeachers.Count > 0)
+                {
+                    _canExecuteEditTeacher = true;
+                    _canExecuteRemoveTeacher = true;
+                }
+                else
+                {
+                    _canExecuteEditTeacher = false;
+                    _canExecuteRemoveTeacher = false;
+                }
+            }
+            else
+            {
+                allTeachers = null;
+                _canExecuteAddTeacher = false;
+                _canExecuteEditTeacher = false;
+                _canExecuteRemoveTeacher = false;
+            }
+            RaisePropertyChanged("canExecuteAddTeacher");
+            RaisePropertyChanged("canExecuteEditTeacher");
+            RaisePropertyChanged("canExecuteRemoveTeacher");
             RaisePropertyChanged("AllTeachers");
-        }
-        public MainWindowViewModel()
-        {
-            UniversitysViewModel();
-            _canExecute = true;
-            RaisePropertyChanged("AllUniversities");
         }
         public void UniversitysViewModel()
         {
             allUniversities = new XmlDataProvider().GetAllUniversities();
+            if (allUniversities.Count > 0)
+            {
+                _canExecuteAddUniversity = true;
+                _canExecuteEditUniversity = true;
+                _canExecuteRemoveUniversity = true;
+            }
+            else
+            {
+                _canExecuteAddUniversity = true;
+                _canExecuteEditUniversity = false;
+                _canExecuteRemoveUniversity = false;
+            }
             DepartmentsViewModel();
-            departmentSelected = 0;
             StudentsViewModel();
             TeachersViewModel();
+            RaisePropertyChanged("canExecuteAddUniversity");
+            RaisePropertyChanged("canExecuteEditUniversity");
+            RaisePropertyChanged("canExecuteRemoveUniversity");
             RaisePropertyChanged("AllUniversities");
         }
         public void DepartmentsViewModel()
         {
-            allDepartments = new XmlDataProvider().GetAllDepartments(allUniversities[universitySelected].Id);
+            if (allUniversities.Count > 0)
+            {
+                allDepartments = new XmlDataProvider().GetAllDepartments(allUniversities[universitySelected].Id);
+                _canExecuteAddDepartment = true;
+                if(allDepartments.Count>0)
+                {
+                    _canExecuteEditDepartment = true;
+                    _canExecuteRemoveDepartment = true;
+                }
+                else
+                {
+                    _canExecuteEditDepartment = false;
+                    _canExecuteRemoveDepartment = false;
+                }
+            }
+            else
+            {
+                allDepartments = new XmlDataProvider().GetAllDepartments(-1);
+                _canExecuteAddDepartment = false;
+                _canExecuteEditDepartment = false;
+                _canExecuteRemoveDepartment = false;
+            }
+            StudentsViewModel();
+            TeachersViewModel();
+            RaisePropertyChanged("canExecuteAddDepartment");
+            RaisePropertyChanged("canExecuteEditDepartment");
+            RaisePropertyChanged("canExecuteRemoveDepartment");
             RaisePropertyChanged("AllDepartments");
         }
 
+        public MainWindowViewModel()
+        {
+            _canExecute = true;
+            UniversitysViewModel();
+            RaisePropertyChanged("AllUniversities");
+        }
+        
 
         public ICommand actionShowEditUniversity
         {
@@ -169,7 +328,13 @@ namespace WPF_sprinter
             {
                 return _actionShowEditDepartment ?? (_actionShowEditDepartment = new CommandHandler(() =>
                 {
-                    new EditDepartment(allDepartments[departmentSelected]).ShowDialog();
+                    if (allDepartments != null)
+                    {
+                        if (allDepartments.Count > departmentSelected)
+                        {
+                            new EditDepartment(allDepartments[departmentSelected]).ShowDialog();
+                        }
+                    }
                     departmentSelected = 0;
                     DepartmentsViewModel();
                 }, _canExecute));
@@ -181,7 +346,7 @@ namespace WPF_sprinter
             {
                 return _actionShowCreateDepartment ?? (_actionShowCreateDepartment = new CommandHandler(() =>
                 {
-                    new CreateDepartment(allUniversities[universitySelected].Id).ShowDialog();
+                    if (universitySelected != -1 && allUniversities != null) new CreateDepartment(allUniversities[universitySelected].Id).ShowDialog();
                     universitySelected = 0;
                     departmentSelected = 0;
                     DepartmentsViewModel();
@@ -195,8 +360,15 @@ namespace WPF_sprinter
             {
                 return _actionRemoveDepartment ?? (_actionRemoveDepartment = new CommandHandler(() =>
                 {
-                    new XmlDataProvider().RemoveDepartment(allDepartments[departmentSelected].Id);
+                    if (allDepartments != null)
+                    {
+                        if (allDepartments.Count > departmentSelected)
+                        {
+                            new XmlDataProvider().RemoveDepartment(allDepartments[departmentSelected].Id);
+                        }
+                    }
                     universitySelected = 0;
+                    DepartmentsViewModel();
                     UniversitysViewModel();
                 }, _canExecute));
             }
@@ -208,8 +380,10 @@ namespace WPF_sprinter
             {
                 return _actionShowEditStudent ?? (_actionShowEditStudent = new CommandHandler(() =>
                 {
-                    new EditStudent(allStudents[studentSelected]).ShowDialog();
-                    studentSelected = 0;
+                    if (allStudents != null)
+                    {
+                        new EditStudent(allStudents[studentSelected]).ShowDialog();
+                    }
                     StudentsViewModel();
                 }, _canExecute));
             }
@@ -220,7 +394,7 @@ namespace WPF_sprinter
             {
                 return _actionShowCreateStudent ?? (_actionShowCreateStudent = new CommandHandler(() =>
                 {
-                    new CreateStudent(allDepartments[departmentSelected].Id).ShowDialog();
+                    if (departmentSelected != -1 && allDepartments != null && allDepartments.Count>0) new CreateStudent(allDepartments[departmentSelected].Id).ShowDialog();
                     studentSelected = 0;
                     StudentsViewModel();
                 }, _canExecute));
@@ -232,8 +406,10 @@ namespace WPF_sprinter
             {
                 return _actionRemoveStudent ?? (_actionRemoveStudent = new CommandHandler(() =>
                 {
-                    new XmlDataProvider().RemoveStudent(allStudents[studentSelected].Id);
-                    universitySelected = 0;
+                    if (allStudents != null)
+                    {
+                        new XmlDataProvider().RemoveStudent(allStudents[studentSelected].Id);
+                    }
                     StudentsViewModel();
                 }, _canExecute));
             }
@@ -245,8 +421,10 @@ namespace WPF_sprinter
             {
                 return _actionShowEditTeacher ?? (_actionShowEditTeacher = new CommandHandler(() =>
                 {
-                    new EditTeacher(allTeachers[teacherSelected]).ShowDialog();
-                    teacherSelected = 0;
+                    if (allTeachers != null)
+                    {
+                        new EditTeacher(allTeachers[teacherSelected]).ShowDialog();
+                    }
                     TeachersViewModel();
                 }, _canExecute));
             }
@@ -257,7 +435,7 @@ namespace WPF_sprinter
             {
                 return _actionShowCreateTeacher ?? (_actionShowCreateTeacher = new CommandHandler(() =>
                 {
-                    new CreateTeacher(allDepartments[departmentSelected].Id).ShowDialog();
+                    if (departmentSelected != -1 && allDepartments != null && allDepartments.Count > 0) new CreateTeacher(allDepartments[departmentSelected].Id).ShowDialog();
                     teacherSelected = 0;
                     TeachersViewModel();
                 }, _canExecute));
@@ -269,8 +447,10 @@ namespace WPF_sprinter
             {
                 return _actionRemoveTeacher ?? (_actionRemoveTeacher = new CommandHandler(() =>
                 {
-                    new XmlDataProvider().RemoveTeacher(allTeachers[teacherSelected].Id);
-                    teacherSelected = 0;
+                    if (allTeachers != null)
+                    {
+                        new XmlDataProvider().RemoveTeacher(allTeachers[teacherSelected].Id);
+                    }
                     TeachersViewModel();
                 }, _canExecute));
             }

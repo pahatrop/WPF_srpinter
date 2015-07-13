@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfTeacher xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Teacher>
-    <Id>1367275</Id>
-    <Firstname>dsfg</Firstname>
-    <Lastname>dfg</Lastname>
-    <Middlename>fs</Middlename>
-    <Specialty>dfgd</Specialty>
-    <Department>4238389</Department>
+    <Id>6212654</Id>
+    <Firstname>tryurtu</Firstname>
+    <Lastname>tryut</Lastname>
+    <Middlename>tryurty</Middlename>
+    <Specialty>tyrut</Specialty>
+    <Department>4953922</Department>
   </Teacher>
   <Teacher>
-    <Id>4564081</Id>
-    <Firstname>Денис</Firstname>
-    <Lastname>Цветков</Lastname>
-    <Middlename>Олегович</Middlename>
-    <Specialty>мат.анализ</Specialty>
-    <Department>2348814</Department>
+    <Id>5600415</Id>
+    <Firstname>куркер</Firstname>
+    <Lastname>керкур</Lastname>
+    <Middlename>керкур</Middlename>
+    <Specialty>керкр</Specialty>
+    <Department>4512009</Department>
   </Teacher>
 </ArrayOfTeacher>
