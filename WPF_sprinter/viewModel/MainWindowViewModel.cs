@@ -148,7 +148,8 @@ namespace WPF_sprinter
                 {
                     if (universitySelected != value)
                     {
-                        UniversitiesViewModel();
+                        StudentsViewModel();
+                        TeachersViewModel();
                     }
                     universitySelected = value;
                 }
@@ -492,7 +493,6 @@ namespace WPF_sprinter
                 return _actionShowCreateDepartment ?? (_actionShowCreateDepartment = new CommandHandler(() =>
                 {
                     if (universitySelected != -1 && allUniversities != null) new CreateDepartment(allUniversities[universitySelected].Id).ShowDialog();
-                    universitySelected = 0;
                     departmentSelected = 0;
                     DepartmentsViewModel();
                     UniversitiesViewModel();
@@ -513,7 +513,6 @@ namespace WPF_sprinter
                             IAsyncResult asyncRes = sd.BeginInvoke(allDepartments[departmentSelected].Id, new AsyncCallback(RemoveDepartmentCallback), null);
                         }
                     }
-                    universitySelected = 0;
                     DepartmentsViewModel();
                     UniversitiesViewModel();
                 }, _canExecute));

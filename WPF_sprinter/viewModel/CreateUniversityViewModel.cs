@@ -18,13 +18,21 @@ namespace WPF_sprinter
         private int _universityLevel;
 
         private bool _canExecute;
-        
+
+        private string saved;
+
+        public string Saved
+        {
+            get { return saved; }
+        }
+
         delegate void MethodDelegate(University university);
         private void BtnCallback(IAsyncResult asyncRes)
         {
             AsyncResult ares = (AsyncResult)asyncRes;
             MethodDelegate delg = (MethodDelegate)ares.AsyncDelegate;
-            MessageBox.Show("Saved");
+            saved = "Saved!";
+            RaisePropertyChanged("Saved");
         }
 
         
@@ -73,6 +81,8 @@ namespace WPF_sprinter
             {
                 return _actionCreateUniversity ?? (_actionCreateUniversity = new CommandHandler(() =>
                 {
+                    saved = "Loading...";
+                    RaisePropertyChanged("Saved");
                     MethodDelegate sd = AppDelegate.Instance.dataController.CreateNewUniversity;
                     IAsyncResult asyncRes = sd.BeginInvoke(new University(-1, _universityName, _universityAddress, _universityLevel), new AsyncCallback(BtnCallback), null);
                 }, _canExecute));

@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfUniversity xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <University>
-    <Id>5733837</Id>
+    <Id>933086</Id>
     <Name>Таврическая академия</Name>
     <Address>ул. Киевская проспект Вернадского</Address>
-    <Level>4</Level>
+    <Level>3</Level>
   </University>
   <University>
-    <Id>275359</Id>
-    <Name>КГМУ им.Георгиевского</Name>
-    <Address>ул Киевская</Address>
+    <Id>826610</Id>
+    <Name>КГМУ</Name>
+    <Address>Бульвар Ленина 5/7</Address>
     <Level>2</Level>
   </University>
   <University>
-    <Id>7181383</Id>
+    <Id>8599496</Id>
+    <Name>Физико-технический институт</Name>
+    <Address>ул. Киевская</Address>
+    <Level>3</Level>
+  </University>
+  <University>
+    <Id>1496579</Id>
     <Name>Академия биоресурсов</Name>
     <Address>поселок Аграрный</Address>
     <Level>2</Level>
-  </University>
-  <University>
-    <Id>6699889</Id>
-    <Name>gdsg</Name>
-    <Address>dfgdfg</Address>
-    <Level>0</Level>
   </University>
 </ArrayOfUniversity>

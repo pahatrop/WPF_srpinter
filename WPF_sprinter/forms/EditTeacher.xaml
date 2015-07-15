@@ -31,6 +31,7 @@
         <TextBox Margin="10" Grid.Column="1" Grid.Row="3" Text="{Binding teacherMiddlename, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBox Margin="10" Grid.Column="1" Grid.Row="4" Text="{Binding teacherSpecialty, UpdateSourceTrigger=PropertyChanged}"/>
 
+        <TextBlock Grid.Column="1" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20" DockPanel.Dock="Bottom" Foreground="#f00" Padding="10,5,10,5" Text="{Binding Saved}"></TextBlock>
         <Button Margin="0,0,10,23" Width="100" Height="35" Command="{Binding Path=actionEditTeacher, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="7">Save</Button>
     </Grid>
 </Window>

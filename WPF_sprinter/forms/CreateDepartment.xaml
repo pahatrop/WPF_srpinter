@@ -17,6 +17,7 @@
 
         <TextBox Height="35" Margin="20,84" Grid.Column="1" Grid.Row="1" Text="{Binding departmentName, UpdateSourceTrigger=PropertyChanged}"/>
 
+        <TextBlock Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20" DockPanel.Dock="Bottom" Foreground="#f00" Padding="10,5,10,5" Text="{Binding Saved}"></TextBlock>
         <Button Margin="0,0,20,20" Width="100" Height="35" Command="{Binding Path=actionCreateDepartment, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="1">Save</Button>
     </Grid>
 </Window>

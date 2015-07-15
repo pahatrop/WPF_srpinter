@@ -115,7 +115,7 @@ namespace WPF_sprinter
             }
             catch(IOException e)
             {
-                return GetAllDepartments();
+                return GetAllDepartments(id);
             }
         }
         public void CreateNewDepartment(Department department)

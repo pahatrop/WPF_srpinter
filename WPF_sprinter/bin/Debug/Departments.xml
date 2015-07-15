@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfDepartment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Department>
-    <Id>5521606</Id>
-    <Name>gdfsg</Name>
-    <University>7181383</University>
+    <Id>934000</Id>
+    <Name>Математики и информатики</Name>
+    <University>933086</University>
   </Department>
   <Department>
-    <Id>885260</Id>
-    <Name>sgfg2</Name>
-    <University>5733837</University>
+    <Id>3917835</Id>
+    <Name>Истории</Name>
+    <University>933086</University>
   </Department>
   <Department>
-    <Id>7213424</Id>
-    <Name>asfsdaf</Name>
-    <University>7181383</University>
+    <Id>680661</Id>
+    <Name>Иностранных языков</Name>
+    <University>933086</University>
+  </Department>
+  <Department>
+    <Id>9807354</Id>
+    <Name>Сестринское дело</Name>
+    <University>826610</University>
+  </Department>
+  <Department>
+    <Id>6213135</Id>
+    <Name>Хирургия</Name>
+    <University>826610</University>
   </Department>
 </ArrayOfDepartment>

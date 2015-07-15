@@ -20,12 +20,20 @@ namespace WPF_sprinter
 
         private bool _canExecute;
 
+        private string saved;
+
+        public string Saved
+        {
+            get { return saved; }
+        }
+
         delegate void MethodDelegate(Teacher teacher);
         private void BtnCallback(IAsyncResult asyncRes)
         {
             AsyncResult ares = (AsyncResult)asyncRes;
             MethodDelegate delg = (MethodDelegate)ares.AsyncDelegate;
-            MessageBox.Show("Saved");
+            saved = "Saved!";
+            RaisePropertyChanged("Saved");
         }
 
         public string teacherFirstname
@@ -82,6 +90,8 @@ namespace WPF_sprinter
             {
                 return _actionCreateTeacher ?? (_actionCreateTeacher = new CommandHandler(() =>
                 {
+                    saved = "Loading...";
+                    RaisePropertyChanged("Saved");
                     MethodDelegate sd = AppDelegate.Instance.dataController.CreateNewTeacher;
                     IAsyncResult asyncRes = sd.BeginInvoke(new Teacher(-1, _teacherFirstname, _teacherLastname, _teacherMiddlename, _teacherSpecialty, _teacherDepartment), new AsyncCallback(BtnCallback), null);
                 }, _canExecute));

@@ -24,6 +24,7 @@
         <TextBox VerticalAlignment="Top" Height="35" Margin="20" Grid.Column="1" Grid.Row="2" Text="{Binding universityAddress, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBox VerticalAlignment="Top" Height="35" Margin="20" Grid.Column="1" Grid.Row="3" Text="{Binding universityLevel, UpdateSourceTrigger=PropertyChanged}"/>
 
+        <TextBlock Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20" DockPanel.Dock="Bottom" Foreground="#f00" Padding="10,5,10,5" Text="{Binding Saved}"></TextBlock>
         <Button Margin="20" Width="100" Height="35" Command="{Binding Path=actionCreateUniversity, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="4">Save</Button>
     </Grid>
 </Window>
