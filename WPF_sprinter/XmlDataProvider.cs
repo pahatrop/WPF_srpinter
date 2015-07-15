@@ -12,6 +12,10 @@ namespace WPF_sprinter
 {
     public class XmlDataProvider : IDataProvider
     {
+        public XmlDataProvider()
+        {
+            
+        }
         private static string fs_xml_file_Universities = "Universities.xml";
         private static string fs_xml_file_Departments = "Departments.xml";
         private static string fs_xml_file_Students = "Students.xml";
@@ -30,7 +34,6 @@ namespace WPF_sprinter
 
         public List<University> GetAllUniversities()
         {
-            System.Threading.Thread.Sleep(3000);
             try
             {
                 List<University> universities = new List<University>();
@@ -39,6 +42,7 @@ namespace WPF_sprinter
                 using (FileStream myFileStream = new FileStream(fs_xml_file_Universities, FileMode.Open))
                 {
                     r = (University[])mySerializer.Deserialize(myFileStream);
+                    myFileStream.Close();
                 }
                 foreach (University university in r)
                 {
@@ -50,6 +54,10 @@ namespace WPF_sprinter
             {
                 string[] lines = { "<?xml version=\"1.0\" encoding=\"utf-8\"?>", "<"+xml_root_Universities+" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">", "</"+xml_root_Universities+">" };
                 System.IO.File.WriteAllLines(fs_xml_file_Universities, lines);
+                return GetAllUniversities();
+            }
+            catch(IOException e)
+            {
                 return GetAllUniversities();
             }
         }
@@ -84,7 +92,6 @@ namespace WPF_sprinter
 
         public List<Department> GetAllDepartments(int id = -1)
         {
-            System.Threading.Thread.Sleep(3000);
             try
             {
                 List<Department> departments = new List<Department>();
@@ -106,10 +113,14 @@ namespace WPF_sprinter
                 System.IO.File.WriteAllLines(fs_xml_file_Departments, lines);
                 return GetAllDepartments(id);
             }
+            catch(IOException e)
+            {
+                return GetAllDepartments();
+            }
         }
         public void CreateNewDepartment(Department department)
         {
-            List<Department> departments = GetAllDepartments(department.University);
+            List<Department> departments = GetAllDepartments();
             if (department.Id == -1) department.Id = AutoIncrementIndex();
             departments.Add(department);
             TextWriter writer = new StreamWriter(fs_xml_file_Departments);
@@ -138,7 +149,6 @@ namespace WPF_sprinter
 
         public List<Student> GetAllStudents(int id = -1)
         {
-            System.Threading.Thread.Sleep(3000);
             try
             {
                 List<Student> students = new List<Student>();
@@ -158,6 +168,10 @@ namespace WPF_sprinter
             {
                 string[] lines = { "<?xml version=\"1.0\" encoding=\"utf-8\"?>", "<" + xml_root_Students + " xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">", "</" + xml_root_Students + ">" };
                 System.IO.File.WriteAllLines(fs_xml_file_Students, lines);
+                return GetAllStudents(id);
+            }
+            catch(IOException e)
+            {
                 return GetAllStudents();
             }
         }
@@ -192,7 +206,6 @@ namespace WPF_sprinter
 
         public List<Teacher> GetAllTeachers(int id = -1)
         {
-            System.Threading.Thread.Sleep(3000);
             try
             {
                 List<Teacher> teachers = new List<Teacher>();
@@ -212,6 +225,10 @@ namespace WPF_sprinter
             {
                 string[] lines = { "<?xml version=\"1.0\" encoding=\"utf-8\"?>", "<" + xml_root_Teachers + " xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">", "</" + xml_root_Teachers + ">" };
                 System.IO.File.WriteAllLines(fs_xml_file_Teachers, lines);
+                return GetAllTeachers();
+            }
+            catch (IOException e)
+            {
                 return GetAllTeachers();
             }
         }

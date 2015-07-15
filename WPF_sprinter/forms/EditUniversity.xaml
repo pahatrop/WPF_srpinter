@@ -1,7 +1,7 @@
 ﻿<Window x:Class="WPF_sprinter.forms.EditUniversity"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="EditUniversity" Height="445" Width="576" MinHeight="445" MinWidth="576" >
+        Title="Edit university" Height="445" Width="576" MinHeight="445" MinWidth="576" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="281"/>
@@ -24,6 +24,6 @@
         <TextBox VerticalAlignment="Top" Height="35" Margin="20" Grid.Column="1" Grid.Row="2" Text="{Binding universityAddress, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBox VerticalAlignment="Top" Height="35" Margin="20" Grid.Column="1" Grid.Row="3" Text="{Binding universityLevel, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Button Margin="20" Width="100" Height="35" Click="Close" Command="{Binding Path=actionEditUniversity, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="4">Save</Button>
+        <Button Margin="20" Width="100" Height="35" Command="{Binding Path=actionEditUniversity, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="4">Save</Button>
     </Grid>
 </Window>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,6 +18,14 @@ namespace WPF_sprinter
         private int _universityLevel;
 
         private bool _canExecute;
+
+        delegate void MethodDelegate(University university);
+        private void BtnCallback(IAsyncResult asyncRes)
+        {
+            AsyncResult ares = (AsyncResult)asyncRes;
+            MethodDelegate delg = (MethodDelegate)ares.AsyncDelegate;
+            MessageBox.Show("Saved");
+        }
 
         public string universityName
         {
@@ -67,8 +76,8 @@ namespace WPF_sprinter
             {
                 return _actionEditUniversity ?? (_actionEditUniversity = new CommandHandler(() =>
                 {
-                    AppDelegate.Instance.dataController.EditUniversity(new University(_universityId, _universityName, _universityAddress, _universityLevel));
-
+                    MethodDelegate sd = AppDelegate.Instance.dataController.EditUniversity;
+                    IAsyncResult asyncRes = sd.BeginInvoke(new University(_universityId, _universityName, _universityAddress, _universityLevel), new AsyncCallback(BtnCallback), null);
                 }, _canExecute));
             }
         }

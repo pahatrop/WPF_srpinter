@@ -1,7 +1,7 @@
 ﻿<Window x:Class="WPF_sprinter.forms.EditStudent"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="EditUniversity" Height="433" Width="565">
+        Title="Edit student" Height="433" Width="565">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="152"/>
@@ -33,6 +33,6 @@
         <TextBox Margin="10" Grid.Column="1" Grid.Row="4" Text="{Binding studentCource, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBox Margin="10" Grid.Column="1" Grid.Row="5" Text="{Binding studentType, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Button Margin="0,0,10,23" Width="100" Height="35" Click="Close" Command="{Binding Path=actionEditStudent, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="7">Save</Button>
+        <Button Margin="0,0,10,23" Width="100" Height="35" Command="{Binding Path=actionEditStudent, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="7">Save</Button>
     </Grid>
 </Window>
