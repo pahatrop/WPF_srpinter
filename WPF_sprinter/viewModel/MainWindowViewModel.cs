@@ -30,6 +30,11 @@ namespace WPF_sprinter
         private int studentSelected = 0;
         private int teacherSelected = 0;
 
+        private int currentUniversityId;
+        private int currentDepartmentId;
+        private int currentStudentId;
+        private int currentTeacherId;
+
         private ICommand _actionShowCreateUniversity;
         private ICommand _actionShowEditUniversity;
         private ICommand _actionRemoveUniversity;
@@ -177,6 +182,7 @@ namespace WPF_sprinter
             set
             {
                 studentSelected = value;
+                if (allStudents.Count > value) currentStudentId = allStudents[value].Id;
             }
         }
         public int SelectedTeacher
@@ -185,6 +191,7 @@ namespace WPF_sprinter
             set
             {
                 teacherSelected = value;
+                if (allTeachers.Count > value) currentTeacherId = allTeachers[value].Id;
             }
         }
 
@@ -289,10 +296,6 @@ namespace WPF_sprinter
             allStudents = new List<Student>();
             RaisePropertyChanged("AllStudents");
             RaisePropertyChanged("StudentsTeachersLoading");
-            if (allDepartments != null)
-            {
-                if (departmentSelected < allDepartments.Count)
-                {
                     await Task.Run(() =>
                     {
                         AppDelegate.Instance.dataController.GetAllStudents((List<Student> students) =>
@@ -302,11 +305,9 @@ namespace WPF_sprinter
                             studentsTeachersLoading = "";
                             RaisePropertyChanged("StudentsTeachersLoading");
                         },
-                        allDepartments[departmentSelected].Id
+                        currentStudentId
                         );
                     });
-                }
-            }
         }
         public async Task TeachersViewModel()
         {
@@ -327,7 +328,7 @@ namespace WPF_sprinter
                             studentsTeachersLoading = "";
                             RaisePropertyChanged("StudentsTeachersLoading");
                         },
-                        allDepartments[departmentSelected].Id
+                        currentTeacherId
                         );
                     });
                 }
