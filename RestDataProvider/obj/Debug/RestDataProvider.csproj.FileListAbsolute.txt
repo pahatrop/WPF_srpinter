@@ -1,0 +1,8 @@
+C:\Users\PavelTuhar\WPF_srpinter\RestDataProvider\bin\Debug\RestDataProvider.dll
+C:\Users\PavelTuhar\WPF_srpinter\RestDataProvider\bin\Debug\RestDataProvider.pdb
+C:\Users\PavelTuhar\WPF_srpinter\RestDataProvider\bin\Debug\DataContracts.dll
+C:\Users\PavelTuhar\WPF_srpinter\RestDataProvider\bin\Debug\Models.dll
+C:\Users\PavelTuhar\WPF_srpinter\RestDataProvider\bin\Debug\DataContracts.pdb
+C:\Users\PavelTuhar\WPF_srpinter\RestDataProvider\bin\Debug\Models.pdb
+C:\Users\PavelTuhar\WPF_srpinter\RestDataProvider\obj\Debug\RestDataProvider.dll
+C:\Users\PavelTuhar\WPF_srpinter\RestDataProvider\obj\Debug\RestDataProvider.pdb

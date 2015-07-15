@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Models;
 
 namespace WPF_sprinter
 {
@@ -25,13 +26,17 @@ namespace WPF_sprinter
             get { return saved; }
         }
 
-        delegate void MethodDelegate(Department department);
-        private void BtnCallback(IAsyncResult asyncRes)
+        public async Task EditDepartment(Department department)
         {
-            AsyncResult ares = (AsyncResult)asyncRes;
-            MethodDelegate delg = (MethodDelegate)ares.AsyncDelegate;
-            saved = "Saved!";
-            RaisePropertyChanged("Saved");
+            await Task.Run(() =>
+            {
+                AppDelegate.Instance.dataController.EditDepartment(() =>
+                {
+                    saved = "Saved!";
+                    RaisePropertyChanged("Saved");
+                },
+                department);
+            });
         }
 
         public string departmentName
@@ -76,8 +81,7 @@ namespace WPF_sprinter
                 {
                     saved = "Loading...";
                     RaisePropertyChanged("Saved");
-                    MethodDelegate sd = AppDelegate.Instance.dataController.EditDepartment;
-                    IAsyncResult asyncRes = sd.BeginInvoke(new Department(_departmentId, _departmentName, _departmentUniversity), new AsyncCallback(BtnCallback), null);
+                    EditDepartment(new Department(_departmentId, _departmentName, _departmentUniversity));
                 }, _canExecute));
             }
         }

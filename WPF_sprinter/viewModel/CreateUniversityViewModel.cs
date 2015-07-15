@@ -7,12 +7,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Models;
 
 namespace WPF_sprinter
 {
     public class CreateUniversityViewModel : INotifyPropertyChanged
     {
-        private int _universityId;
         private string _universityName;
         private string _universityAddress;
         private int _universityLevel;
@@ -26,13 +26,18 @@ namespace WPF_sprinter
             get { return saved; }
         }
 
-        delegate void MethodDelegate(University university);
-        private void BtnCallback(IAsyncResult asyncRes)
+
+        public async Task CreateNewUniversity(University university)
         {
-            AsyncResult ares = (AsyncResult)asyncRes;
-            MethodDelegate delg = (MethodDelegate)ares.AsyncDelegate;
-            saved = "Saved!";
-            RaisePropertyChanged("Saved");
+            await Task.Run(() =>
+            {
+                AppDelegate.Instance.dataController.CreateNewUniversity(() =>
+                {
+                    saved = "Saved!";
+                    RaisePropertyChanged("Saved");
+                },
+                university);
+            });
         }
 
         
@@ -83,8 +88,7 @@ namespace WPF_sprinter
                 {
                     saved = "Loading...";
                     RaisePropertyChanged("Saved");
-                    MethodDelegate sd = AppDelegate.Instance.dataController.CreateNewUniversity;
-                    IAsyncResult asyncRes = sd.BeginInvoke(new University(-1, _universityName, _universityAddress, _universityLevel), new AsyncCallback(BtnCallback), null);
+                    CreateNewUniversity(new University(-1, _universityName, _universityAddress, _universityLevel));
                 }, _canExecute));
             }
         }

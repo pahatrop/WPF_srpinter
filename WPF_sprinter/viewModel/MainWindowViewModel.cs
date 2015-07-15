@@ -10,6 +10,7 @@ using WPF_sprinter.forms;
 using System.Diagnostics;
 using System.Threading;
 using System.Runtime.Remoting.Messaging;
+using Models;
 
 namespace WPF_sprinter
 {
@@ -187,79 +188,61 @@ namespace WPF_sprinter
             }
         }
 
-
-        delegate List<University> AllUniversitiesMethodDelegate();
-        delegate List<Department> AllDepartmentsMethodDelegate(int id);
-        delegate List<Student> AllStudentsMethodDelegate(int id);
-        delegate List<Teacher> AllTeachersMethodDelegate(int id);
-        delegate void RemoveUniversity(int id);
-        delegate void RemoveDepartment(int id);
-        delegate void RemoveStudent(int id);
-        delegate void RemoveTeacher(int id);
-
-        private void GetAllUniversitiesCallback(IAsyncResult asyncRes)
+        private async Task RemoveUniversity(int id)
         {
-            AsyncResult ares = (AsyncResult)asyncRes;
-            AllUniversitiesMethodDelegate delg = (AllUniversitiesMethodDelegate)ares.AsyncDelegate;
-            allUniversities = delg.EndInvoke(asyncRes);
-            universitiesViewModel();
-            universitiesLoading = "";
-            RaisePropertyChanged("UniversitiesLoading");
+            await Task.Run(() =>
+            {
+                AppDelegate.Instance.dataController.RemoveUniversity(() =>
+                {
+                    universitiesLoading = "Saved!";
+                    RaisePropertyChanged("UniversitiesLoading");
+                    UniversitiesViewModel();
+                },
+                id);
+            });
         }
-        private void GetAllStudentsCallback(IAsyncResult asyncRes)
+        private async Task RemoveDepartment(int id)
         {
-            AsyncResult ares = (AsyncResult)asyncRes;
-            AllStudentsMethodDelegate delg = (AllStudentsMethodDelegate)ares.AsyncDelegate;
-            allStudents = delg.EndInvoke(asyncRes);
-            studentsViewModel();
-            studentsTeachersLoading = "";
-            RaisePropertyChanged("StudentsTeachersLoading");
+            await Task.Run(() =>
+            {
+                AppDelegate.Instance.dataController.RemoveDepartment(() =>
+                {
+                    departmentsLoading = "Saved!";
+                    RaisePropertyChanged("DepartmentsLoading");
+                    DepartmentsViewModel();
+                },
+                id);
+            });
         }
-        private void GetAllTeachersCallback(IAsyncResult asyncRes)
+        private async Task RemoveStudent(int id)
         {
-            AsyncResult ares = (AsyncResult)asyncRes;
-            AllTeachersMethodDelegate delg = (AllTeachersMethodDelegate)ares.AsyncDelegate;
-            allTeachers = delg.EndInvoke(asyncRes);
-            teachersViewModel();
-            studentsTeachersLoading = "";
-            RaisePropertyChanged("StudentsTeachersLoading");
+            await Task.Run(() =>
+            {
+                AppDelegate.Instance.dataController.RemoveStudent(() =>
+                {
+                    studentsTeachersLoading = "Saved!";
+                    RaisePropertyChanged("StudentsTeachersLoading");
+                    StudentsViewModel();
+                },
+                id);
+            });
         }
-        private void GetAllDepartmentsCallback(IAsyncResult asyncRes)
+        private async Task RemoveTeacher(int id)
         {
-            AsyncResult ares = (AsyncResult)asyncRes;
-            AllDepartmentsMethodDelegate delg = (AllDepartmentsMethodDelegate)ares.AsyncDelegate;
-            allDepartments = delg.EndInvoke(asyncRes);
-            departmentsViewModel();
-            departmentsLoading = "";
-            RaisePropertyChanged("DepartmentsLoading");
-        }
-
-        private void RemoveUniversityCallback(IAsyncResult asyncRes)
-        {
-            AsyncResult ares = (AsyncResult)asyncRes;
-            RemoveUniversity delg = (RemoveUniversity)ares.AsyncDelegate;
-            UniversitiesViewModel();
-        }
-        private void RemoveDepartmentCallback(IAsyncResult asyncRes)
-        {
-            AsyncResult ares = (AsyncResult)asyncRes;
-            RemoveDepartment delg = (RemoveDepartment)ares.AsyncDelegate;
-            DepartmentsViewModel();
-        }
-        private void RemoveStudentCallback(IAsyncResult asyncRes)
-        {
-            AsyncResult ares = (AsyncResult)asyncRes;
-            RemoveStudent delg = (RemoveStudent)ares.AsyncDelegate;
-            StudentsViewModel();
-        }
-        private void RemoveTeacherCallback(IAsyncResult asyncRes)
-        {
-            AsyncResult ares = (AsyncResult)asyncRes;
-            RemoveTeacher delg = (RemoveTeacher)ares.AsyncDelegate;
-            TeachersViewModel();
+            await Task.Run(() =>
+            {
+                AppDelegate.Instance.dataController.RemoveTeacher(() =>
+                {
+                    studentsTeachersLoading = "Saved!";
+                    RaisePropertyChanged("StudentsTeachersLoading");
+                    TeachersViewModel();
+                },
+                id);
+            });
         }
         
-        public void UniversitiesViewModel()
+
+        public async Task UniversitiesViewModel()
         {
             universitiesLoading = "Loading...";
             allStudents = new List<Student>();
@@ -267,10 +250,40 @@ namespace WPF_sprinter
             RaisePropertyChanged("AllStudents");
             RaisePropertyChanged("AllTeachers");
             RaisePropertyChanged("UniversitiesLoading");
-            AllUniversitiesMethodDelegate sd = AppDelegate.Instance.dataController.GetAllUniversities;
-            IAsyncResult asyncRes = sd.BeginInvoke(new AsyncCallback(GetAllUniversitiesCallback), null);
+            await Task.Run(() =>
+            {
+                AppDelegate.Instance.dataController.GetAllUniversities((List<University> universities) =>
+                {
+                    allUniversities = universities;
+                    universitiesViewModel();
+                    universitiesLoading = "";
+                    RaisePropertyChanged("UniversitiesLoading");
+                });
+            });
         }
-        public void StudentsViewModel()
+        public async Task DepartmentsViewModel()
+        {
+            departmentsLoading = "Loading...";
+            allDepartments = new List<Department>();
+            RaisePropertyChanged("DepartmentsLoading");
+            RaisePropertyChanged("AllDepartments");
+            if (allUniversities.Count > 0)
+            {
+                await Task.Run(() =>
+                {
+                    AppDelegate.Instance.dataController.GetAllDepartments((List<Department> departments) =>
+                    {
+                        allDepartments = departments;
+                        departmentsViewModel();
+                        departmentsLoading = "";
+                        RaisePropertyChanged("DepartmentsLoading");
+                    },
+                    allUniversities[universitySelected].Id
+                    );
+                });
+            }
+        }
+        public async Task StudentsViewModel()
         {
             studentsTeachersLoading = "Loading...";
             allStudents = new List<Student>();
@@ -280,12 +293,22 @@ namespace WPF_sprinter
             {
                 if (departmentSelected < allDepartments.Count)
                 {
-                    AllStudentsMethodDelegate sd = AppDelegate.Instance.dataController.GetAllStudents;
-                    IAsyncResult asyncRes = sd.BeginInvoke(allDepartments[departmentSelected].Id, new AsyncCallback(GetAllStudentsCallback), null);
+                    await Task.Run(() =>
+                    {
+                        AppDelegate.Instance.dataController.GetAllStudents((List<Student> students) =>
+                        {
+                            allStudents = students;
+                            studentsViewModel();
+                            studentsTeachersLoading = "";
+                            RaisePropertyChanged("StudentsTeachersLoading");
+                        },
+                        allDepartments[departmentSelected].Id
+                        );
+                    });
                 }
             }
         }
-        public void TeachersViewModel()
+        public async Task TeachersViewModel()
         {
             allTeachers = new List<Teacher>();
             RaisePropertyChanged("AllTeachers");
@@ -295,24 +318,22 @@ namespace WPF_sprinter
             {
                 if (departmentSelected < allDepartments.Count)
                 {
-                    AllTeachersMethodDelegate sd = AppDelegate.Instance.dataController.GetAllTeachers;
-                    IAsyncResult asyncRes = sd.BeginInvoke(allDepartments[departmentSelected].Id, new AsyncCallback(GetAllTeachersCallback), null);
+                    await Task.Run(() =>
+                    {
+                        AppDelegate.Instance.dataController.GetAllTeachers((List<Teacher> teachers) =>
+                        {
+                            allTeachers = teachers;
+                            teachersViewModel();
+                            studentsTeachersLoading = "";
+                            RaisePropertyChanged("StudentsTeachersLoading");
+                        },
+                        allDepartments[departmentSelected].Id
+                        );
+                    });
                 }
             }
         }
-        public void DepartmentsViewModel()
-        {
-            departmentsLoading = "Loading...";
-            allDepartments = new List<Department>();
-            RaisePropertyChanged("DepartmentsLoading");
-            RaisePropertyChanged("AllDepartments");
-            if (allUniversities.Count > 0)
-            {
-                AllDepartmentsMethodDelegate sd = AppDelegate.Instance.dataController.GetAllDepartments;
-                IAsyncResult asyncRes = sd.BeginInvoke(allUniversities[universitySelected].Id, new AsyncCallback(GetAllDepartmentsCallback), null);
-            }
-        }
-
+        
         public void studentsViewModel()
         {
             if (departmentSelected < allDepartments.Count)
@@ -409,7 +430,6 @@ namespace WPF_sprinter
             }
             else
             {
-                allDepartments = AppDelegate.Instance.dataController.GetAllDepartments(-1);
                 _canExecuteAddDepartment = false;
                 _canExecuteEditDepartment = false;
                 _canExecuteRemoveDepartment = false;
@@ -428,7 +448,6 @@ namespace WPF_sprinter
             UniversitiesViewModel();
             RaisePropertyChanged("AllUniversities");
         }
-
 
         public ICommand actionShowEditUniversity
         {
@@ -460,10 +479,8 @@ namespace WPF_sprinter
             {
                 return _actionRemoveUniversity ?? (_actionRemoveUniversity = new CommandHandler(() =>
                 {
-                    RemoveUniversity sd = AppDelegate.Instance.dataController.RemoveUniversity;
-                    IAsyncResult asyncRes = sd.BeginInvoke(allUniversities[universitySelected].Id, new AsyncCallback(RemoveUniversityCallback), null);
+                    RemoveUniversity(allUniversities[universitySelected].Id);
                     universitySelected = 0;
-                    UniversitiesViewModel();
                 }, _canExecute));
             }
         }
@@ -509,12 +526,9 @@ namespace WPF_sprinter
                     {
                         if (allDepartments.Count > departmentSelected)
                         {
-                            RemoveDepartment sd = AppDelegate.Instance.dataController.RemoveDepartment;
-                            IAsyncResult asyncRes = sd.BeginInvoke(allDepartments[departmentSelected].Id, new AsyncCallback(RemoveDepartmentCallback), null);
+                            RemoveDepartment(allDepartments[departmentSelected].Id);
                         }
                     }
-                    DepartmentsViewModel();
-                    UniversitiesViewModel();
                 }, _canExecute));
             }
         }
@@ -558,11 +572,9 @@ namespace WPF_sprinter
                     {
                         if (studentSelected != -1)
                         {
-                            RemoveStudent sd = AppDelegate.Instance.dataController.RemoveStudent;
-                            IAsyncResult asyncRes = sd.BeginInvoke(allStudents[studentSelected].Id, new AsyncCallback(RemoveStudentCallback), null);
+                            RemoveStudent(allStudents[studentSelected].Id);
                         }
                     }
-                    StudentsViewModel();
                 }, _canExecute));
             }
         }
@@ -603,8 +615,7 @@ namespace WPF_sprinter
                     {
                         if (teacherSelected != -1)
                         {
-                            RemoveTeacher sd = AppDelegate.Instance.dataController.RemoveTeacher;
-                            IAsyncResult asyncRes = sd.BeginInvoke(allTeachers[teacherSelected].Id, new AsyncCallback(RemoveTeacherCallback), null);
+                            RemoveTeacher(allTeachers[teacherSelected].Id);
                         }
                     }
                     TeachersViewModel();

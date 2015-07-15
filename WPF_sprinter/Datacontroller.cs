@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Models;
+using DataContracts;
+using System.Windows;
 
 namespace WPF_sprinter
 {
@@ -17,89 +20,105 @@ namespace WPF_sprinter
 
         private int t = 2000;
 
-        public List<University> GetAllUniversities()
+        public async Task GetAllUniversities(Action<List<University>> action)
         {
             System.Threading.Thread.Sleep(t);
             List<University> univers = dataProvider.GetAllUniversities();
-            return univers;
+            action(univers);
         }
-        public void CreateNewUniversity(University university)
+        public async Task CreateNewUniversity(Action action, University university)
         {
             System.Threading.Thread.Sleep(t);
             dataProvider.CreateNewUniversity(university);
+            action();
         }
-        public void EditUniversity(University university)
+        public async Task EditUniversity(Action action, University university)
         {
             System.Threading.Thread.Sleep(t);
             dataProvider.EditUniversity(university);
+            action();
         }
-        public void RemoveUniversity(int id)
+        public async Task RemoveUniversity(Action action, int id)
         {
             System.Threading.Thread.Sleep(t);
             dataProvider.RemoveUniversity(id);
+            action();
         }
 
-        public List<Department> GetAllDepartments(int id)
+        public async Task<List<Department>> GetAllDepartments(Action<List<Department>> action, int id)
         {
             System.Threading.Thread.Sleep(t);
-            return dataProvider.GetAllDepartments(id);
+            List<Department> departments = dataProvider.GetAllDepartments(id);
+            action(departments);
+            return departments;
         }
-        public void CreateNewDepartment(Department department)
+        public async Task CreateNewDepartment(Action action, Department department)
         {
             System.Threading.Thread.Sleep(t);
             dataProvider.CreateNewDepartment(department);
+            action();
         }
-        public void EditDepartment(Department department)
+        public async Task EditDepartment(Action action, Department department)
         {
             System.Threading.Thread.Sleep(t);
             dataProvider.EditDepartment(department);
+            action();
         }
-        public void RemoveDepartment(int id)
+        public async Task RemoveDepartment(Action action, int id)
         {
             System.Threading.Thread.Sleep(t);
             dataProvider.RemoveDepartment(id);
+            action();
         }
 
-        public List<Student> GetAllStudents(int id)
+        public async Task GetAllStudents(Action<List<Student>> action, int id)
         {
             System.Threading.Thread.Sleep(t);
-            return dataProvider.GetAllStudents(id);
+            List<Student> students = dataProvider.GetAllStudents(id);
+            action(students);
         }
-        public void CreateNewStudent(Student student)
+        public async Task CreateNewStudent(Action action, Student student)
         {
             System.Threading.Thread.Sleep(t);
             dataProvider.CreateNewStudent(student);
+            action();
         }
-        public void EditStudent(Student student)
+        public async Task EditStudent(Action action, Student student)
         {
             System.Threading.Thread.Sleep(t);
             dataProvider.EditStudent(student);
+            action();
         }
-        public void RemoveStudent(int id)
+        public async Task RemoveStudent(Action action, int id)
         {
             System.Threading.Thread.Sleep(t);
             dataProvider.RemoveStudent(id);
+            action();
         }
 
-        public List<Teacher> GetAllTeachers(int id)
+        public async Task GetAllTeachers(Action<List<Teacher>> action, int id)
         {
             System.Threading.Thread.Sleep(t);
-            return dataProvider.GetAllTeachers(id);
+            List<Teacher> teachers = dataProvider.GetAllTeachers(id);
+            action(teachers);
         }
-        public void CreateNewTeacher(Teacher teacher)
+        public async Task CreateNewTeacher(Action action, Teacher teacher)
         {
             System.Threading.Thread.Sleep(t);
             dataProvider.CreateNewTeacher(teacher);
+            action();
         }
-        public void EditTeacher(Teacher teacher)
+        public async Task EditTeacher(Action action, Teacher teacher)
         {
             System.Threading.Thread.Sleep(t);
             dataProvider.EditTeacher(teacher);
+            action();
         }
-        public void RemoveTeacher(int id)
+        public async Task RemoveTeacher(Action action, int id)
         {
             System.Threading.Thread.Sleep(t);
             dataProvider.RemoveTeacher(id);
+            action();
         }
 
     }

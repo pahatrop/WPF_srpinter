@@ -56,31 +56,33 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="CommandHandler.cs" />
     <Compile Include="DataController.cs" />
-    <Compile Include="forms\EditTeacher.xaml.cs">
+    <Compile Include="view\EditTeacher.xaml.cs">
       <DependentUpon>EditTeacher.xaml</DependentUpon>
     </Compile>
-    <Compile Include="forms\CreateTeacher.xaml.cs">
+    <Compile Include="view\CreateTeacher.xaml.cs">
       <DependentUpon>CreateTeacher.xaml</DependentUpon>
     </Compile>
-    <Compile Include="forms\EditStudent.xaml.cs">
+    <Compile Include="view\EditStudent.xaml.cs">
       <DependentUpon>EditStudent.xaml</DependentUpon>
     </Compile>
-    <Compile Include="forms\CreateStudent.xaml.cs">
+    <Compile Include="view\CreateStudent.xaml.cs">
       <DependentUpon>CreateStudent.xaml</DependentUpon>
     </Compile>
-    <Compile Include="forms\EditDepartment.xaml.cs">
+    <Compile Include="view\EditDepartment.xaml.cs">
       <DependentUpon>EditDepartment.xaml</DependentUpon>
     </Compile>
-    <Compile Include="forms\CreateDepartment.xaml.cs">
+    <Compile Include="view\CreateDepartment.xaml.cs">
       <DependentUpon>CreateDepartment.xaml</DependentUpon>
     </Compile>
-    <Compile Include="forms\CreateUniversity.xaml.cs">
+    <Compile Include="view\CreateUniversity.xaml.cs">
       <DependentUpon>CreateUniversity.xaml</DependentUpon>
     </Compile>
-    <Compile Include="forms\EditUniversity.xaml.cs">
+    <Compile Include="view\EditUniversity.xaml.cs">
       <DependentUpon>EditUniversity.xaml</DependentUpon>
     </Compile>
-    <Compile Include="IDataProvider.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="viewModel\EditTeacherViewModel.cs" />
     <Compile Include="viewModel\CreateTeacherViewModel.cs" />
     <Compile Include="viewModel\EditStudentViewModel.cs" />
@@ -90,57 +92,48 @@
     <Compile Include="viewModel\EditDepartmentViewModel.cs" />
     <Compile Include="viewModel\EditUniversityViewModel.cs" />
     <Compile Include="viewModel\MainWindowViewModel.cs" />
-    <Compile Include="XmlDataProvider.cs" />
-    <Page Include="forms\EditTeacher.xaml">
+    <Page Include="view\EditTeacher.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="forms\CreateTeacher.xaml">
+    <Page Include="view\CreateTeacher.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="forms\EditStudent.xaml">
+    <Page Include="view\EditStudent.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="forms\CreateStudent.xaml">
+    <Page Include="view\CreateStudent.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="forms\EditDepartment.xaml">
+    <Page Include="view\EditDepartment.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="forms\CreateDepartment.xaml">
+    <Page Include="view\CreateDepartment.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="forms\CreateUniversity.xaml">
+    <Page Include="view\CreateUniversity.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="forms\EditUniversity.xaml">
+    <Page Include="view\EditUniversity.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="models\Department.cs" />
-    <Compile Include="models\Student.cs" />
-    <Compile Include="models\Teacher.cs" />
-    <Compile Include="models\University.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -168,7 +161,25 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="forms\userControl\" />
+    <Folder Include="view\userControl\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataContracts\DataContracts.csproj">
+      <Project>{331bab65-26e3-4a94-a4ba-35c46e6963aa}</Project>
+      <Name>DataContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{7a3edebb-a1eb-46fa-a9de-625e81ff32ff}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RestDataProvider\RestDataProvider.csproj">
+      <Project>{8e16313d-c8c9-4f2e-be96-4e075b6bff06}</Project>
+      <Name>RestDataProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XMLDataProvider\XMLDataProvider.csproj">
+      <Project>{04af6f19-60a1-4740-9813-48094abc7921}</Project>
+      <Name>XMLDataProvider</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

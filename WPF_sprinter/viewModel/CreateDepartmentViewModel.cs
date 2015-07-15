@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Models;
 
 namespace WPF_sprinter
 {
@@ -24,14 +25,6 @@ namespace WPF_sprinter
             get { return saved; }
         }
 
-        delegate void MethodDelegate(Department department);
-        private void BtnCallback(IAsyncResult asyncRes)
-        {
-            AsyncResult ares = (AsyncResult)asyncRes;
-            MethodDelegate delg = (MethodDelegate)ares.AsyncDelegate;
-            saved = "Saved!";
-            RaisePropertyChanged("Saved");
-        }
 
         public string departmentName
         {
@@ -59,6 +52,19 @@ namespace WPF_sprinter
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public async Task CreateNewDepartment(Department department)
+        {
+            await Task.Run(() =>
+            {
+                AppDelegate.Instance.dataController.CreateNewDepartment(() =>
+                {
+                    saved = "Saved!";
+                    RaisePropertyChanged("Saved");
+                },
+                department);
+            });
+        }
+
         public CreateDepartmentViewModel(int u)
         {
             _canExecute = true;
@@ -73,8 +79,7 @@ namespace WPF_sprinter
                 {
                     saved = "Loading...";
                     RaisePropertyChanged("Saved");
-                    MethodDelegate sd = AppDelegate.Instance.dataController.CreateNewDepartment;
-                    IAsyncResult asyncRes = sd.BeginInvoke(new Department(-1, _departmentName, _departmentUniversity), new AsyncCallback(BtnCallback), null);
+                    CreateNewDepartment(new Department(-1, _departmentName, _departmentUniversity));
                 }, _canExecute));
             }
         }

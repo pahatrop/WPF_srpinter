@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Models;
 
 namespace WPF_sprinter
 {
@@ -28,13 +29,17 @@ namespace WPF_sprinter
             get { return saved; }
         }
 
-        delegate void MethodDelegate(Teacher teacher);
-        private void BtnCallback(IAsyncResult asyncRes)
+        public async Task EditTeacher(Teacher teacher)
         {
-            AsyncResult ares = (AsyncResult)asyncRes;
-            MethodDelegate delg = (MethodDelegate)ares.AsyncDelegate;
-            saved = "Saved!";
-            RaisePropertyChanged("Saved");
+            await Task.Run(() =>
+            {
+                AppDelegate.Instance.dataController.EditTeacher(() =>
+                {
+                    saved = "Saved!";
+                    RaisePropertyChanged("Saved");
+                },
+                teacher);
+            });
         }
 
         public string teacherFirstname
@@ -98,8 +103,7 @@ namespace WPF_sprinter
                 {
                     saved = "Loading...";
                     RaisePropertyChanged("Saved");
-                    MethodDelegate sd = AppDelegate.Instance.dataController.EditTeacher;
-                    IAsyncResult asyncRes = sd.BeginInvoke(new Teacher(_teacherId, _teacherFirstname, _teacherLastname, _teacherMiddlename, _teacherSpecialty, _teacherDepartment), new AsyncCallback(BtnCallback), null);
+                    EditTeacher(new Teacher(_teacherId, _teacherFirstname, _teacherLastname, _teacherMiddlename, _teacherSpecialty, _teacherDepartment));
                 }, _canExecute));
             }
         }

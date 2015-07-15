@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\App.xaml
-9-194718673
+9-290598755
 
-311306155320
-12-1401562060
-forms\EditTeacher.xaml;forms\CreateTeacher.xaml;forms\EditStudent.xaml;forms\CreateStudent.xaml;forms\EditDepartment.xaml;forms\CreateDepartment.xaml;forms\CreateUniversity.xaml;forms\EditUniversity.xaml;MainWindow.xaml;
+25-1920763951
+162012510280
+view\EditTeacher.xaml;view\CreateTeacher.xaml;view\EditStudent.xaml;view\CreateStudent.xaml;view\EditDepartment.xaml;view\CreateDepartment.xaml;view\CreateUniversity.xaml;view\EditUniversity.xaml;MainWindow.xaml;
 
 False
 

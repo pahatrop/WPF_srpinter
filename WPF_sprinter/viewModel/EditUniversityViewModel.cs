@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Models;
 
 namespace WPF_sprinter
 {
@@ -26,13 +27,17 @@ namespace WPF_sprinter
             get { return saved; }
         }
 
-        delegate void MethodDelegate(University university);
-        private void BtnCallback(IAsyncResult asyncRes)
+        public async Task EditUniversity(University university)
         {
-            AsyncResult ares = (AsyncResult)asyncRes;
-            MethodDelegate delg = (MethodDelegate)ares.AsyncDelegate;
-            saved = "Saved!";
-            RaisePropertyChanged("Saved");
+            await Task.Run(() =>
+            {
+                AppDelegate.Instance.dataController.EditUniversity(() =>
+                {
+                    saved = "Saved!";
+                    RaisePropertyChanged("Saved");
+                },
+                university);
+            });
         }
 
         public string universityName
@@ -86,8 +91,7 @@ namespace WPF_sprinter
                 {
                     saved = "Loading...";
                     RaisePropertyChanged("Saved");
-                    MethodDelegate sd = AppDelegate.Instance.dataController.EditUniversity;
-                    IAsyncResult asyncRes = sd.BeginInvoke(new University(_universityId, _universityName, _universityAddress, _universityLevel), new AsyncCallback(BtnCallback), null);
+                    EditUniversity(new University(_universityId, _universityName, _universityAddress, _universityLevel));
                 }, _canExecute));
             }
         }
