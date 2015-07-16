@@ -11,7 +11,7 @@ using Models;
 
 namespace WPF_sprinter
 {
-    public class CreateDepartmentViewModel : INotifyPropertyChanged
+    public class CreateDepartmentViewModel : MainViewModel
     {
         private string _departmentName;
         private int _departmentUniversity;
@@ -44,13 +44,6 @@ namespace WPF_sprinter
         }
 
         private ICommand _actionCreateDepartment;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void RaisePropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         public async Task CreateNewDepartment(Department department)
         {

@@ -7,3 +7,12 @@ C:\Users\PavelTuhar\WPF_srpinter\XMLDataProvider\bin\Debug\Models.pdb
 C:\Users\PavelTuhar\WPF_srpinter\XMLDataProvider\obj\Debug\XMLDataProvider.csprojResolveAssemblyReference.cache
 C:\Users\PavelTuhar\WPF_srpinter\XMLDataProvider\obj\Debug\XMLDataProvider.dll
 C:\Users\PavelTuhar\WPF_srpinter\XMLDataProvider\obj\Debug\XMLDataProvider.pdb
+C:\Users\pavel\WPF_srpinter\XMLDataProvider\bin\Debug\XMLDataProvider.dll
+C:\Users\pavel\WPF_srpinter\XMLDataProvider\bin\Debug\XMLDataProvider.pdb
+C:\Users\pavel\WPF_srpinter\XMLDataProvider\bin\Debug\DataContracts.dll
+C:\Users\pavel\WPF_srpinter\XMLDataProvider\bin\Debug\Models.dll
+C:\Users\pavel\WPF_srpinter\XMLDataProvider\bin\Debug\DataContracts.pdb
+C:\Users\pavel\WPF_srpinter\XMLDataProvider\bin\Debug\Models.pdb
+C:\Users\pavel\WPF_srpinter\XMLDataProvider\obj\Debug\XMLDataProvider.csprojResolveAssemblyReference.cache
+C:\Users\pavel\WPF_srpinter\XMLDataProvider\obj\Debug\XMLDataProvider.dll
+C:\Users\pavel\WPF_srpinter\XMLDataProvider\obj\Debug\XMLDataProvider.pdb

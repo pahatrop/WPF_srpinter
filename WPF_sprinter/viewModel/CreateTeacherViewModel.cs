@@ -11,7 +11,7 @@ using Models;
 
 namespace WPF_sprinter
 {
-    public class CreateTeacherViewModel : INotifyPropertyChanged
+    public class CreateTeacherViewModel : MainViewModel
     {
         private string _teacherFirstname;
         private string _teacherLastname;
@@ -75,13 +75,6 @@ namespace WPF_sprinter
         }
 
         private ICommand _actionCreateTeacher;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void RaisePropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         public CreateTeacherViewModel(int u)
         {

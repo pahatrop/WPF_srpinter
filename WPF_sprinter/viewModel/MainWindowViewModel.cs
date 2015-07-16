@@ -14,7 +14,7 @@ using Models;
 
 namespace WPF_sprinter
 {
-    public class MainWindowViewModel : INotifyPropertyChanged
+    public class MainWindowViewModel : MainViewModel
     {
         private List<University> allUniversities;
         private List<Department> allDepartments;
@@ -138,12 +138,6 @@ namespace WPF_sprinter
             get { return _canExecuteRemoveTeacher; }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void RaisePropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         public int SelectedUniversity
         {

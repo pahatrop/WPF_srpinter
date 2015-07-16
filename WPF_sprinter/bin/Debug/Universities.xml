@@ -24,10 +24,4 @@
     <Address>поселок Аграрный</Address>
     <Level>2</Level>
   </University>
-  <University>
-    <Id>3988224</Id>
-    <Name>res</Name>
-    <Address>erste</Address>
-    <Level>0</Level>
-  </University>
 </ArrayOfUniversity>

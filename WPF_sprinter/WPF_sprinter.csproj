@@ -56,6 +56,7 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="CommandHandler.cs" />
     <Compile Include="DataController.cs" />
+    <Compile Include="viewModel\MainViewModel.cs" />
     <Compile Include="view\EditTeacher.xaml.cs">
       <DependentUpon>EditTeacher.xaml</DependentUpon>
     </Compile>
@@ -80,7 +81,7 @@
     <Compile Include="view\EditUniversity.xaml.cs">
       <DependentUpon>EditUniversity.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="view\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="viewModel\EditTeacherViewModel.cs" />
@@ -128,7 +129,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MainWindow.xaml">
+    <Page Include="view\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

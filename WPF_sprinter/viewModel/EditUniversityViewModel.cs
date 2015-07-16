@@ -11,7 +11,7 @@ using Models;
 
 namespace WPF_sprinter
 {
-    public class EditUniversityViewModel : INotifyPropertyChanged
+    public class EditUniversityViewModel : MainViewModel
     {
         private int _universityId;
         private string _universityName;
@@ -66,14 +66,7 @@ namespace WPF_sprinter
         }
 
         private ICommand _actionEditUniversity;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void RaisePropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
-
+        
         public EditUniversityViewModel(University university)
         {
             _canExecute = true;
