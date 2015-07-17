@@ -18,12 +18,12 @@ namespace WPF_sprinter
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : UserControl
     {
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel();
+            //DataContext = new MainWindowViewModel();
             //new XmlDataProvider().CreateNewUniversity(new University(-1,"cfu","dfa",4));
             //new XmlDataProvider().GetAllTeachers();
             //new XmlDataProvider().CreateNewTeacher(new Teacher(-1, "dsfg", "dfg", "fs", "dfgd", 3));

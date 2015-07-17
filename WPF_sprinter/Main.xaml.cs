@@ -11,16 +11,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Models;
 
 namespace WPF_sprinter
 {
     /// <summary>
-    /// Interaction logic for EditUniversity.xaml
+    /// Interaction logic for Main.xaml
     /// </summary>
-    public partial class EditStudent : UserControl
+    public partial class Main : Window
     {
-        public EditStudent()
+        public Main()
         {
             InitializeComponent();
         }

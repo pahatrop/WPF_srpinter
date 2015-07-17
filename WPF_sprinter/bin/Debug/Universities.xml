@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfUniversity xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <University>
-    <Id>933086</Id>
-    <Name>Таврическая академия</Name>
-    <Address>ул. Киевская проспект Вернадского</Address>
-    <Level>3</Level>
-  </University>
-  <University>
     <Id>826610</Id>
     <Name>КГМУ</Name>
     <Address>Бульвар Ленина 5/7</Address>
@@ -23,5 +17,39 @@
     <Name>Академия биоресурсов</Name>
     <Address>поселок Аграрный</Address>
     <Level>2</Level>
+  </University>
+  <University>
+    <Id>9396379</Id>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>7931896</Id>
+    <Name>new34</Name>
+    <Address>trre</Address>
+    <Level>546</Level>
+  </University>
+  <University>
+    <Id>5765793</Id>
+    <Name>gfdhfgd</Name>
+    <Address>gfdhgf</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>838492</Id>
+    <Name>gfdhfgd</Name>
+    <Address>gfdhgf</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>933086</Id>
+    <Name>Таврическая академия</Name>
+    <Address>ул. Киевская проспект Вернадского</Address>
+    <Level>3</Level>
+  </University>
+  <University>
+    <Id>1878886</Id>
+    <Name>New2</Name>
+    <Address>sfghgf2</Address>
+    <Level>342</Level>
   </University>
 </ArrayOfUniversity>

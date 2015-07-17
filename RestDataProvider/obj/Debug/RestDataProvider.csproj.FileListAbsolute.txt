@@ -15,3 +15,4 @@ C:\Users\pavel\WPF_srpinter\RestDataProvider\bin\Debug\Models.pdb
 C:\Users\pavel\WPF_srpinter\RestDataProvider\obj\Debug\RestDataProvider.csprojResolveAssemblyReference.cache
 C:\Users\pavel\WPF_srpinter\RestDataProvider\obj\Debug\RestDataProvider.dll
 C:\Users\pavel\WPF_srpinter\RestDataProvider\obj\Debug\RestDataProvider.pdb
+C:\Users\PavelTuhar\WPF_srpinter\RestDataProvider\obj\Debug\RestDataProvider.csprojResolveAssemblyReference.cache

@@ -11,8 +11,15 @@ using Models;
 
 namespace WPF_sprinter
 {
-    public class CreateStudentViewModel : MainViewModel
+    public class CreateStudentViewModel : ObservableObject, IPageViewModel
     {
+        public string Name
+        {
+            get
+            {
+                return "Create student";
+            }
+        }
         private string _studentFirstname;
         private string _studentLastname;
         private string _studentMiddlename;

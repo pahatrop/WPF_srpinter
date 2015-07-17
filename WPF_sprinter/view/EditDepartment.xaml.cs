@@ -13,22 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Models;
 
-namespace WPF_sprinter.forms
+namespace WPF_sprinter
 {
     /// <summary>
     /// Interaction logic for EditUniversity.xaml
     /// </summary>
-    public partial class EditDepartment : Window
+    public partial class EditDepartment : UserControl
     {
-        public EditDepartment(Department department)
+        public EditDepartment()
         {
             InitializeComponent();
-            DataContext = new EditDepartmentViewModel(department);
-        }
-
-        private void Close(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
     }
 }

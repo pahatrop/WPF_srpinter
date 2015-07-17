@@ -10,17 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Models;
 
-namespace WPF_sprinter
+namespace WPF_sprinter.view.userControl
 {
     /// <summary>
-    /// Interaction logic for EditUniversity.xaml
+    /// Interaction logic for SaveExitButton.xaml
     /// </summary>
-    public partial class EditStudent : UserControl
+    public partial class SaveExitButton : UserControl
     {
-        public EditStudent()
+        public SaveExitButton()
         {
             InitializeComponent();
         }

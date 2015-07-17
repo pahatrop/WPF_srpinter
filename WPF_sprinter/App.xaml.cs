@@ -13,13 +13,14 @@ namespace WPF_sprinter
     /// </summary>
     public partial class App : Application
     {
-        public App()
+        protected override void OnStartup(StartupEventArgs e)
         {
-            var mw = new MainWindow
-            {
-                DataContext = new MainWindowViewModel()
-            };
-            mw.Show();
+            base.OnStartup(e);
+
+            Main app = new Main();
+            AppDelegate.Instance.Context = new MainViewModel();
+            app.DataContext = AppDelegate.Instance.Context;
+            app.Show();
         }
     }
 }

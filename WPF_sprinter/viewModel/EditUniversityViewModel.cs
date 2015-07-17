@@ -11,8 +11,15 @@ using Models;
 
 namespace WPF_sprinter
 {
-    public class EditUniversityViewModel : MainViewModel
+    public class EditUniversityViewModel : ObservableObject, IPageViewModel
     {
+        public string Name
+        {
+            get
+            {
+                return "Edit university";
+            }
+        }
         private int _universityId;
         private string _universityName;
         private string _universityAddress;
@@ -33,8 +40,8 @@ namespace WPF_sprinter
             {
                 AppDelegate.Instance.dataController.EditUniversity(() =>
                 {
-                    saved = "Saved!";
-                    RaisePropertyChanged("Saved");
+                    MessageBox.Show("Saved!");
+                    AppDelegate.Instance.Context.ChangeLoaderVisible(false);
                 },
                 university);
             });
@@ -65,7 +72,8 @@ namespace WPF_sprinter
             }
         }
 
-        private ICommand _actionEditUniversity;
+        private ICommand _actionSave;
+        private ICommand _actionCancel;
         
         public EditUniversityViewModel(University university)
         {
@@ -76,15 +84,25 @@ namespace WPF_sprinter
             _universityLevel = university.Level;
         }
 
-        public ICommand actionEditUniversity
+        public ICommand actionSave
         {
             get
             {
-                return _actionEditUniversity ?? (_actionEditUniversity = new CommandHandler(() =>
+                return _actionSave ?? (_actionSave = new CommandHandler(() =>
                 {
-                    saved = "Loading...";
-                    RaisePropertyChanged("Saved");
+                    AppDelegate.Instance.Context.ChangeLoaderVisible(true);
                     EditUniversity(new University(_universityId, _universityName, _universityAddress, _universityLevel));
+                }, _canExecute));
+            }
+        }
+        public ICommand actionCancel
+        {
+            get
+            {
+                return _actionCancel ?? (_actionCancel = new CommandHandler(() =>
+                {
+                    AppDelegate.Instance.Context.CurrentPageViewModel = new MainWindowViewModel();
+                    AppDelegate.Instance.Context.UpdateTitle();
                 }, _canExecute));
             }
         }

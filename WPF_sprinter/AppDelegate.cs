@@ -15,8 +15,10 @@ namespace WPF_sprinter
 
         static readonly AppDelegate myInstance = new AppDelegate();
 
-        static AppDelegate() { }
+        public MainViewModel Context;
 
+        static AppDelegate() { }
+        
         AppDelegate() { }
 
         public static AppDelegate Instance

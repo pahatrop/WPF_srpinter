@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using WPF_sprinter.forms;
 using System.Diagnostics;
 using System.Threading;
 using System.Runtime.Remoting.Messaging;
@@ -14,8 +13,15 @@ using Models;
 
 namespace WPF_sprinter
 {
-    public class MainWindowViewModel : MainViewModel
+    public class MainWindowViewModel : ObservableObject, IPageViewModel
     {
+        public string Name
+        {
+            get
+            {
+                return "Main Window";
+            }
+        }
         private List<University> allUniversities;
         private List<Department> allDepartments;
         private List<Student> allStudents;
@@ -148,6 +154,7 @@ namespace WPF_sprinter
                 {
                     if (universitySelected != value)
                     {
+                        if (allUniversities.Count > value && allUniversities[value].Id!=-1) currentUniversityId = allUniversities[value].Id;
                         StudentsViewModel();
                         TeachersViewModel();
                     }
@@ -161,9 +168,9 @@ namespace WPF_sprinter
             get { return departmentSelected; }
             set
             {
-
                 if (value != -1)
                 {
+                    if (allDepartments.Count > value) currentDepartmentId = allDepartments[value].Id;
                     departmentSelected = value;
                     StudentsViewModel();
                     TeachersViewModel();
@@ -176,7 +183,10 @@ namespace WPF_sprinter
             set
             {
                 studentSelected = value;
-                if (allStudents.Count > value) currentStudentId = allStudents[value].Id;
+                if (value != -1)
+                {
+                    if (allStudents.Count > value) currentStudentId = allStudents[value].Id;
+                }
             }
         }
         public int SelectedTeacher
@@ -185,7 +195,10 @@ namespace WPF_sprinter
             set
             {
                 teacherSelected = value;
-                if (allTeachers.Count > value) currentTeacherId = allTeachers[value].Id;
+                if (value != -1)
+                {
+                    if (allStudents.Count > value) currentTeacherId = allTeachers[value].Id;
+                }
             }
         }
 
@@ -299,7 +312,7 @@ namespace WPF_sprinter
                             studentsTeachersLoading = "";
                             RaisePropertyChanged("StudentsTeachersLoading");
                         },
-                        currentStudentId
+                        currentDepartmentId
                         );
                     });
         }
@@ -322,7 +335,7 @@ namespace WPF_sprinter
                             studentsTeachersLoading = "";
                             RaisePropertyChanged("StudentsTeachersLoading");
                         },
-                        currentTeacherId
+                        currentDepartmentId
                         );
                     });
                 }
@@ -450,7 +463,8 @@ namespace WPF_sprinter
             {
                 return _actionShowEditUniversity ?? (_actionShowEditUniversity = new CommandHandler(() =>
                 {
-                    new EditUniversity(allUniversities[universitySelected]).ShowDialog();
+                    AppDelegate.Instance.Context.CurrentPageViewModel = new EditUniversityViewModel(allUniversities[SelectedUniversity]);
+                    AppDelegate.Instance.Context.UpdateTitle();
                     universitySelected = 0;
                     UniversitiesViewModel();
                 }, _canExecute));
@@ -462,7 +476,8 @@ namespace WPF_sprinter
             {
                 return _actionShowCreateUniversity ?? (_actionShowCreateUniversity = new CommandHandler(() =>
                 {
-                    new CreateUniversity().ShowDialog();
+                    AppDelegate.Instance.Context.CurrentPageViewModel = new CreateUniversityViewModel();
+                    AppDelegate.Instance.Context.UpdateTitle();
                     universitySelected = 0;
                     UniversitiesViewModel();
                 }, _canExecute));
@@ -490,7 +505,7 @@ namespace WPF_sprinter
                     {
                         if (allDepartments.Count > departmentSelected)
                         {
-                            new EditDepartment(allDepartments[departmentSelected]).ShowDialog();
+//                            new EditDepartment(allDepartments[departmentSelected]).ShowDialog();
                         }
                     }
                     departmentSelected = 0;
@@ -504,7 +519,10 @@ namespace WPF_sprinter
             {
                 return _actionShowCreateDepartment ?? (_actionShowCreateDepartment = new CommandHandler(() =>
                 {
-                    if (universitySelected != -1 && allUniversities != null) new CreateDepartment(allUniversities[universitySelected].Id).ShowDialog();
+                    if (universitySelected != -1 && allUniversities != null)
+                    {
+//                        new CreateDepartment(allUniversities[universitySelected].Id).ShowDialog();
+                    }
                     departmentSelected = 0;
                     DepartmentsViewModel();
                     UniversitiesViewModel();
@@ -538,7 +556,7 @@ namespace WPF_sprinter
                     {
                         if (studentSelected != -1)
                         {
-                            new EditStudent(allStudents[studentSelected]).ShowDialog();
+//                            new EditStudent(allStudents[studentSelected]).ShowDialog();
                         }
                     }
                     StudentsViewModel();
@@ -551,7 +569,10 @@ namespace WPF_sprinter
             {
                 return _actionShowCreateStudent ?? (_actionShowCreateStudent = new CommandHandler(() =>
                 {
-                    if (departmentSelected != -1 && allDepartments != null && allDepartments.Count > 0) new CreateStudent(allDepartments[departmentSelected].Id).ShowDialog();
+                    if (departmentSelected != -1 && allDepartments != null && allDepartments.Count > 0)
+                    {
+//                        new CreateStudent(allDepartments[departmentSelected].Id).ShowDialog();
+                    }
                     studentSelected = 0;
                     StudentsViewModel();
                 }, _canExecute));
@@ -582,7 +603,7 @@ namespace WPF_sprinter
                 {
                     if (allTeachers != null)
                     {
-                        new EditTeacher(allTeachers[teacherSelected]).ShowDialog();
+//                        new EditTeacher(allTeachers[teacherSelected]).ShowDialog();
                     }
                     TeachersViewModel();
                 }, _canExecute));
@@ -594,7 +615,10 @@ namespace WPF_sprinter
             {
                 return _actionShowCreateTeacher ?? (_actionShowCreateTeacher = new CommandHandler(() =>
                 {
-                    if (departmentSelected != -1 && allDepartments != null && allDepartments.Count > 0) new CreateTeacher(allDepartments[departmentSelected].Id).ShowDialog();
+                    if (departmentSelected != -1 && allDepartments != null && allDepartments.Count > 0)
+                    {
+//                        new CreateTeacher(allDepartments[departmentSelected].Id).ShowDialog();
+                    }
                     teacherSelected = 0;
                     TeachersViewModel();
                 }, _canExecute));

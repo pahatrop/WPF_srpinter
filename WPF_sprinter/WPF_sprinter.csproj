@@ -56,6 +56,8 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="CommandHandler.cs" />
     <Compile Include="DataController.cs" />
+    <Compile Include="IPageViewModel.cs" />
+    <Compile Include="ObservableObject.cs" />
     <Compile Include="viewModel\MainViewModel.cs" />
     <Compile Include="view\EditTeacher.xaml.cs">
       <DependentUpon>EditTeacher.xaml</DependentUpon>
@@ -81,6 +83,9 @@
     <Compile Include="view\EditUniversity.xaml.cs">
       <DependentUpon>EditUniversity.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Main.xaml.cs">
+      <DependentUpon>Main.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -93,6 +98,12 @@
     <Compile Include="viewModel\EditDepartmentViewModel.cs" />
     <Compile Include="viewModel\EditUniversityViewModel.cs" />
     <Compile Include="viewModel\MainWindowViewModel.cs" />
+    <Compile Include="view\userControl\SaveExitButton..xaml.cs">
+      <DependentUpon>SaveExitButton..xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\userControl\University.xaml.cs">
+      <DependentUpon>University.xaml</DependentUpon>
+    </Compile>
     <Page Include="view\EditTeacher.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -129,9 +140,21 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="view\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="view\userControl\SaveExitButton..xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\userControl\University.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -161,9 +184,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="view\userControl\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\DataContracts\DataContracts.csproj">
       <Project>{331bab65-26e3-4a94-a4ba-35c46e6963aa}</Project>
@@ -181,6 +202,9 @@
       <Project>{04af6f19-60a1-4740-9813-48094abc7921}</Project>
       <Name>XMLDataProvider</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="source\loader.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

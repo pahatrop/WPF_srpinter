@@ -1,0 +1,48 @@
+﻿<Window x:Class="WPF_sprinter.Main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WPF_sprinter"
+        Title="Main" Height="704" Width="1241.4" MinHeight="614" MinWidth="938">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type local:MainWindowViewModel}">
+            <local:MainWindow />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:CreateUniversityViewModel}">
+            <local:CreateUniversity />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:EditUniversityViewModel}">
+            <local:EditUniversity />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:CreateDepartmentViewModel}">
+            <local:CreateDepartment />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:EditDepartmentViewModel}">
+            <local:EditDepartment />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:CreateStudentViewModel}">
+            <local:CreateStudent />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:EditStudentViewModel}">
+            <local:EditStudent />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:CreateTeacherViewModel}">
+            <local:CreateTeacher />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:EditTeacherViewModel}">
+            <local:EditTeacher />
+        </DataTemplate>
+    </Window.Resources>
+
+    <DockPanel LastChildFill="True">
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Height="60" Background="#E6E6FA">
+            <Button Margin="10" Padding="50,0" FontSize="18">Back</Button>
+            <Button Margin="10" Padding="50,0" FontSize="18">Close</Button>
+        </StackPanel>
+        <DockPanel DockPanel.Dock="Top" Height="60" Background="#E6E6FA">
+            <TextBlock DockPanel.Dock="Left" Margin="10" Padding="50,0" FontSize="24" VerticalAlignment="Center" Foreground="#708090" FontWeight="Bold" FontFamily="Arial" Text="{Binding TitleText}"></TextBlock>
+            <Image DockPanel.Dock="Right" Width="40" Height="40" Visibility="{Binding Preloader}" Source="pack://application:,,/source/loader.bmp" Margin="0,10"/>
+        </DockPanel>
+        <ContentControl Content="{Binding CurrentPageViewModel}" />
+    </DockPanel>
+
+</Window>

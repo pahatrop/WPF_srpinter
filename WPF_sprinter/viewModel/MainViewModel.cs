@@ -1,19 +1,88 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace WPF_sprinter
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : ObservableObject
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void RaisePropertyChanged(string propertyName)
+        private IPageViewModel _currentPageViewModel;
+        private List<IPageViewModel> _pageViewModels;
+        private Visibility _loader = Visibility.Hidden;
+        private string titleText;
+
+        public string TitleText
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            get
+            {
+                return titleText;
+            }
+            set
+            {
+                titleText = value;
+            }
+        }
+        public Visibility Preloader
+        {
+            get
+            {
+                return _loader;
+            }
+        }
+        public void UpdateTitle()
+        {
+            titleText = _currentPageViewModel.Name;
+            RaisePropertyChanged("TitleText");
+        }
+        
+        public void ChangeLoaderVisible(bool visible = false)
+        {
+            if (visible)
+            {
+                _loader = Visibility.Visible;
+            }
+            else
+            {
+                _loader = Visibility.Hidden;
+            }
+            RaisePropertyChanged("Preloader");
+        }
+        public IPageViewModel CurrentPageViewModel
+        {
+            get
+            {
+                return _currentPageViewModel;
+            }
+            set
+            {
+                if (_currentPageViewModel != value)
+                {
+                    _currentPageViewModel = value;
+                    RaisePropertyChanged("CurrentPageViewModel");
+                }
+            }
+        }
+        public MainViewModel()
+        {
+            CurrentPageViewModel = new MainWindowViewModel();
+            titleText = _currentPageViewModel.Name;
+            RaisePropertyChanged("Preloader");
+            RaisePropertyChanged("CurrentPageViewModel");
+        }
+        public List<IPageViewModel> PageViewModels
+        {
+            get
+            {
+                if (_pageViewModels == null)
+                    _pageViewModels = new List<IPageViewModel>();
+
+                return _pageViewModels;
+            }
         }
     }
 }

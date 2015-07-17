@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="WPF_sprinter.view.userControl.SaveExitButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" >
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <Button Width="100" Margin="10" FontSize="18" Padding="10,5" Command="{Binding Path=actionSave, Mode=OneWay}" HorizontalAlignment="Right">Save</Button>
+            <Button Width="100" Margin="10" FontSize="18" Padding="10,5" Command="{Binding Path=actionCancel, Mode=OneWay}" HorizontalAlignment="Right">Cancel</Button>
+            </StackPanel>
+    </Grid>
+</UserControl>

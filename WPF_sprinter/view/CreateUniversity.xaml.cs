@@ -12,22 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace WPF_sprinter.forms
+namespace WPF_sprinter
 {
     /// <summary>
     /// Interaction logic for EditUniversity.xaml
     /// </summary>
-    public partial class CreateUniversity : Window
+    public partial class CreateUniversity : UserControl
     {
         public CreateUniversity()
         {
             InitializeComponent();
-            DataContext = new CreateUniversityViewModel();
-        }
-
-        private void Close(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
     }
 }
