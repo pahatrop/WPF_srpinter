@@ -6,8 +6,24 @@
              mc:Ignorable="d" >
     <Grid>
         <StackPanel Orientation="Horizontal">
-            <Button Width="100" Margin="10" FontSize="18" Padding="10,5" Command="{Binding Path=actionSave, Mode=OneWay}" HorizontalAlignment="Right">Save</Button>
-            <Button Width="100" Margin="10" FontSize="18" Padding="10,5" Command="{Binding Path=actionCancel, Mode=OneWay}" HorizontalAlignment="Right">Cancel</Button>
+            <Button Width="100" Margin="10" Command="{Binding Path=actionSave, Mode=OneWay}" HorizontalAlignment="Right">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border Background="#ccc" BorderBrush="BlueViolet" Padding="20,10" BorderThickness="2">
+                            <TextBlock FontWeight="Bold" Foreground="#444" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center">Save</TextBlock>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Width="100" Margin="10" Command="{Binding Path=actionCancel, Mode=OneWay}" HorizontalAlignment="Right">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border Background="#ccc" BorderBrush="BlueViolet" Padding="20,10" BorderThickness="2">
+                            <TextBlock FontWeight="Bold" Foreground="#444" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center">Cancel</TextBlock>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
             </StackPanel>
     </Grid>
 </UserControl>

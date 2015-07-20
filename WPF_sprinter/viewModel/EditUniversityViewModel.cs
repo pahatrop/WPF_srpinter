@@ -73,7 +73,6 @@ namespace WPF_sprinter
         }
 
         private ICommand _actionSave;
-        private ICommand _actionCancel;
         
         public EditUniversityViewModel(University university)
         {
@@ -92,17 +91,6 @@ namespace WPF_sprinter
                 {
                     AppDelegate.Instance.Context.ChangeLoaderVisible(true);
                     EditUniversity(new University(_universityId, _universityName, _universityAddress, _universityLevel));
-                }, _canExecute));
-            }
-        }
-        public ICommand actionCancel
-        {
-            get
-            {
-                return _actionCancel ?? (_actionCancel = new CommandHandler(() =>
-                {
-                    AppDelegate.Instance.Context.CurrentPageViewModel = new MainWindowViewModel();
-                    AppDelegate.Instance.Context.UpdateTitle();
                 }, _canExecute));
             }
         }

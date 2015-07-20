@@ -25,14 +25,6 @@ namespace WPF_sprinter
 
         private bool _canExecute;
 
-        private string saved;
-
-        public string Saved
-        {
-            get { return saved; }
-        }
-
-
         public string departmentName
         {
             get { return _departmentName; }
@@ -50,7 +42,7 @@ namespace WPF_sprinter
             }
         }
 
-        private ICommand _actionCreateDepartment;
+        private ICommand _actionSave;
 
         public async Task CreateNewDepartment(Department department)
         {
@@ -58,8 +50,8 @@ namespace WPF_sprinter
             {
                 AppDelegate.Instance.dataController.CreateNewDepartment(() =>
                 {
-                    saved = "Saved!";
-                    RaisePropertyChanged("Saved");
+                    MessageBox.Show("Saved!");
+                    AppDelegate.Instance.Context.ChangeLoaderVisible(false);
                 },
                 department);
             });
@@ -71,14 +63,13 @@ namespace WPF_sprinter
             _departmentUniversity = u;
         }
 
-        public ICommand actionCreateDepartment
+        public ICommand actionSave
         {
             get
             {
-                return _actionCreateDepartment ?? (_actionCreateDepartment = new CommandHandler(() =>
+                return _actionSave ?? (_actionSave = new CommandHandler(() =>
                 {
-                    saved = "Loading...";
-                    RaisePropertyChanged("Saved");
+                    AppDelegate.Instance.Context.ChangeLoaderVisible(true);
                     CreateNewDepartment(new Department(-1, _departmentName, _departmentUniversity));
                 }, _canExecute));
             }

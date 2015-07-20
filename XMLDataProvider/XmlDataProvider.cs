@@ -24,6 +24,54 @@ namespace XMLDataProvider
         private static string xml_root_Students = "ArrayOfStudent";
         private static string xml_root_Teachers = "ArrayOfTeacher";
 
+        private int AutoIncrementIndex(List<University> list)
+        {
+            int max = 0;
+            foreach (University obj in list)
+            {
+                if (obj.Id > max)
+                {
+                    max = obj.Id;
+                }
+            }
+            return max + 1;
+        }
+        private int AutoIncrementIndex(List<Department> list)
+        {
+            int max = 0;
+            foreach (Department obj in list)
+            {
+                if (obj.Id > max)
+                {
+                    max = obj.Id;
+                }
+            }
+            return max + 1;
+        }
+        private int AutoIncrementIndex(List<Student> list)
+        {
+            int max = 0;
+            foreach (Student obj in list)
+            {
+                if (obj.Id > max)
+                {
+                    max = obj.Id;
+                }
+            }
+            return max + 1;
+        }
+        private int AutoIncrementIndex(List<Teacher> list)
+        {
+            int max = 0;
+            foreach (Teacher obj in list)
+            {
+                if (obj.Id > max)
+                {
+                    max = obj.Id;
+                }
+            }
+            return max + 1;
+        }
         private int AutoIncrementIndex()
         {
             Random rnd = new Random();
@@ -62,7 +110,7 @@ namespace XMLDataProvider
         public void CreateNewUniversity(University university)
         {
             List<University> universities = GetAllUniversities();
-            if (university.Id == -1) university.Id = AutoIncrementIndex();
+            if (university.Id == -1) university.Id = AutoIncrementIndex(universities);
             universities.Add(university);
             TextWriter writer = new StreamWriter(fs_xml_file_Universities);
             XmlSerializer serializer = new XmlSerializer(typeof(List<University>));
@@ -119,7 +167,7 @@ namespace XMLDataProvider
         public void CreateNewDepartment(Department department)
         {
             List<Department> departments = GetAllDepartments();
-            if (department.Id == -1) department.Id = AutoIncrementIndex();
+            if (department.Id == -1) department.Id = AutoIncrementIndex(departments);
             departments.Add(department);
             TextWriter writer = new StreamWriter(fs_xml_file_Departments);
             XmlSerializer serializer = new XmlSerializer(typeof(List<Department>));
@@ -176,7 +224,7 @@ namespace XMLDataProvider
         public void CreateNewStudent(Student student)
         {
             List<Student> students = GetAllStudents();
-            if (student.Id == -1) student.Id = AutoIncrementIndex();
+            if (student.Id == -1) student.Id = AutoIncrementIndex(students);
             students.Add(student);
             TextWriter writer = new StreamWriter(fs_xml_file_Students);
             XmlSerializer serializer = new XmlSerializer(typeof(List<Student>));
@@ -233,7 +281,7 @@ namespace XMLDataProvider
         public void CreateNewTeacher(Teacher teacher)
         {
             List<Teacher> teachers = GetAllTeachers();
-            if (teacher.Id == -1) teacher.Id = AutoIncrementIndex();
+            if (teacher.Id == -1) teacher.Id = AutoIncrementIndex(teachers);
             teachers.Add(teacher);
             TextWriter writer = new StreamWriter(fs_xml_file_Teachers);
             XmlSerializer serializer = new XmlSerializer(typeof(List<Teacher>));

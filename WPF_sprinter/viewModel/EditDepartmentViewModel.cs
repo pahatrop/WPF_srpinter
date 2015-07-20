@@ -26,21 +26,14 @@ namespace WPF_sprinter
 
         private bool _canExecute;
 
-        private string saved;
-
-        public string Saved
-        {
-            get { return saved; }
-        }
-
         public async Task EditDepartment(Department department)
         {
             await Task.Run(() =>
             {
                 AppDelegate.Instance.dataController.EditDepartment(() =>
                 {
-                    saved = "Saved!";
-                    RaisePropertyChanged("Saved");
+                    MessageBox.Show("Saved!");
+                    AppDelegate.Instance.Context.ChangeLoaderVisible(false);
                 },
                 department);
             });
@@ -63,7 +56,7 @@ namespace WPF_sprinter
             }
         }
 
-        private ICommand _actionEditDepartment;
+        private ICommand _actionSave;
 
         public EditDepartmentViewModel(Department department)
         {
@@ -73,14 +66,13 @@ namespace WPF_sprinter
             _departmentUniversity = department.University;
         }
 
-        public ICommand actionEditDepartment
+        public ICommand actionSave
         {
             get
             {
-                return _actionEditDepartment ?? (_actionEditDepartment = new CommandHandler(() =>
+                return _actionSave ?? (_actionSave = new CommandHandler(() =>
                 {
-                    saved = "Loading...";
-                    RaisePropertyChanged("Saved");
+                    AppDelegate.Instance.Context.ChangeLoaderVisible(true);
                     EditDepartment(new Department(_departmentId, _departmentName, _departmentUniversity));
                 }, _canExecute));
             }

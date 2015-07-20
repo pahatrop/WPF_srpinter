@@ -59,23 +59,28 @@ namespace WPF_sprinter
 
         private bool _canExecute;
 
-        private string universitiesLoading;
-        private string departmentsLoading;
-        private string studentsTeachersLoading;
-
-        public string UniversitiesLoading
+        private Visibility _loader1 = Visibility.Hidden;
+        private Visibility _loader2 = Visibility.Hidden;
+        private Visibility _loader3 = Visibility.Hidden;
+        private Visibility _loader4 = Visibility.Hidden;
+        
+        public Visibility Preloader1
         {
-            get { return universitiesLoading; }
+            get { return _loader1; }
         }
-        public string DepartmentsLoading
+        public Visibility Preloader2
         {
-            get { return departmentsLoading; }
+            get { return _loader2; }
         }
-        public string StudentsTeachersLoading
+        public Visibility Preloader3
         {
-            get { return studentsTeachersLoading; }
+            get { return _loader3; }
         }
-
+        public Visibility Preloader4
+        {
+            get { return _loader4; }
+        }
+        
         private bool _canExecuteAddUniversity;
         private bool _canExecuteEditUniversity;
         private bool _canExecuteRemoveUniversity;
@@ -168,13 +173,10 @@ namespace WPF_sprinter
             get { return departmentSelected; }
             set
             {
-                if (value != -1)
-                {
-                    if (allDepartments.Count > value) currentDepartmentId = allDepartments[value].Id;
+                if (allDepartments.Count > value && value!=-1) currentDepartmentId = allDepartments[value].Id;
                     departmentSelected = value;
                     StudentsViewModel();
                     TeachersViewModel();
-                }
             }
         }
         public int SelectedStudent
@@ -183,10 +185,7 @@ namespace WPF_sprinter
             set
             {
                 studentSelected = value;
-                if (value != -1)
-                {
-                    if (allStudents.Count > value) currentStudentId = allStudents[value].Id;
-                }
+                if (allStudents.Count > value && value!=-1) currentStudentId = allStudents[value].Id;
             }
         }
         public int SelectedTeacher
@@ -195,10 +194,7 @@ namespace WPF_sprinter
             set
             {
                 teacherSelected = value;
-                if (value != -1)
-                {
-                    if (allStudents.Count > value) currentTeacherId = allTeachers[value].Id;
-                }
+                if (allTeachers.Count > value && value != -1) currentTeacherId = allTeachers[value].Id;
             }
         }
 
@@ -208,8 +204,6 @@ namespace WPF_sprinter
             {
                 AppDelegate.Instance.dataController.RemoveUniversity(() =>
                 {
-                    universitiesLoading = "Saved!";
-                    RaisePropertyChanged("UniversitiesLoading");
                     UniversitiesViewModel();
                 },
                 id);
@@ -221,8 +215,6 @@ namespace WPF_sprinter
             {
                 AppDelegate.Instance.dataController.RemoveDepartment(() =>
                 {
-                    departmentsLoading = "Saved!";
-                    RaisePropertyChanged("DepartmentsLoading");
                     DepartmentsViewModel();
                 },
                 id);
@@ -234,8 +226,6 @@ namespace WPF_sprinter
             {
                 AppDelegate.Instance.dataController.RemoveStudent(() =>
                 {
-                    studentsTeachersLoading = "Saved!";
-                    RaisePropertyChanged("StudentsTeachersLoading");
                     StudentsViewModel();
                 },
                 id);
@@ -247,8 +237,6 @@ namespace WPF_sprinter
             {
                 AppDelegate.Instance.dataController.RemoveTeacher(() =>
                 {
-                    studentsTeachersLoading = "Saved!";
-                    RaisePropertyChanged("StudentsTeachersLoading");
                     TeachersViewModel();
                 },
                 id);
@@ -258,29 +246,29 @@ namespace WPF_sprinter
 
         public async Task UniversitiesViewModel()
         {
-            universitiesLoading = "Loading...";
+            _loader1 = Visibility.Visible;
             allStudents = new List<Student>();
             allTeachers = new List<Teacher>();
             RaisePropertyChanged("AllStudents");
             RaisePropertyChanged("AllTeachers");
-            RaisePropertyChanged("UniversitiesLoading");
+            RaisePropertyChanged("Preloader1");
             await Task.Run(() =>
             {
                 AppDelegate.Instance.dataController.GetAllUniversities((List<University> universities) =>
                 {
+                    _loader1 = Visibility.Hidden;
                     allUniversities = universities;
                     universitiesViewModel();
-                    universitiesLoading = "";
-                    RaisePropertyChanged("UniversitiesLoading");
+                    RaisePropertyChanged("Preloader1");
                 });
             });
         }
         public async Task DepartmentsViewModel()
         {
-            departmentsLoading = "Loading...";
+            _loader2 = Visibility.Visible;
             allDepartments = new List<Department>();
-            RaisePropertyChanged("DepartmentsLoading");
             RaisePropertyChanged("AllDepartments");
+            RaisePropertyChanged("Preloader2");
             if (allUniversities.Count > 0)
             {
                 await Task.Run(() =>
@@ -289,8 +277,11 @@ namespace WPF_sprinter
                     {
                         allDepartments = departments;
                         departmentsViewModel();
-                        departmentsLoading = "";
-                        RaisePropertyChanged("DepartmentsLoading");
+                        currentDepartmentId = allDepartments.Count > 0 ? allDepartments[0].Id : 0;
+                        StudentsViewModel();
+                        TeachersViewModel();
+                        _loader2 = Visibility.Hidden;
+                        RaisePropertyChanged("Preloader2");
                     },
                     allUniversities[universitySelected].Id
                     );
@@ -299,18 +290,18 @@ namespace WPF_sprinter
         }
         public async Task StudentsViewModel()
         {
-            studentsTeachersLoading = "Loading...";
+            _loader3 = Visibility.Visible;
             allStudents = new List<Student>();
             RaisePropertyChanged("AllStudents");
-            RaisePropertyChanged("StudentsTeachersLoading");
+            RaisePropertyChanged("Preloader3");
                     await Task.Run(() =>
                     {
                         AppDelegate.Instance.dataController.GetAllStudents((List<Student> students) =>
                         {
                             allStudents = students;
                             studentsViewModel();
-                            studentsTeachersLoading = "";
-                            RaisePropertyChanged("StudentsTeachersLoading");
+                            _loader3 = Visibility.Hidden;
+                            RaisePropertyChanged("Preloader3");
                         },
                         currentDepartmentId
                         );
@@ -319,27 +310,21 @@ namespace WPF_sprinter
         public async Task TeachersViewModel()
         {
             allTeachers = new List<Teacher>();
+            _loader4 = Visibility.Visible;
             RaisePropertyChanged("AllTeachers");
-            studentsTeachersLoading = "Loading...";
-            RaisePropertyChanged("StudentsTeachersLoading");
-            if (allDepartments != null)
-            {
-                if (departmentSelected < allDepartments.Count)
-                {
+            RaisePropertyChanged("Preloader4");
                     await Task.Run(() =>
                     {
                         AppDelegate.Instance.dataController.GetAllTeachers((List<Teacher> teachers) =>
                         {
                             allTeachers = teachers;
                             teachersViewModel();
-                            studentsTeachersLoading = "";
-                            RaisePropertyChanged("StudentsTeachersLoading");
+                            _loader4 = Visibility.Hidden;
+                            RaisePropertyChanged("Preloader4");
                         },
                         currentDepartmentId
                         );
                     });
-                }
-            }
         }
         
         public void studentsViewModel()
@@ -413,8 +398,8 @@ namespace WPF_sprinter
                 _canExecuteRemoveUniversity = false;
             }
             DepartmentsViewModel();
-            StudentsViewModel();
-            TeachersViewModel();
+            //StudentsViewModel();
+            //TeachersViewModel();
             RaisePropertyChanged("canExecuteAddUniversity");
             RaisePropertyChanged("canExecuteEditUniversity");
             RaisePropertyChanged("canExecuteRemoveUniversity");
@@ -505,7 +490,8 @@ namespace WPF_sprinter
                     {
                         if (allDepartments.Count > departmentSelected)
                         {
-//                            new EditDepartment(allDepartments[departmentSelected]).ShowDialog();
+                            AppDelegate.Instance.Context.CurrentPageViewModel = new EditDepartmentViewModel(allDepartments[departmentSelected]);
+                            AppDelegate.Instance.Context.UpdateTitle();
                         }
                     }
                     departmentSelected = 0;
@@ -521,7 +507,8 @@ namespace WPF_sprinter
                 {
                     if (universitySelected != -1 && allUniversities != null)
                     {
-//                        new CreateDepartment(allUniversities[universitySelected].Id).ShowDialog();
+                        AppDelegate.Instance.Context.CurrentPageViewModel = new CreateDepartmentViewModel(allUniversities[universitySelected].Id);
+                        AppDelegate.Instance.Context.UpdateTitle();
                     }
                     departmentSelected = 0;
                     DepartmentsViewModel();
@@ -556,7 +543,8 @@ namespace WPF_sprinter
                     {
                         if (studentSelected != -1)
                         {
-//                            new EditStudent(allStudents[studentSelected]).ShowDialog();
+                            AppDelegate.Instance.Context.CurrentPageViewModel = new EditStudentViewModel(allStudents[studentSelected]);
+                            AppDelegate.Instance.Context.UpdateTitle();
                         }
                     }
                     StudentsViewModel();
@@ -571,7 +559,8 @@ namespace WPF_sprinter
                 {
                     if (departmentSelected != -1 && allDepartments != null && allDepartments.Count > 0)
                     {
-//                        new CreateStudent(allDepartments[departmentSelected].Id).ShowDialog();
+                        AppDelegate.Instance.Context.CurrentPageViewModel = new CreateStudentViewModel(allDepartments[departmentSelected].Id);
+                        AppDelegate.Instance.Context.UpdateTitle();
                     }
                     studentSelected = 0;
                     StudentsViewModel();
@@ -603,7 +592,8 @@ namespace WPF_sprinter
                 {
                     if (allTeachers != null)
                     {
-//                        new EditTeacher(allTeachers[teacherSelected]).ShowDialog();
+                        AppDelegate.Instance.Context.CurrentPageViewModel = new EditTeacherViewModel(allTeachers[teacherSelected]);
+                        AppDelegate.Instance.Context.UpdateTitle();
                     }
                     TeachersViewModel();
                 }, _canExecute));
@@ -617,7 +607,8 @@ namespace WPF_sprinter
                 {
                     if (departmentSelected != -1 && allDepartments != null && allDepartments.Count > 0)
                     {
-//                        new CreateTeacher(allDepartments[departmentSelected].Id).ShowDialog();
+                        AppDelegate.Instance.Context.CurrentPageViewModel = new CreateTeacherViewModel(allDepartments[departmentSelected].Id);
+                        AppDelegate.Instance.Context.UpdateTitle();
                     }
                     teacherSelected = 0;
                     TeachersViewModel();

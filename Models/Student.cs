@@ -15,10 +15,11 @@ namespace Models
         public int Cource { get; set; }
         public string Type { get; set; }
         public int Department { get; set; }
+        public string Avatar { get; set; }
         public Student()
-        {
+        { 
         }
-        public Student(int id, string firstname, string lastname, string middlename, int cource, string type, int department)
+        public Student(int id, string firstname, string lastname, string middlename, int cource, string type, int department, string avatar = "default.jpg")
         {
             Id = id;
             Firstname = firstname;
@@ -27,6 +28,7 @@ namespace Models
             Cource = cource;
             Type = type;
             Department = department;
+            Avatar = @"C:\Users\pavel\WPF_srpinter\WPF_sprinter\bin\Debug\data\images\"+avatar;
         }
     }
 }

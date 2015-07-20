@@ -80,3 +80,17 @@ C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\Univers
 C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\University.g.cs
 C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\SaveExitButton..baml
 C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\SaveExitButton..g.cs
+C:\Users\pavel\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\SaveExitButton..baml
+C:\Users\pavel\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\University.baml
+C:\Users\pavel\WPF_srpinter\WPF_sprinter\obj\Debug\Main.g.cs
+C:\Users\pavel\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\SaveExitButton..g.cs
+C:\Users\pavel\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\University.g.cs
+C:\Users\pavel\WPF_srpinter\WPF_sprinter\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\pavel\WPF_srpinter\WPF_sprinter\obj\Debug\WPF_sprinter_MarkupCompile.lref
+C:\Users\pavel\WPF_srpinter\WPF_sprinter\obj\Debug\Main.baml
+C:\Users\pavel\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\Department.baml
+C:\Users\pavel\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\Department.g.cs
+C:\Users\pavel\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\Student.baml
+C:\Users\pavel\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\Student.g.cs
+C:\Users\pavel\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\Teacher.baml
+C:\Users\pavel\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\Teacher.g.cs

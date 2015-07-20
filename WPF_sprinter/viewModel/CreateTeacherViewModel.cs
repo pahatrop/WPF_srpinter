@@ -28,21 +28,14 @@ namespace WPF_sprinter
 
         private bool _canExecute;
 
-        private string saved;
-
-        public string Saved
-        {
-            get { return saved; }
-        }
-
         public async Task CreateNewTeacher(Teacher teacher)
         {
             await Task.Run(() =>
             {
                 AppDelegate.Instance.dataController.CreateNewTeacher(() =>
                 {
-                    saved = "Saved!";
-                    RaisePropertyChanged("Saved");
+                    MessageBox.Show("Saved!");
+                    AppDelegate.Instance.Context.ChangeLoaderVisible(false);
                 },
                 teacher);
             });
@@ -81,7 +74,7 @@ namespace WPF_sprinter
             }
         }
 
-        private ICommand _actionCreateTeacher;
+        private ICommand _actionSave;
 
         public CreateTeacherViewModel(int u)
         {
@@ -89,14 +82,13 @@ namespace WPF_sprinter
             _teacherDepartment = u;
         }
 
-        public ICommand actionCreateTeacher
+        public ICommand actionSave
         {
             get
             {
-                return _actionCreateTeacher ?? (_actionCreateTeacher = new CommandHandler(() =>
+                return _actionSave ?? (_actionSave = new CommandHandler(() =>
                 {
-                    saved = "Loading...";
-                    RaisePropertyChanged("Saved");
+                    AppDelegate.Instance.Context.ChangeLoaderVisible(true);
                     CreateNewTeacher(new Teacher(-1, _teacherFirstname, _teacherLastname, _teacherMiddlename, _teacherSpecialty, _teacherDepartment));
                 }, _canExecute));
             }

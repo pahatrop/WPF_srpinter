@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Collections;
 using System.ComponentModel;
+using System.Windows.Input;
 
 namespace WPF_sprinter
 {
@@ -76,6 +77,21 @@ namespace WPF_sprinter
         }
 
         #endregion // INotifyPropertyChanged Members
+
+        #region CancelButton
+        private ICommand _actionCancel;
+        public ICommand actionCancel
+        {
+            get
+            {
+                return _actionCancel ?? (_actionCancel = new CommandHandler(() =>
+                {
+                    AppDelegate.Instance.Context.CurrentPageViewModel = new MainWindowViewModel();
+                    AppDelegate.Instance.Context.UpdateTitle();
+                }, true));
+            }
+        }
+        #endregion
     }
 
 }

@@ -30,21 +30,14 @@ namespace WPF_sprinter
 
         private bool _canExecute;
 
-        private string saved;
-
-        public string Saved
-        {
-            get { return saved; }
-        }
-
         public async Task EditStudent(Student student)
         {
             await Task.Run(() =>
             {
                 AppDelegate.Instance.dataController.EditStudent(() =>
                 {
-                    saved = "Saved!";
-                    RaisePropertyChanged("Saved");
+                    MessageBox.Show("Saved!");
+                    AppDelegate.Instance.Context.ChangeLoaderVisible(false);
                 },
                 student);
             });
@@ -91,7 +84,7 @@ namespace WPF_sprinter
             }
         }
 
-        private ICommand _actionEditStudent;
+        private ICommand _actionSave;
 
         public EditStudentViewModel(Student student)
         {
@@ -105,14 +98,13 @@ namespace WPF_sprinter
             _studentDepartment = student.Department;
         }
 
-        public ICommand actionEditStudent
+        public ICommand actionSave
         {
             get
             {
-                return _actionEditStudent ?? (_actionEditStudent = new CommandHandler(() =>
+                return _actionSave ?? (_actionSave = new CommandHandler(() =>
                 {
-                    saved = "Loading...";
-                    RaisePropertyChanged("Saved");
+                    AppDelegate.Instance.Context.ChangeLoaderVisible(true);
                     EditStudent(new Student(_studentId, _studentFirstname, _studentLastname, _studentMiddlename, _studentCource, _studentType, _studentDepartment));
                 }, _canExecute));
             }

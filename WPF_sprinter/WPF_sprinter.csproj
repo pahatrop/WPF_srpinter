@@ -98,8 +98,17 @@
     <Compile Include="viewModel\EditDepartmentViewModel.cs" />
     <Compile Include="viewModel\EditUniversityViewModel.cs" />
     <Compile Include="viewModel\MainWindowViewModel.cs" />
+    <Compile Include="view\userControl\Department.xaml.cs">
+      <DependentUpon>Department.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\userControl\SaveExitButton..xaml.cs">
       <DependentUpon>SaveExitButton..xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\userControl\Student.xaml.cs">
+      <DependentUpon>Student.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\userControl\Teacher.xaml.cs">
+      <DependentUpon>Teacher.xaml</DependentUpon>
     </Compile>
     <Compile Include="view\userControl\University.xaml.cs">
       <DependentUpon>University.xaml</DependentUpon>
@@ -148,7 +157,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="view\userControl\Department.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="view\userControl\SaveExitButton..xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\userControl\Student.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\userControl\Teacher.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -184,7 +205,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="source\menu.png" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataContracts\DataContracts.csproj">
       <Project>{331bab65-26e3-4a94-a4ba-35c46e6963aa}</Project>
@@ -205,6 +228,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="source\loader.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="source\loader.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
