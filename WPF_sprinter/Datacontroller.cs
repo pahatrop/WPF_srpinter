@@ -18,7 +18,7 @@ namespace WPF_sprinter
             dataProvider = dp;
         }
 
-        private int t = 2000;
+        private int t = 0;
 
         public async Task GetAllUniversities(Action<List<University>> action)
         {

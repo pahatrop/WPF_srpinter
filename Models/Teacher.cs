@@ -13,18 +13,18 @@ namespace Models
         public string Lastname { get; set; }
         public string Middlename { get; set; }
         public string Specialty { get; set; }
-        public int Department { get; set; }
+        public int University { get; set; }
         public Teacher()
         {
         }
-        public Teacher(int id, string firstname, string lastname, string middlename, string specialty, int department)
+        public Teacher(int id, string firstname, string lastname, string middlename, string specialty, int university)
         {
             Id = id;
             Firstname = firstname;
             Lastname = lastname;
             Middlename = middlename;
             Specialty = specialty;
-            Department = department;
+            University = university;
         }
     }
 }

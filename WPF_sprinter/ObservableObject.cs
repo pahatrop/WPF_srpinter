@@ -80,6 +80,7 @@ namespace WPF_sprinter
 
         #region CancelButton
         private ICommand _actionCancel;
+        private ICommand _actionCloseNotif;
         public ICommand actionCancel
         {
             get
@@ -87,6 +88,17 @@ namespace WPF_sprinter
                 return _actionCancel ?? (_actionCancel = new CommandHandler(() =>
                 {
                     AppDelegate.Instance.Context.CurrentPageViewModel = new MainWindowViewModel();
+                    AppDelegate.Instance.Context.UpdateTitle();
+                }, true));
+            }
+        }
+        public ICommand actionCloseNotif
+        {
+            get
+            {
+                return _actionCloseNotif ?? (_actionCloseNotif = new CommandHandler(() =>
+                {
+                    AppDelegate.Instance.Context.Notification();
                     AppDelegate.Instance.Context.UpdateTitle();
                 }, true));
             }

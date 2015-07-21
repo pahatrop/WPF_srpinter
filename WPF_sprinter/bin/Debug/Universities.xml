@@ -8,8 +8,602 @@
   </University>
   <University>
     <Id>2</Id>
-    <Name>КГМУ</Name>
-    <Address>ирвс</Address>
+    <Name>University 0</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>3</Id>
+    <Name>University 1</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>4</Id>
+    <Name>University 2</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>5</Id>
+    <Name>University 3</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>6</Id>
+    <Name>University 4</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>7</Id>
+    <Name>University 5</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>8</Id>
+    <Name>University 6</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>9</Id>
+    <Name>University 7</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>10</Id>
+    <Name>University 8</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>11</Id>
+    <Name>University 9</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>12</Id>
+    <Name>University 10</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>13</Id>
+    <Name>University 11</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>14</Id>
+    <Name>University 12</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>15</Id>
+    <Name>University 13</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>16</Id>
+    <Name>University 14</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>17</Id>
+    <Name>University 15</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>18</Id>
+    <Name>University 16</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>19</Id>
+    <Name>University 17</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>20</Id>
+    <Name>University 18</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>21</Id>
+    <Name>University 19</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>22</Id>
+    <Name>University 20</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>23</Id>
+    <Name>University 21</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>24</Id>
+    <Name>University 22</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>25</Id>
+    <Name>University 23</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>26</Id>
+    <Name>University 24</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>27</Id>
+    <Name>University 25</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>28</Id>
+    <Name>University 26</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>29</Id>
+    <Name>University 27</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>30</Id>
+    <Name>University 28</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>31</Id>
+    <Name>University 29</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>32</Id>
+    <Name>University 30</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>33</Id>
+    <Name>University 31</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>34</Id>
+    <Name>University 32</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>35</Id>
+    <Name>University 33</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>36</Id>
+    <Name>University 34</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>37</Id>
+    <Name>University 35</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>38</Id>
+    <Name>University 36</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>39</Id>
+    <Name>University 37</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>40</Id>
+    <Name>University 38</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>41</Id>
+    <Name>University 39</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>42</Id>
+    <Name>University 40</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>43</Id>
+    <Name>University 41</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>44</Id>
+    <Name>University 42</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>45</Id>
+    <Name>University 43</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>46</Id>
+    <Name>University 44</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>47</Id>
+    <Name>University 45</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>48</Id>
+    <Name>University 46</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>49</Id>
+    <Name>University 47</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>50</Id>
+    <Name>University 48</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>51</Id>
+    <Name>University 49</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>52</Id>
+    <Name>University 50</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>53</Id>
+    <Name>University 51</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>54</Id>
+    <Name>University 52</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>55</Id>
+    <Name>University 53</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>56</Id>
+    <Name>University 54</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>57</Id>
+    <Name>University 55</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>58</Id>
+    <Name>University 56</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>59</Id>
+    <Name>University 57</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>60</Id>
+    <Name>University 58</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>61</Id>
+    <Name>University 59</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>62</Id>
+    <Name>University 60</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>63</Id>
+    <Name>University 61</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>64</Id>
+    <Name>University 62</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>65</Id>
+    <Name>University 63</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>66</Id>
+    <Name>University 64</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>67</Id>
+    <Name>University 65</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>68</Id>
+    <Name>University 66</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>69</Id>
+    <Name>University 67</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>70</Id>
+    <Name>University 68</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>71</Id>
+    <Name>University 69</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>72</Id>
+    <Name>University 70</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>73</Id>
+    <Name>University 71</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>74</Id>
+    <Name>University 72</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>75</Id>
+    <Name>University 73</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>76</Id>
+    <Name>University 74</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>77</Id>
+    <Name>University 75</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>78</Id>
+    <Name>University 76</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>79</Id>
+    <Name>University 77</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>80</Id>
+    <Name>University 78</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>81</Id>
+    <Name>University 79</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>82</Id>
+    <Name>University 80</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>83</Id>
+    <Name>University 81</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>84</Id>
+    <Name>University 82</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>85</Id>
+    <Name>University 83</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>86</Id>
+    <Name>University 84</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>87</Id>
+    <Name>University 85</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>88</Id>
+    <Name>University 86</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>89</Id>
+    <Name>University 87</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>90</Id>
+    <Name>University 88</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>91</Id>
+    <Name>University 89</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>92</Id>
+    <Name>University 90</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>93</Id>
+    <Name>University 91</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>94</Id>
+    <Name>University 92</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>95</Id>
+    <Name>University 93</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>96</Id>
+    <Name>University 94</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>97</Id>
+    <Name>University 95</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>98</Id>
+    <Name>University 96</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>99</Id>
+    <Name>University 97</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>100</Id>
+    <Name>University 98</Name>
+    <Address>empty</Address>
+    <Level>0</Level>
+  </University>
+  <University>
+    <Id>101</Id>
+    <Name>University 99</Name>
+    <Address>empty</Address>
     <Level>0</Level>
   </University>
 </ArrayOfUniversity>

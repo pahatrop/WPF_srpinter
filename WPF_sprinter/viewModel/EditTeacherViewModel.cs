@@ -85,7 +85,7 @@ namespace WPF_sprinter
             _teacherLastname = teacher.Lastname;
             _teacherMiddlename = teacher.Middlename;
             _teacherSpecialty = teacher.Specialty;
-            _teacherDepartment = teacher.Department;
+            _teacherDepartment = teacher.University;
         }
 
         public ICommand actionSave

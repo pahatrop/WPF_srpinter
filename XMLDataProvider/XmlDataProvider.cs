@@ -263,7 +263,7 @@ namespace XMLDataProvider
                 }
                 foreach (Teacher teacher in r)
                 {
-                    if(teacher.Department==id || id==-1) teachers.Add(teacher);
+                    if(teacher.University==id || id==-1) teachers.Add(teacher);
                 }
                 return teachers;
             }

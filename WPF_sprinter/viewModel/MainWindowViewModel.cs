@@ -248,9 +248,7 @@ namespace WPF_sprinter
         {
             _loader1 = Visibility.Visible;
             allStudents = new List<Student>();
-            allTeachers = new List<Teacher>();
             RaisePropertyChanged("AllStudents");
-            RaisePropertyChanged("AllTeachers");
             RaisePropertyChanged("Preloader1");
             await Task.Run(() =>
             {
@@ -279,7 +277,6 @@ namespace WPF_sprinter
                         departmentsViewModel();
                         currentDepartmentId = allDepartments.Count > 0 ? allDepartments[0].Id : 0;
                         StudentsViewModel();
-                        TeachersViewModel();
                         _loader2 = Visibility.Hidden;
                         RaisePropertyChanged("Preloader2");
                     },
@@ -322,7 +319,7 @@ namespace WPF_sprinter
                             _loader4 = Visibility.Hidden;
                             RaisePropertyChanged("Preloader4");
                         },
-                        currentDepartmentId
+                        allUniversities[universitySelected].Id
                         );
                     });
         }
@@ -357,7 +354,7 @@ namespace WPF_sprinter
         }
         public void teachersViewModel()
         {
-            if (departmentSelected < allDepartments.Count)
+            if (allUniversities.Count > 0)
             {
                 _canExecuteAddTeacher = true;
                 if (allTeachers.Count > 0)
@@ -399,7 +396,7 @@ namespace WPF_sprinter
             }
             DepartmentsViewModel();
             //StudentsViewModel();
-            //TeachersViewModel();
+            TeachersViewModel();
             RaisePropertyChanged("canExecuteAddUniversity");
             RaisePropertyChanged("canExecuteEditUniversity");
             RaisePropertyChanged("canExecuteRemoveUniversity");
@@ -474,6 +471,8 @@ namespace WPF_sprinter
             {
                 return _actionRemoveUniversity ?? (_actionRemoveUniversity = new CommandHandler(() =>
                 {
+                    _loader1 = Visibility.Visible;
+                    RaisePropertyChanged("Preloader1");
                     RemoveUniversity(allUniversities[universitySelected].Id);
                     universitySelected = 0;
                 }, _canExecute));
@@ -526,6 +525,8 @@ namespace WPF_sprinter
                     {
                         if (allDepartments.Count > departmentSelected)
                         {
+                            _loader2 = Visibility.Visible;
+                            RaisePropertyChanged("Preloader2");
                             RemoveDepartment(allDepartments[departmentSelected].Id);
                         }
                     }
@@ -577,6 +578,8 @@ namespace WPF_sprinter
                     {
                         if (studentSelected != -1)
                         {
+                            _loader3 = Visibility.Visible;
+                            RaisePropertyChanged("Preloader3");
                             RemoveStudent(allStudents[studentSelected].Id);
                         }
                     }
@@ -605,9 +608,9 @@ namespace WPF_sprinter
             {
                 return _actionShowCreateTeacher ?? (_actionShowCreateTeacher = new CommandHandler(() =>
                 {
-                    if (departmentSelected != -1 && allDepartments != null && allDepartments.Count > 0)
+                    if (universitySelected != -1 && allUniversities != null)
                     {
-                        AppDelegate.Instance.Context.CurrentPageViewModel = new CreateTeacherViewModel(allDepartments[departmentSelected].Id);
+                        AppDelegate.Instance.Context.CurrentPageViewModel = new CreateTeacherViewModel(allUniversities[universitySelected].Id);
                         AppDelegate.Instance.Context.UpdateTitle();
                     }
                     teacherSelected = 0;
@@ -625,6 +628,8 @@ namespace WPF_sprinter
                     {
                         if (teacherSelected != -1)
                         {
+                            _loader4 = Visibility.Visible;
+                            RaisePropertyChanged("Preloader4");
                             RemoveTeacher(allTeachers[teacherSelected].Id);
                         }
                     }
