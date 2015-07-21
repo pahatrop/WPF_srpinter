@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Runtime.Remoting.Messaging;
 using Models;
+using System.IO;
 
 namespace WPF_sprinter
 {
@@ -300,7 +301,7 @@ namespace WPF_sprinter
                             allStudents = students;
                             foreach (Student student in allStudents)
                             {
-                                student.Avatar = @"C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\bin\Debug\data\images\" + student.Avatar;
+                                student.Avatar = Directory.GetCurrentDirectory()+"\\data\\images\\" + student.Avatar;
                             }
                             studentsViewModel();
                             _loader3 = Visibility.Hidden;
@@ -323,7 +324,7 @@ namespace WPF_sprinter
                             allTeachers = teachers;
                             foreach (Teacher teacher in AllTeachers)
                             {
-                                teacher.Avatar = @"C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\bin\Debug\data\images\" + teacher.Avatar;
+                                teacher.Avatar = Directory.GetCurrentDirectory() + "\\data\\images\\" + teacher.Avatar;
                             }
                             teachersViewModel();
                             _loader4 = Visibility.Hidden;

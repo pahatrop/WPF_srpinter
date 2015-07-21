@@ -100,3 +100,4 @@ C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\Teacher
 C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\Department.g.cs
 C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\Student.g.cs
 C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\Teacher.g.cs
+C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\WPF_sprinter_Content.g.cs

@@ -206,9 +206,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="source\menu.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\DataContracts\DataContracts.csproj">
       <Project>{331bab65-26e3-4a94-a4ba-35c46e6963aa}</Project>
       <Name>DataContracts</Name>
@@ -234,6 +231,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="source\loader.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="source\university.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="source\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="source\university.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

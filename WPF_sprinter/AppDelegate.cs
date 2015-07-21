@@ -11,9 +11,9 @@ namespace WPF_sprinter
 {
     public sealed class AppDelegate
     {
-        public DataController dataController = new DataController(new XmlDataProvider());
-
         static readonly AppDelegate myInstance = new AppDelegate();
+        
+        public DataController dataController = new DataController(new XmlDataProvider());
 
         public MainViewModel Context;
 

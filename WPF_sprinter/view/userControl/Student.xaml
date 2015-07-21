@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Margin="0">
+    <Grid Margin="0,0,0,-34">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="152"/>
             <ColumnDefinition Width="366*"/>
@@ -27,12 +27,13 @@
         <TextBlock FontSize="18" Padding="10,0,0,0" Margin="10" Grid.Column="0" Grid.Row="3" Text="Middlename:"/>
         <TextBlock FontSize="18" Padding="10,0,0,0" Margin="10" Grid.Column="0" Grid.Row="4" Text="Cource:"/>
         <TextBlock FontSize="18" Padding="10,0,0,0" Margin="10" Grid.Column="0" Grid.Row="5" Text="Type:"/>
+        <TextBlock FontSize="18" Padding="10,0,0,0" Margin="10" Grid.Column="0" Grid.Row="6" Text="Avatar:"/>
 
         <TextBox BorderBrush="#696969" Background="#eee" Height="36" Padding="10,7" Margin="10" Grid.Column="1" Grid.Row="1" Text="{Binding studentFirstname, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBox BorderBrush="#696969" Background="#eee" Height="36" Padding="10,7" Margin="10" Grid.Column="1" Grid.Row="2" Text="{Binding studentLastname, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBox BorderBrush="#696969" Background="#eee" Height="36" Padding="10,7" Margin="10" Grid.Column="1" Grid.Row="3" Text="{Binding studentMiddlename, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBox BorderBrush="#696969" Background="#eee" Height="36" Padding="10,7" Margin="10" Grid.Column="1" Grid.Row="4" Text="{Binding studentCource, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBox BorderBrush="#696969" Background="#eee" Height="36" Padding="10,7" Margin="10" Grid.Column="1" Grid.Row="5" Text="{Binding studentType, UpdateSourceTrigger=PropertyChanged}"/>
-
+        <Button Height="36" Padding="10,7" Margin="10" Grid.Column="1" Grid.Row="6" Command="{Binding Path=actionAvatar, Mode=OneWay}" Content="Change..."/>
     </Grid>
 </UserControl>

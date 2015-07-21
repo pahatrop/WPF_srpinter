@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Models;
+using System.IO;
+using Microsoft.Win32;
 
 namespace WPF_sprinter
 {
@@ -27,6 +29,7 @@ namespace WPF_sprinter
         private int _studentCource;
         private string _studentType;
         private int _studentDepartment;
+        private string _studentAvatar;
 
         private bool _canExecute;
 
@@ -85,6 +88,8 @@ namespace WPF_sprinter
         }
 
         private ICommand _actionSave;
+        private ICommand _actionAvatar;
+
 
         public EditStudentViewModel(Student student)
         {
@@ -96,8 +101,30 @@ namespace WPF_sprinter
             _studentCource = student.Cource;
             _studentType = student.Type;
             _studentDepartment = student.Department;
+            _studentAvatar = Path.GetFileName(student.Avatar);
         }
+        private string targetPath = Directory.GetCurrentDirectory() + "\\data\\images\\";
+        private string sourcePath;
 
+        public ICommand actionAvatar
+        {
+            get
+            {
+                return _actionAvatar ?? (_actionAvatar = new CommandHandler(() =>
+                {
+                    OpenFileDialog openFileDialog = new OpenFileDialog();
+                    if (openFileDialog.ShowDialog() == true)
+                    {
+                        sourcePath = openFileDialog.FileName;
+                        _studentAvatar = Path.GetRandomFileName() + ".jpg";
+                        if (!System.IO.Directory.Exists(targetPath))
+                        {
+                            System.IO.Directory.CreateDirectory(targetPath);
+                        }
+                    }
+                }, _canExecute));
+            }
+        }
         public ICommand actionSave
         {
             get
@@ -105,7 +132,16 @@ namespace WPF_sprinter
                 return _actionSave ?? (_actionSave = new CommandHandler(() =>
                 {
                     AppDelegate.Instance.Context.ChangeLoaderVisible(true);
-                    EditStudent(new Student(_studentId, _studentFirstname, _studentLastname, _studentMiddlename, _studentCource, _studentType, _studentDepartment));
+                    try
+                    {
+                        File.Copy(sourcePath, targetPath + _studentAvatar, true);
+                    }
+                    catch(Exception e)
+                    {
+
+                    }
+                    AppDelegate.Instance.Context.ToBeRemoved.Add(sourcePath);
+                    EditStudent(new Student(_studentId, _studentFirstname, _studentLastname, _studentMiddlename, _studentCource, _studentType, _studentDepartment, _studentAvatar));
                 }, _canExecute));
             }
         }

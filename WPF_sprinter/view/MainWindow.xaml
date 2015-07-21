@@ -49,9 +49,17 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid Margin="3" Width="300">
-                                <TextBlock Margin="10, 0,0,0" Grid.Row="0" Grid.Column="0" FontWeight="Bold" FontSize="18" Text="{Binding Path=Name}" Foreground="#073784"/>
-                                <TextBlock Margin="10,30,0,0" Grid.Row="0" Grid.Column="0" FontWeight="Normal" FontSize="15" Text="Address: "/>
-                                <TextBlock Margin="100,30,0,0" Grid.Row="0" Grid.Column="0" FontWeight="Normal" FontSize="15" Text="{Binding Path=Address}" TextWrapping="Wrap"/>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="90"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Grid.Row="0" Source="pack://application:,,/source/university.png" Width="60" Height="60" Margin="10"/>
+                                <TextBlock Grid.Column="1" Grid.Row="0" Margin="10,0,0,0" FontWeight="Bold" FontSize="18" Text="{Binding Path=Name}" Foreground="#073784"/>
+                                <TextBlock Grid.Column="1" Grid.Row="0" Margin="10,30,0,0" FontWeight="Normal" FontSize="15" Text="Address: "/>
+                                <TextBlock Grid.Column="1" Grid.Row="0"  Margin="100,30,0,0" FontWeight="Normal" FontSize="15" Text="{Binding Path=Address}" TextWrapping="Wrap"/>
                             </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>

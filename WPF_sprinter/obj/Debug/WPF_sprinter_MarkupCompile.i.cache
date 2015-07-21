@@ -11,10 +11,10 @@ false
 DEBUG;TRACE
 C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\App.xaml
 151966407060
-
+1223746354
 38-502821364
 162012510280
 view\EditTeacher.xaml;view\CreateTeacher.xaml;view\EditStudent.xaml;view\CreateStudent.xaml;view\EditDepartment.xaml;view\CreateDepartment.xaml;view\CreateUniversity.xaml;view\EditUniversity.xaml;Main.xaml;view\MainWindow.xaml;view\userControl\Department.xaml;view\userControl\SaveExitButton..xaml;view\userControl\Student.xaml;view\userControl\Teacher.xaml;view\userControl\University.xaml;
 
-True
+False
 

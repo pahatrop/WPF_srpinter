@@ -14,6 +14,7 @@ namespace WPF_sprinter
         private IPageViewModel _currentPageViewModel;
         private List<IPageViewModel> _pageViewModels;
         private Visibility _loader = Visibility.Hidden;
+        public List<string> ToBeRemoved = new List<string>();
         private int _notification = 0;
         private string titleText;
         private string notifText;
@@ -99,14 +100,14 @@ namespace WPF_sprinter
         }
         public MainViewModel()
         {
-            //foreach (Teacher p in new XMLDataProvider.XmlDataProvider().GetAllTeachers())
+            //foreach (Student p in new XMLDataProvider.XmlDataProvider().GetAllStudents())
             //{
 
                 //foreach (Department department in new XMLDataProvider.XmlDataProvider().GetAllDepartments())
                 //{
                     //for (int i = 0; i < 100; i++)
                     //{
-                     //   AppDelegate.Instance.dataController.EditTeacher(null, new Teacher(p.Id, p.Firstname, p.Lastname, p.Middlename, p.Specialty, p.University));
+                        //AppDelegate.Instance.dataController.EditStudent(null, new Student(p.Id, "Сергей", "Иванов", "Сергеевич", 1, p.Type, p.Department, p.Avatar));
                     //}
                 //}
             //}
@@ -121,7 +122,6 @@ namespace WPF_sprinter
             {
                 if (_pageViewModels == null)
                     _pageViewModels = new List<IPageViewModel>();
-
                 return _pageViewModels;
             }
         }
