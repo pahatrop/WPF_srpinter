@@ -14,10 +14,11 @@ namespace Models
         public string Middlename { get; set; }
         public string Specialty { get; set; }
         public int University { get; set; }
+        public string Avatar { get; set; }
         public Teacher()
         {
         }
-        public Teacher(int id, string firstname, string lastname, string middlename, string specialty, int university)
+        public Teacher(int id, string firstname, string lastname, string middlename, string specialty, int university, string avatar = "default.png")
         {
             Id = id;
             Firstname = firstname;
@@ -25,6 +26,7 @@ namespace Models
             Middlename = middlename;
             Specialty = specialty;
             University = university;
+            Avatar = avatar;
         }
     }
 }

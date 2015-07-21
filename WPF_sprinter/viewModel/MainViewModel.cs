@@ -99,13 +99,18 @@ namespace WPF_sprinter
         }
         public MainViewModel()
         {
-            /*foreach()
-            for (int i = 0; i < 100; i++)
-            {
-                AppDelegate.Instance.dataController.CreateNewUniversity(null,new University(-1,"University "+i.ToString(),"empty",0));
-            }
-            */
-                CurrentPageViewModel = new MainWindowViewModel();
+            //foreach (Teacher p in new XMLDataProvider.XmlDataProvider().GetAllTeachers())
+            //{
+
+                //foreach (Department department in new XMLDataProvider.XmlDataProvider().GetAllDepartments())
+                //{
+                    //for (int i = 0; i < 100; i++)
+                    //{
+                     //   AppDelegate.Instance.dataController.EditTeacher(null, new Teacher(p.Id, p.Firstname, p.Lastname, p.Middlename, p.Specialty, p.University));
+                    //}
+                //}
+            //}
+            CurrentPageViewModel = new MainWindowViewModel();
             titleText = _currentPageViewModel.Name;
             RaisePropertyChanged("Preloader");
             RaisePropertyChanged("CurrentPageViewModel");

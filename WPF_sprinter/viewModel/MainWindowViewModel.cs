@@ -159,13 +159,16 @@ namespace WPF_sprinter
                 {
                     if (universitySelected != value)
                     {
-                        if (allUniversities.Count > value && allUniversities[value].Id!=-1) currentUniversityId = allUniversities[value].Id;
-                        StudentsViewModel();
-                        TeachersViewModel();
+                        if (allUniversities.Count > value && allUniversities[value].Id != -1)
+                        {
+                            currentUniversityId = allUniversities[value].Id;
+                            StudentsViewModel();
+                        }
                     }
                     universitySelected = value;
                 }
                 DepartmentsViewModel();
+                TeachersViewModel();
             }
         }
         public int SelectedDepartment
@@ -176,7 +179,6 @@ namespace WPF_sprinter
                 if (allDepartments.Count > value && value!=-1) currentDepartmentId = allDepartments[value].Id;
                     departmentSelected = value;
                     StudentsViewModel();
-                    TeachersViewModel();
             }
         }
         public int SelectedStudent
@@ -296,6 +298,10 @@ namespace WPF_sprinter
                         AppDelegate.Instance.dataController.GetAllStudents((List<Student> students) =>
                         {
                             allStudents = students;
+                            foreach (Student student in allStudents)
+                            {
+                                student.Avatar = @"C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\bin\Debug\data\images\" + student.Avatar;
+                            }
                             studentsViewModel();
                             _loader3 = Visibility.Hidden;
                             RaisePropertyChanged("Preloader3");
@@ -315,6 +321,10 @@ namespace WPF_sprinter
                         AppDelegate.Instance.dataController.GetAllTeachers((List<Teacher> teachers) =>
                         {
                             allTeachers = teachers;
+                            foreach (Teacher teacher in AllTeachers)
+                            {
+                                teacher.Avatar = @"C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\bin\Debug\data\images\" + teacher.Avatar;
+                            }
                             teachersViewModel();
                             _loader4 = Visibility.Hidden;
                             RaisePropertyChanged("Preloader4");
@@ -424,8 +434,6 @@ namespace WPF_sprinter
                 _canExecuteEditDepartment = false;
                 _canExecuteRemoveDepartment = false;
             }
-            StudentsViewModel();
-            TeachersViewModel();
             RaisePropertyChanged("canExecuteAddDepartment");
             RaisePropertyChanged("canExecuteEditDepartment");
             RaisePropertyChanged("canExecuteRemoveDepartment");

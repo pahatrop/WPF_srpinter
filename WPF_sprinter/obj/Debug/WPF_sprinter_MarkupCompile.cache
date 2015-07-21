@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\pavel\WPF_srpinter\WPF_sprinter\obj\Debug\
+C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\
 WPF_sprinter
 none
 false
 DEBUG;TRACE
-C:\Users\pavel\WPF_srpinter\WPF_sprinter\App.xaml
+C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\App.xaml
 151966407060
 
 341967423673
-16-190976802
+162012510280
 view\EditTeacher.xaml;view\CreateTeacher.xaml;view\EditStudent.xaml;view\CreateStudent.xaml;view\EditDepartment.xaml;view\CreateDepartment.xaml;view\CreateUniversity.xaml;view\EditUniversity.xaml;Main.xaml;view\MainWindow.xaml;view\userControl\Department.xaml;view\userControl\SaveExitButton..xaml;view\userControl\Student.xaml;view\userControl\Teacher.xaml;view\userControl\University.xaml;
 
 False

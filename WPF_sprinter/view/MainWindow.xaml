@@ -11,7 +11,8 @@
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="360" MinWidth="280" MaxWidth="400"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="500" MinWidth="280"/>
+            <ColumnDefinition Width="500*" MinWidth="280"/>
         </Grid.ColumnDefinitions>
 
         <Border Grid.RowSpan="2" Grid.Column="0" Margin="0" Background="#4876FF">
@@ -20,7 +21,7 @@
                     <TextBlock DockPanel.Dock="Top" Width="130" Margin="3" Padding="5,5,5,0" Foreground="#fff" FontSize="17" FontFamily="Sans">
                         Universities list
                     </TextBlock>
-                    <Image DockPanel.Dock="Top" Width="18" Height="18" Visibility="{Binding Preloader1}" Source="pack://application:,,/source/loader.gif" Margin="0"/>
+                    <Image DockPanel.Dock="Top" Width="18" Height="18" Visibility="{Binding Preloader1}" Source="pack://application:,,/source/loader.png" Margin="0"/>
                     <Button IsEnabled="{Binding canExecuteAddUniversity}" Command="{Binding Path=actionShowCreateUniversity , Mode=OneWay}">
                         <Button.Template>
                             <ControlTemplate>
@@ -66,7 +67,7 @@
                     <TextBlock DockPanel.Dock="Top" Width="130" Margin="3" Padding="5,5,5,0" Foreground="#fff" FontSize="17" FontFamily="Sans">
                         Departments list
                     </TextBlock>
-                    <Image DockPanel.Dock="Top" Width="18" Height="18" Visibility="{Binding Preloader2}" Source="pack://application:,,/source/loader.gif" Margin="0"/>
+                    <Image DockPanel.Dock="Top" Width="18" Height="18" Visibility="{Binding Preloader2}" Source="pack://application:,,/source/loader.png" Margin="0"/>
                     <Button IsEnabled="{Binding canExecuteAddDepartment}" Command="{Binding Path=actionShowCreateDepartment , Mode=OneWay}">
                         <Button.Template>
                             <ControlTemplate>
@@ -107,7 +108,7 @@
                     <TextBlock DockPanel.Dock="Top" Width="200" Margin="3" Padding="5,5,5,0" Foreground="#fff" FontSize="17" FontFamily="Sans">
                         Students list
                     </TextBlock>
-                    <Image DockPanel.Dock="Top" Width="18" Height="18" Visibility="{Binding Preloader3}" Source="pack://application:,,/source/loader.gif" Margin="0"/>
+                    <Image DockPanel.Dock="Top" Width="18" Height="18" Visibility="{Binding Preloader3}" Source="pack://application:,,/source/loader.png" Margin="0"/>
                     <Button IsEnabled="{Binding canExecuteAddStudent}" Command="{Binding Path=actionShowCreateStudent , Mode=OneWay}">
                         <Button.Template>
                             <ControlTemplate>
@@ -129,11 +130,40 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                    <TextBlock DockPanel.Dock="Top" Width="200" Margin="160,3,3,3" Padding="5,5,5,0" Foreground="#fff" FontSize="17" FontFamily="Sans">
+                    
+                </StackPanel>
+                <ListBox DockPanel.Dock="Left" ItemsSource="{Binding AllStudents}" SelectedIndex="{Binding SelectedStudent, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#fff" Margin="2">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="3" Width="300">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="90"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Grid.Row="0" Source="{Binding Path=Avatar}" Width="80" Height="80"/>
+                                <TextBlock Margin="10,0,0,0" Grid.Column="1" Grid.Row="0" FontSize="16" Text="{Binding Path=Firstname}" Foreground="#073784"/>
+                                <TextBlock Margin="10,30,0,0" Grid.Column="1" Grid.Row="0" FontSize="16" Text="{Binding Path=Lastname}" Foreground="#073784"/>
+                                <TextBlock Margin="10,60,0,0" Grid.Column="1" Grid.Row="0" FontSize="13" Text="{Binding Path=Type}" Foreground="#4A708B"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+            </DockPanel>
+        </Border>
+
+        <GridSplitter Grid.Column="2" HorizontalAlignment="Left" Height="689" VerticalAlignment="Top" Width="3" Margin="1,0,0,0" Grid.RowSpan="3"/>
+
+        <Border Grid.RowSpan="2" Grid.Column="2" Margin="3,0,0,0" Background="#4682B4">
+            <DockPanel LastChildFill="true">
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                    <TextBlock DockPanel.Dock="Top" Width="130" Margin="3" Padding="5,5,5,0" Foreground="#fff" FontSize="17" FontFamily="Sans">
                         Teachers list
                     </TextBlock>
-                    <Image DockPanel.Dock="Top" Width="18" Height="18" Visibility="{Binding Preloader4}" Source="pack://application:,,/source/loader.gif" Margin="0"/>
-
+                    <Image DockPanel.Dock="Top" Width="18" Height="18" Visibility="{Binding Preloader4}" Source="pack://application:,,/source/loader.png" Margin="0"/>
                     <Button IsEnabled="{Binding canExecuteAddTeacher}" Command="{Binding Path=actionShowCreateTeacher , Mode=OneWay}">
                         <Button.Template>
                             <ControlTemplate>
@@ -157,7 +187,7 @@
                     </Button>
 
                 </StackPanel>
-                <ListBox DockPanel.Dock="Left" Width="400" ItemsSource="{Binding AllStudents}" SelectedIndex="{Binding SelectedStudent, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#fff" Margin="2">
+                <ListBox DockPanel.Dock="Top" ItemsSource="{Binding AllTeachers}" SelectedIndex="{Binding SelectedTeacher, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#fff" Margin="2">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid Margin="3" Width="300">
@@ -171,28 +201,12 @@
                                 <Image Grid.Column="0" Grid.Row="0" Source="{Binding Path=Avatar}" Width="80" Height="80"/>
                                 <TextBlock Margin="10,0,0,0" Grid.Column="1" Grid.Row="0" FontSize="16" Text="{Binding Path=Firstname}" Foreground="#073784"/>
                                 <TextBlock Margin="10,30,0,0" Grid.Column="1" Grid.Row="0" FontSize="16" Text="{Binding Path=Lastname}" Foreground="#073784"/>
-                                <TextBlock Margin="10,60,0,0" Grid.Column="1" Grid.Row="0" FontSize="13" Text="{Binding Path=Type}" Foreground="#4A708B"/>
+                                <TextBlock Margin="10,60,0,0" Grid.Column="1" Grid.Row="0" FontSize="13" Text="{Binding Path=Specialty}" Foreground="#4A708B"/>
                             </Grid>
                         </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-                <ListBox DockPanel.Dock="Right" MinWidth="300" ItemsSource="{Binding AllTeachers}" SelectedIndex="{Binding SelectedTeacher, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#fff" Margin="0,2,2,2">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="3" Width="300">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <TextBlock Margin="10, 0,0,0" Grid.Row="0" FontSize="16" Text="{Binding Path=Firstname}" Foreground="#073784"/>
-                                <TextBlock Margin="10, 0,0,0" Grid.Row="1" FontSize="16" Text="{Binding Path=Lastname}" Foreground="#073784"/>
-                                <TextBlock Margin="10, 0,0,0" Grid.Row="2" FontSize="13" Text="{Binding Path=Specialty}" Foreground="#4A708B"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
 
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </DockPanel>
         </Border>
     </Grid>

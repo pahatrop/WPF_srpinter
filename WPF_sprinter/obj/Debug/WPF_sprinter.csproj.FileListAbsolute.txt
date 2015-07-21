@@ -94,3 +94,9 @@ C:\Users\pavel\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\Student.baml
 C:\Users\pavel\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\Student.g.cs
 C:\Users\pavel\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\Teacher.baml
 C:\Users\pavel\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\Teacher.g.cs
+C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\Department.baml
+C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\Student.baml
+C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\Teacher.baml
+C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\Department.g.cs
+C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\Student.g.cs
+C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\Teacher.g.cs
