@@ -33,8 +33,7 @@ namespace WPF_sprinter
             {
                 AppDelegate.Instance.dataController.CreateNewUniversity(() =>
                 {
-                    AppDelegate.Instance.Context.Notification("Saved! No errors.");
-                    AppDelegate.Instance.Context.ChangeLoaderVisible(false);
+                    MessageBox.Show("Saved!");
                 },
                 university);
             });

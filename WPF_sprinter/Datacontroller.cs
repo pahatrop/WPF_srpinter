@@ -22,8 +22,12 @@ namespace WPF_sprinter
 
         public async Task GetAllUniversities(Action<List<University>> action)
         {
-            //System.Threading.Thread.Sleep(t);
+            //System.Threading.Thread.Sleep(1000);
             List<University> univers = dataProvider.GetAllUniversities();
+            foreach (University univer in univers)
+            {
+                univer.Departments = GetAllDepartments(univer.Id);
+            }
             action(univers);
         }
         public async Task CreateNewUniversity(Action action, University university)
@@ -47,9 +51,14 @@ namespace WPF_sprinter
 
         public async Task<List<Department>> GetAllDepartments(Action<List<Department>> action, int id)
         {
-            //System.Threading.Thread.Sleep(t);
+            System.Threading.Thread.Sleep(5000);
             List<Department> departments = dataProvider.GetAllDepartments(id);
             action(departments);
+            return departments;
+        }
+        public List<Department> GetAllDepartments(int id)
+        {
+            List<Department> departments = dataProvider.GetAllDepartments(id);
             return departments;
         }
         public async Task CreateNewDepartment(Action action, Department department)

@@ -11,6 +11,7 @@ using System.Threading;
 using System.Runtime.Remoting.Messaging;
 using Models;
 using System.IO;
+using System.Collections.ObjectModel;
 
 namespace WPF_sprinter
 {
@@ -163,13 +164,11 @@ namespace WPF_sprinter
                         if (allUniversities.Count > value && allUniversities[value].Id != -1)
                         {
                             currentUniversityId = allUniversities[value].Id;
-                            StudentsViewModel();
+                            MessageBox.Show(value.ToString());
                         }
                     }
                     universitySelected = value;
                 }
-                DepartmentsViewModel();
-                TeachersViewModel();
             }
         }
         public int SelectedDepartment
@@ -246,6 +245,20 @@ namespace WPF_sprinter
             });
         }
         
+        private void CreateTree()
+        {
+            List<University> Temp = new List<University>();
+            foreach (University univer in allUniversities)
+            {
+                foreach (Department depart in allDepartments)
+                {
+                    if (depart.University == univer.Id) univer.Departments.Add(depart);
+                }
+                Temp.Add(univer);
+            }
+            allUniversities = Temp;
+            RaisePropertyChanged("AllUniversities");
+        }
 
         public async Task UniversitiesViewModel()
         {
@@ -259,8 +272,25 @@ namespace WPF_sprinter
                 {
                     _loader1 = Visibility.Hidden;
                     allUniversities = universities;
-                    universitiesViewModel();
+                    if (allUniversities.Count > 0)
+                    {
+                        _canExecuteAddUniversity = true;
+                        _canExecuteEditUniversity = true;
+                        _canExecuteRemoveUniversity = true;
+                    }
+                    else
+                    {
+                        _canExecuteAddUniversity = true;
+                        _canExecuteEditUniversity = false;
+                        _canExecuteRemoveUniversity = false;
+                    }
+                    TeachersViewModel();
+                    RaisePropertyChanged("canExecuteAddUniversity");
+                    RaisePropertyChanged("canExecuteEditUniversity");
+                    RaisePropertyChanged("canExecuteRemoveUniversity");
+                    RaisePropertyChanged("AllUniversities");
                     RaisePropertyChanged("Preloader1");
+                    RaisePropertyChanged("AllUniversities");
                 });
             });
         }
@@ -390,28 +420,6 @@ namespace WPF_sprinter
             RaisePropertyChanged("canExecuteEditTeacher");
             RaisePropertyChanged("canExecuteRemoveTeacher");
             RaisePropertyChanged("AllTeachers");
-        }
-        public void universitiesViewModel()
-        {
-            if (allUniversities.Count > 0)
-            {
-                _canExecuteAddUniversity = true;
-                _canExecuteEditUniversity = true;
-                _canExecuteRemoveUniversity = true;
-            }
-            else
-            {
-                _canExecuteAddUniversity = true;
-                _canExecuteEditUniversity = false;
-                _canExecuteRemoveUniversity = false;
-            }
-            DepartmentsViewModel();
-            //StudentsViewModel();
-            TeachersViewModel();
-            RaisePropertyChanged("canExecuteAddUniversity");
-            RaisePropertyChanged("canExecuteEditUniversity");
-            RaisePropertyChanged("canExecuteRemoveUniversity");
-            RaisePropertyChanged("AllUniversities");
         }
         public void departmentsViewModel()
         {

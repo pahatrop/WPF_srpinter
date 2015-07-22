@@ -31,5 +31,15 @@ namespace WPF_sprinter
             //new XmlDataProvider().EditDepartment(new Department(287177, "physics2", 42));
             //new XmlDataProvider().RemoveTeacher(8071382);
         }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void tree_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+
+        }
     }
 }
