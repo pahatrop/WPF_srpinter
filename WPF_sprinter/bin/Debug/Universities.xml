@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfUniversity xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <University>
-    <Id>1</Id>
-    <Name>test</Name>
-    <Address>test</Address>
-    <Level>3</Level>
-    <Departments />
-  </University>
-  <University>
     <Id>2</Id>
     <Name>Московский государственный университет имени М. В. Ломоносова</Name>
     <Address>г.Москва ул Пушкина</Address>
@@ -152,5 +145,13 @@
     <Name>new</Name>
     <Address>efaewf</Address>
     <Level>0</Level>
+    <Departments />
+  </University>
+  <University>
+    <Id>23</Id>
+    <Name>qwfewf</Name>
+    <Address>wqfew</Address>
+    <Level>0</Level>
+    <Departments />
   </University>
 </ArrayOfUniversity>

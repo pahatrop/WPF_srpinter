@@ -125,7 +125,14 @@ namespace WPF_sprinter
                 return _actionSave ?? (_actionSave = new CommandHandler(() =>
                 {
                     AppDelegate.Instance.Context.ChangeLoaderVisible(true);
-                    File.Copy(sourcePath, targetPath+_studentAvatar, true);
+                    try
+                    {
+                        File.Copy(sourcePath, targetPath + _studentAvatar, true);
+                    }
+                    catch(Exception e)
+                    {
+
+                    }
                     CreateNewStudent(new Student(-1, _studentFirstname, _studentLastname, _studentMiddlename, _studentCource, _studentType, _studentDepartment, _studentAvatar));
                 }, _canExecute));
             }

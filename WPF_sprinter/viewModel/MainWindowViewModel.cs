@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using System.Diagnostics;
-using System.Threading;
-using System.Runtime.Remoting.Messaging;
 using Models;
 using System.IO;
-using System.Collections.ObjectModel;
 
 namespace WPF_sprinter
 {
@@ -42,6 +35,20 @@ namespace WPF_sprinter
         private int currentDepartmentId;
         private int currentStudentId;
         private int currentTeacherId;
+
+        private string currentUniversityName;
+
+        private string currentDepartmentName;
+
+        public string CurrentUniversityName
+        {
+            get { return currentUniversityName; }
+        }
+
+        public string CurrentDepartmentName
+        {
+            get { return currentDepartmentName; }
+        }
 
         private ICommand _actionShowCreateUniversity;
         private ICommand _actionShowEditUniversity;
@@ -82,7 +89,29 @@ namespace WPF_sprinter
         {
             get { return _loader4; }
         }
-        
+
+        private string departmentTotalCountStudents;
+        private string departmentAverageAge;
+        private string departmentNumberOfWomen;
+        private string departmentNumberOfMen;
+
+        public string DepartmentTotalCountStudents
+        {
+            get { return departmentTotalCountStudents; }
+        }
+        public string DepartmentAverageAge
+        {
+            get { return departmentAverageAge; }
+        }
+        public string DepartmentNumberOfWomen
+        {
+            get { return departmentNumberOfWomen; }
+        }
+        public string DepartmentNumberOfMen
+        {
+            get { return departmentNumberOfMen; }
+        }
+
         private bool _canExecuteAddUniversity;
         private bool _canExecuteEditUniversity;
         private bool _canExecuteRemoveUniversity;
@@ -284,12 +313,20 @@ namespace WPF_sprinter
                         _canExecuteEditUniversity = false;
                         _canExecuteRemoveUniversity = false;
                     }
-                    TeachersViewModel();
+                    currentUniversityName = allUniversities[0].Name;
+                    currentDepartmentName = allUniversities[0].Departments[0].Name;
+                    currentUniversityId = allUniversities[0].Id;
+                    currentDepartmentId = allUniversities[0].Departments[0].Id;
+                    departmentTotalCountStudents = allUniversities[0].Departments.Count.ToString();
+                    StudentsViewModel();
                     RaisePropertyChanged("canExecuteAddUniversity");
                     RaisePropertyChanged("canExecuteEditUniversity");
                     RaisePropertyChanged("canExecuteRemoveUniversity");
                     RaisePropertyChanged("AllUniversities");
                     RaisePropertyChanged("Preloader1");
+                    RaisePropertyChanged("CurrentUniversityName");
+                    RaisePropertyChanged("CurrentDepartmentName");
+                    RaisePropertyChanged("DepartmentTotalCountStudents");
                     RaisePropertyChanged("AllUniversities");
                 });
             });
@@ -324,22 +361,36 @@ namespace WPF_sprinter
             allStudents = new List<Student>();
             RaisePropertyChanged("AllStudents");
             RaisePropertyChanged("Preloader3");
-                    await Task.Run(() =>
+            await Task.Run(() =>
+            {
+                AppDelegate.Instance.dataController.GetAllStudents((List<Student> students) =>
+                {
+                    allStudents = students;
+                    _canExecuteAddStudent = true;
+                    if (allStudents.Count > 0)
                     {
-                        AppDelegate.Instance.dataController.GetAllStudents((List<Student> students) =>
-                        {
-                            allStudents = students;
-                            foreach (Student student in allStudents)
-                            {
-                                student.Avatar = Directory.GetCurrentDirectory()+"\\data\\images\\" + student.Avatar;
-                            }
-                            studentsViewModel();
-                            _loader3 = Visibility.Hidden;
-                            RaisePropertyChanged("Preloader3");
-                        },
-                        currentDepartmentId
-                        );
-                    });
+                        _canExecuteEditStudent = true;
+                        _canExecuteRemoveStudent = true;
+                    }
+                        else
+                    {
+                        _canExecuteEditStudent = false;
+                        _canExecuteRemoveStudent = false;
+                    }
+                    foreach (Student student in allStudents)
+                    {
+                        student.Avatar = Directory.GetCurrentDirectory() + "\\data\\images\\" + student.Avatar;
+                    }
+                    _loader3 = Visibility.Hidden;
+                    RaisePropertyChanged("Preloader3");
+                    RaisePropertyChanged("canExecuteAddStudent");
+                    RaisePropertyChanged("canExecuteEditStudent");
+                    RaisePropertyChanged("canExecuteRemoveStudent");
+                    RaisePropertyChanged("AllStudents");
+                },
+                currentDepartmentId
+                );
+            });
         }
         public async Task TeachersViewModel()
         {
@@ -365,34 +416,6 @@ namespace WPF_sprinter
                     });
         }
         
-        public void studentsViewModel()
-        {
-            if (departmentSelected < allDepartments.Count)
-            {
-                _canExecuteAddStudent = true;
-                if (allStudents.Count > 0)
-                {
-                    _canExecuteEditStudent = true;
-                    _canExecuteRemoveStudent = true;
-                }
-                else
-                {
-                    _canExecuteEditStudent = false;
-                    _canExecuteRemoveStudent = false;
-                }
-            }
-            else
-            {
-                allStudents = null;
-                _canExecuteAddStudent = false;
-                _canExecuteEditStudent = false;
-                _canExecuteRemoveStudent = false;
-            }
-            RaisePropertyChanged("canExecuteAddStudent");
-            RaisePropertyChanged("canExecuteEditStudent");
-            RaisePropertyChanged("canExecuteRemoveStudent");
-            RaisePropertyChanged("AllStudents");
-        }
         public void teachersViewModel()
         {
             if (allUniversities.Count > 0)
@@ -575,12 +598,8 @@ namespace WPF_sprinter
             {
                 return _actionShowCreateStudent ?? (_actionShowCreateStudent = new CommandHandler(() =>
                 {
-                    if (departmentSelected != -1 && allDepartments != null && allDepartments.Count > 0)
-                    {
-                        AppDelegate.Instance.Context.CurrentPageViewModel = new CreateStudentViewModel(allDepartments[departmentSelected].Id);
-                        AppDelegate.Instance.Context.UpdateTitle();
-                    }
-                    studentSelected = 0;
+                    AppDelegate.Instance.Context.CurrentPageViewModel = new CreateStudentViewModel(currentDepartmentId);
+                    AppDelegate.Instance.Context.UpdateTitle();
                     StudentsViewModel();
                 }, _canExecute));
             }

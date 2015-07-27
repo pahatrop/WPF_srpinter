@@ -239,6 +239,7 @@
     <Resource Include="source\menu.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="source\information.png" />
     <Content Include="source\university.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
