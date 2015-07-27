@@ -240,6 +240,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="source\information.png" />
+    <Resource Include="source\iconControl\add.png" />
+    <Resource Include="source\iconControl\close.png" />
+    <Resource Include="source\iconControl\edit.png" />
     <Content Include="source\university.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -31,9 +31,7 @@
         <Border Grid.RowSpan="2" Grid.Column="0" Margin="0">
             <DockPanel LastChildFill="true">
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Background="#eee">
-                    <TextBox Width="200" Margin="10" BorderBrush="#aaa" Padding="10" VerticalAlignment="Center" Foreground="#444" FontSize="14" FontFamily="Sans">
-                        Universities filter...
-                    </TextBox>
+                    <TextBox Width="200" Margin="10" BorderBrush="#aaa" Padding="10" VerticalAlignment="Center" Foreground="#444" FontSize="14" FontFamily="Sans" Text="{Binding UniversityFilter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                     <Image DockPanel.Dock="Top" Height="30" Visibility="{Binding Preloader1}" Source="pack://application:,,/source/loader.png" Margin="0"/>
                     <Button IsEnabled="{Binding canExecuteAddUniversity}" Command="{Binding Path=actionShowCreateUniversity , Mode=OneWay}" Content="Create" Style="{StaticResource ButtonStyle}"/>
                     <Button IsEnabled="{Binding canExecuteEditUniversity}" Command="{Binding Path=actionShowEditUniversity , Mode=OneWay}" Content="Edit" Style="{StaticResource ButtonStyle}"/>
@@ -41,16 +39,15 @@
 
                 </StackPanel>
 
-                <TreeView Padding="5" DockPanel.Dock="Top" BorderBrush="#fff" x:Name="tree" ItemsSource="{Binding AllUniversities}">
+                <TreeView Name="TreeUniversities" Padding="5" DockPanel.Dock="Top" BorderBrush="#fff" ItemsSource="{Binding AllUniversities}" SelectedItemChanged="tree_SelectedItemChanged">
                     <TreeView.ItemTemplate>
                         <HierarchicalDataTemplate ItemsSource="{Binding Path=Departments}">
-                            <TextBlock Padding="5" Margin="5" FontWeight="Bold" Text="{Binding Path=Name}" />
+                            <TextBlock Padding="5" Margin="5" FontWeight="Bold" Text="{Binding Path=Name}" Tag="1"/>
                             <HierarchicalDataTemplate.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Padding="5" Margin="5" Text="{Binding Path=Name}"/>
+                                    <TextBlock Padding="5" Margin="5" Text="{Binding Path=Name}" Tag="2"/>
                                 </DataTemplate>
                             </HierarchicalDataTemplate.ItemTemplate>
-                            
                         </HierarchicalDataTemplate>
                     </TreeView.ItemTemplate>
                 </TreeView>
@@ -64,9 +61,32 @@
 
         <Border Grid.Column="1" Grid.Row="0" Margin="7,0,0,0">
             <DockPanel LastChildFill="True">
-                <StackPanel DockPanel.Dock="Top" Orientation="Vertical" Background="#e6e6e6" Height="60">
-                    <TextBlock Padding="20" FontFamily="Sans" FontSize="20" Text="{Binding CurrentUniversityName}"/>
-                </StackPanel>
+                <DockPanel DockPanel.Dock="Top" Background="#e6e6e6" Height="60" >
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" Width="150">
+                        <Button Margin="5,0" IsEnabled="{Binding canExecuteAddDepartment}" Command="{Binding Path=actionShowCreateDepartment , Mode=OneWay}">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <Image Source="pack://application:,,/source/iconControl/add.png" Height="40"/>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button Margin="5,0" IsEnabled="{Binding canExecuteEditDepartment}" Command="{Binding Path=actionShowEditDepartment , Mode=OneWay}">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <Image Source="pack://application:,,/source/iconControl/edit.png" Height="40"/>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button Margin="5,0" IsEnabled="{Binding canExecuteRemoveDepartment}" Command="{Binding Path=actionRemoveDepartment , Mode=OneWay}">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <Image Source="pack://application:,,/source/iconControl/close.png" Height="40"/>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                    <TextBlock DockPanel.Dock="Left" Padding="20" FontFamily="Sans" FontSize="20" Text="{Binding CurrentUniversityName}"/>
+                </DockPanel>
                 <DockPanel DockPanel.Dock="Top">
                     <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
                         <TextBlock Padding="20,20,20,10" FontFamily="Sans" FontSize="15">Department name:</TextBlock>

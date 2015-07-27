@@ -13,6 +13,7 @@ namespace Models
         public string Name { get; set; }
         public string Address { get; set; }
         public int Level { get; set; }
+        public string Identification { get { return "University"; } }
         public List<Department> Departments { get; set; }
         public University()
         {

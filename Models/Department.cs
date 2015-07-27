@@ -10,7 +10,8 @@ namespace Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int University { get; set; }
+        public int Parent { get; set; }
+        public string Identification { get { return "Department"; } }
         public Department()
         {
         }
@@ -18,7 +19,7 @@ namespace Models
         {
             Id = id;
             Name = name;
-            University = university;
+            Parent = university;
         }
     }
 }

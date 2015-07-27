@@ -63,7 +63,7 @@ namespace WPF_sprinter
             _canExecute = true;
             _departmentId = department.Id;
             _departmentName = department.Name;
-            _departmentUniversity = department.University;
+            _departmentUniversity = department.Parent;
         }
 
         public ICommand actionSave

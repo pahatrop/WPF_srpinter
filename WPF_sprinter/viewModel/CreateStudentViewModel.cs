@@ -92,7 +92,7 @@ namespace WPF_sprinter
 
         public CreateStudentViewModel(int u)
         {
-            _studentAvatar = Path.GetRandomFileName() + ".jpg";
+            _studentAvatar = "default.png";
             _canExecute = true;
             _studentDepartment = u;
         }

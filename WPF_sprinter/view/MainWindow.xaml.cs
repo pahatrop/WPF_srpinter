@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Models;
 
 namespace WPF_sprinter
 {
@@ -23,23 +24,26 @@ namespace WPF_sprinter
         public MainWindow()
         {
             InitializeComponent();
-            //DataContext = new MainWindowViewModel();
-            //new XmlDataProvider().CreateNewUniversity(new University(-1,"cfu","dfa",4));
-            //new XmlDataProvider().GetAllTeachers();
-            //new XmlDataProvider().CreateNewTeacher(new Teacher(-1, "dsfg", "dfg", "fs", "dfgd", 3));
-            //new XmlDataProvider().CreateNewStudent(new Student(-1, "dsfg","dfg","fs",4,"dfgd",3));
-            //new XmlDataProvider().EditDepartment(new Department(287177, "physics2", 42));
-            //new XmlDataProvider().RemoveTeacher(8071382);
-        }
-
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
 
         private void tree_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-
+            University item1 = e.NewValue as University;
+            Department item2 = e.NewValue as Department;
+            if (item1 != null)
+            {
+                if (item1.Identification == "University")
+                {
+                    AppDelegate.Instance.MW.SelectedUniversityChanged(item1);
+                }
+            }
+            if (item2 != null)
+            {
+                if (item2.Identification == "Department")
+                {
+                    AppDelegate.Instance.MW.SelectedDepartmentChanged(item2);
+                }
+            }
         }
     }
 }

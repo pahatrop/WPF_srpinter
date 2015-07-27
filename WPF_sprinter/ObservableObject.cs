@@ -87,7 +87,8 @@ namespace WPF_sprinter
             {
                 return _actionCancel ?? (_actionCancel = new CommandHandler(() =>
                 {
-                    AppDelegate.Instance.Context.CurrentPageViewModel = new MainWindowViewModel();
+                    AppDelegate.Instance.MW = new MainWindowViewModel();
+                    AppDelegate.Instance.Context.CurrentPageViewModel = AppDelegate.Instance.MW;
                     AppDelegate.Instance.Context.UpdateTitle();
                 }, true));
             }

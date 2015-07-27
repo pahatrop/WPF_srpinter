@@ -13,10 +13,12 @@ namespace WPF_sprinter
     {
         static readonly AppDelegate myInstance = new AppDelegate();
         
-        public DataController dataController = new DataController(new XmlDataProvider());
+        public DataController dataController = new DataController(new RestDataProvider2());
 
         public MainViewModel Context;
 
+        public MainWindowViewModel MW;
+        
         static AppDelegate() { }
         
         AppDelegate() { }

@@ -14,7 +14,7 @@ namespace Models
         public string Middlename { get; set; }
         public int Cource { get; set; }
         public string Type { get; set; }
-        public int Department { get; set; }
+        public int Parent { get; set; }
         public string Avatar { get; set; }
         public Student()
         { 
@@ -27,7 +27,7 @@ namespace Models
             Middlename = middlename;
             Cource = cource;
             Type = type;
-            Department = department;
+            Parent = department;
             Avatar = avatar;
         }
     }

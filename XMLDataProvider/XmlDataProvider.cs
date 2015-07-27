@@ -149,7 +149,7 @@ namespace XMLDataProvider
                 }
                 foreach (Department department in r)
                 {
-                    if(department.University==id || id == -1) departments.Add(department);
+                    if(department.Parent==id || id == -1) departments.Add(department);
                 }
                 return departments;
             }
@@ -206,7 +206,7 @@ namespace XMLDataProvider
                 }
                 foreach (Student student in r)
                 {
-                    if(student.Department==id || id==-1) students.Add(student);
+                    if(student.Parent==id || id==-1) students.Add(student);
                 }
                 return students;
             }

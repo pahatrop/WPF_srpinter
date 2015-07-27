@@ -100,7 +100,7 @@ namespace WPF_sprinter
             _studentMiddlename = student.Middlename;
             _studentCource = student.Cource;
             _studentType = student.Type;
-            _studentDepartment = student.Department;
+            _studentDepartment = student.Parent;
             _studentAvatar = Path.GetFileName(student.Avatar);
         }
         private string targetPath = Directory.GetCurrentDirectory() + "\\data\\images\\";

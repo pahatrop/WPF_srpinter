@@ -93,25 +93,23 @@ namespace WPF_sprinter
             {
                 if (_currentPageViewModel != value)
                 {
-                    _currentPageViewModel = value;
+                    if (value == new MainWindowViewModel())
+                    {
+                        AppDelegate.Instance.MW = new MainWindowViewModel();
+                        _currentPageViewModel = AppDelegate.Instance.MW;
+                    }
+                    else
+                    {
+                        _currentPageViewModel = value;
+                    }
                     RaisePropertyChanged("CurrentPageViewModel");
                 }
             }
         }
         public MainViewModel()
         {
-            //foreach (Student p in new XMLDataProvider.XmlDataProvider().GetAllStudents())
-            //{
-
-                //foreach (Department department in new XMLDataProvider.XmlDataProvider().GetAllDepartments())
-                //{
-                    //for (int i = 0; i < 100; i++)
-                    //{
-                        //AppDelegate.Instance.dataController.EditStudent(null, new Student(p.Id, "Сергей", "Иванов", "Сергеевич", 1, p.Type, p.Department, p.Avatar));
-                    //}
-                //}
-            //}
-            CurrentPageViewModel = new MainWindowViewModel();
+            AppDelegate.Instance.MW = new MainWindowViewModel();
+            CurrentPageViewModel = AppDelegate.Instance.MW;
             titleText = _currentPageViewModel.Name;
             RaisePropertyChanged("Preloader");
             RaisePropertyChanged("CurrentPageViewModel");
