@@ -45,5 +45,10 @@ namespace WPF_sprinter
                 }
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AppDelegate.Instance.MW.UniversitiesViewModel();
+        }
     }
 }

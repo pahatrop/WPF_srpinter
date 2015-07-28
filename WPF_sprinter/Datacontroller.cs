@@ -24,6 +24,10 @@ namespace WPF_sprinter
         {
             //System.Threading.Thread.Sleep(1000);
             List<University> univers = dataProvider.GetAllUniversities();
+            if(univers==null)
+            {
+                MessageBox.Show("Alert!");
+            }
             foreach (University univer in univers)
             {
                 univer.Departments = GetAllDepartments(univer.Id);

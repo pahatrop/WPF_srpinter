@@ -93,9 +93,8 @@ namespace WPF_sprinter
             {
                 if (_currentPageViewModel != value)
                 {
-                    if (value == new MainWindowViewModel())
+                    if (value is MainWindowViewModel)
                     {
-                        AppDelegate.Instance.MW = new MainWindowViewModel();
                         _currentPageViewModel = AppDelegate.Instance.MW;
                     }
                     else

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace WPF_sprinter
 {
@@ -87,9 +88,13 @@ namespace WPF_sprinter
             {
                 return _actionCancel ?? (_actionCancel = new CommandHandler(() =>
                 {
-                    AppDelegate.Instance.MW = new MainWindowViewModel();
+                    //AppDelegate.Instance.MW = new MainWindowViewModel();
                     AppDelegate.Instance.Context.CurrentPageViewModel = AppDelegate.Instance.MW;
-                    AppDelegate.Instance.Context.UpdateTitle();
+                    Dispatcher.Invoke(new Action(() =>
+                    {
+                        AppDelegate.Instance.MW.UniversitiesViewModel();
+                        AppDelegate.Instance.Context.UpdateTitle();
+                    }
                 }, true));
             }
         }

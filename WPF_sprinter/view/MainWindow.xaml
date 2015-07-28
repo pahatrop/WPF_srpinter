@@ -121,6 +121,7 @@
                     <Button IsEnabled="{Binding canExecuteAddStudent}" Command="{Binding Path=actionShowCreateStudent , Mode=OneWay}" Content="Create" Style="{StaticResource ButtonStyle}"/>
                     <Button IsEnabled="{Binding canExecuteEditStudent}" Command="{Binding Path=actionShowEditStudent , Mode=OneWay}" Content="Edit" Style="{StaticResource ButtonStyle}"/>
                     <Button IsEnabled="{Binding canExecuteRemoveStudent}" Command="{Binding Path=actionRemoveStudent , Mode=OneWay}" Content="Remove" Style="{StaticResource ButtonStyle}"/>
+                    <Button Click="Button_Click" Content="Reload "/>
 
                 </StackPanel>
                 <ListBox DockPanel.Dock="Left" ItemsSource="{Binding AllStudents}" SelectedIndex="{Binding SelectedStudent, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#fff" Margin="2">

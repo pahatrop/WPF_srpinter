@@ -316,14 +316,20 @@ namespace WPF_sprinter
                     _loader1 = Visibility.Hidden;
                     allUniversities = universities;
                     allUniversitiesDupl = universities;
-                    currentUniversityId = allUniversities[universitySelected].Id;
-                    currentDepartmentId = allUniversities[universitySelected].Departments[0].Id;
-                    if (allUniversities.Count > 0)
+                    if (universities.Count > 0)
                     {
+                        universitySelected = 0;
+                        currentUniversityId = allUniversities[universitySelected].Id;
+                        currentDepartmentId = allUniversities[universitySelected].Departments[0].Id;
                         _canExecuteAddUniversity = true;
                         _canExecuteEditUniversity = true;
                         _canExecuteRemoveUniversity = true;
                         _canExecuteAddDepartment = true;
+                        if(universities[universitySelected].Departments.Count>0)
+                        {
+                            _canExecuteEditDepartment = true;
+                            _canExecuteRemoveDepartment = true;
+                        }
                     }
                     else
                     {
@@ -336,6 +342,8 @@ namespace WPF_sprinter
                     RaisePropertyChanged("canExecuteEditUniversity");
                     RaisePropertyChanged("canExecuteRemoveUniversity");
                     RaisePropertyChanged("canExecuteAddDepartment");
+                    RaisePropertyChanged("canExecuteEditDepartment");
+                    RaisePropertyChanged("canExecuteRemoveDepartment");
                     RaisePropertyChanged("AllUniversities");
                     RaisePropertyChanged("Preloader1");
                 });
@@ -492,14 +500,11 @@ namespace WPF_sprinter
             {
                 return _actionShowEditDepartment ?? (_actionShowEditDepartment = new CommandHandler(() =>
                 {
-                    if (allDepartments != null)
-                    {
-                        if (allDepartments.Count > departmentSelected)
+                        if (allUniversities != null)
                         {
-                            AppDelegate.Instance.Context.CurrentPageViewModel = new EditDepartmentViewModel(allDepartments[departmentSelected]);
+                            AppDelegate.Instance.Context.CurrentPageViewModel = new EditDepartmentViewModel(allUniversities[universitySelected].Departments[departmentSelected]);
                             AppDelegate.Instance.Context.UpdateTitle();
                         }
-                    }
                     departmentSelected = 0;
                     DepartmentsViewModel();
                 }, _canExecute));

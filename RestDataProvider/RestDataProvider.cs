@@ -27,20 +27,62 @@ namespace RESTDataProvider
             sendStream.Close();
         }
 
+        public static string GET(string url)
+        {
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                Stream stream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(stream);
+                string data = reader.ReadToEnd();
+                reader.Close();
+                stream.Close();
+                return data;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+
+            return null;
+        }
+
         public List<University> GetAllUniversities()
         {
             string result;
-            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(host + "/api/get?request=University");
-            HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
-            using (StreamReader stream = new StreamReader(
-            resp.GetResponseStream(), Encoding.UTF8))
+            try
             {
-                result = stream.ReadToEnd();
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(host + "/api/get?request=University");
+                if (request != null)
+                {
+                        using (var response = request.GetResponse())
+                        {
+                            using (var responseStream = response.GetResponseStream())
+                            {
+                                using (var stream = new StreamReader(responseStream))
+                                {
+                                    result = stream.ReadToEnd();
+                                    DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(List<University>));
+                                    MemoryStream ms = new MemoryStream(System.Text.ASCIIEncoding.ASCII.GetBytes(result));
+                                    List<University> mm = (List<University>)js.ReadObject(ms);
+                                    response.Dispose();
+                                    response.Close();
+                                    stream.Close();
+                                    return mm;
+                                }
+                            }
+                        }
+                }
+                else
+                {
+                    return null;
+                }
             }
-            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(List<University>));
-            MemoryStream ms = new MemoryStream(System.Text.ASCIIEncoding.ASCII.GetBytes(result));
-            List<University> mm = (List<University>)js.ReadObject(ms);
-            return mm;
+            catch (Exception e)
+            {
+                return null;
+            }
         }
         public void CreateNewUniversity(University university)
         {
@@ -88,9 +130,11 @@ namespace RESTDataProvider
         }
         public void CreateNewDepartment(Department department)
         {
+            PostHandler(host + "/api/create", "queryName=Department&Name=" + department.Name + "&Parent=" + department.Parent);
         }
         public void EditDepartment(Department department)
         {
+            PostHandler(host + "/api/edit", "queryName=Department&id=" + department.Id + "&Name=" + department.Name + "&Parent=" + department.Parent);
         }
         public void RemoveDepartment(int id)
         {
