@@ -7,31 +7,46 @@
 
         <Grid.Resources>
             <Style x:Key="ButtonStyle" TargetType="Button">
-                <Setter Property="Control.Background" Value="#DCDCDC"/>
+                <Setter Property="Control.Background" Value="#8B8682"/>
+                <Setter Property="Control.Foreground" Value="#fff"/>
+                <Setter Property="Control.BorderBrush" Value="#8B8682"></Setter>
                 <Setter Property="Control.Margin" Value="5,10"/>
-                <Setter Property="Control.Padding" Value="15,10"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="6" Background="{TemplateBinding Background}">
+                                <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,20,0" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
                         <Setter Property="Control.Background" Value="#000"/>
+                        <Setter Property="Control.Cursor" Value="Hand"/>
+                    </Trigger>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter Property="Control.Foreground" Value="#555"/>
+                        <Setter Property="Control.Background" Value="#8B8989"/>
                     </Trigger>
                 </Style.Triggers>
             </Style>
         </Grid.Resources>
         
         <Grid.RowDefinitions>
-            <RowDefinition Height="300" MinHeight="250"/>
+            <RowDefinition Height="300" MinHeight="300"/>
             <RowDefinition Height="400*" MinHeight="100"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="500" MinWidth="400" MaxWidth="600"/>
-            <ColumnDefinition MinWidth="700"/> 
+            <ColumnDefinition Width="500" MinWidth="500" MaxWidth="800"/>
+            <ColumnDefinition MinWidth="800"/> 
         </Grid.ColumnDefinitions>
 
         <Border Grid.RowSpan="2" Grid.Column="0" Margin="0">
             <DockPanel LastChildFill="true">
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Background="#eee">
-                    <TextBox Width="200" Margin="10" BorderBrush="#aaa" Padding="10" VerticalAlignment="Center" Foreground="#444" FontSize="14" FontFamily="Sans" Text="{Binding UniversityFilter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    <TextBox GotFocus="UniversityFilterGotFocus" Name="UniversityFilter" Width="200" Margin="10" BorderBrush="#aaa" Padding="10" VerticalAlignment="Center" Foreground="#444" FontSize="14" FontFamily="Sans" Text="{Binding UniversityFilter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                     <Image DockPanel.Dock="Top" Height="30" Visibility="{Binding Preloader1}" Source="pack://application:,,/source/loader.png" Margin="0"/>
                     <Button IsEnabled="{Binding canExecuteAddUniversity}" Command="{Binding Path=actionShowCreateUniversity , Mode=OneWay}" Content="Create" Style="{StaticResource ButtonStyle}"/>
                     <Button IsEnabled="{Binding canExecuteEditUniversity}" Command="{Binding Path=actionShowEditUniversity , Mode=OneWay}" Content="Edit" Style="{StaticResource ButtonStyle}"/>
@@ -42,7 +57,7 @@
                 <TreeView Name="TreeUniversities" Padding="5" DockPanel.Dock="Top" BorderBrush="#fff" ItemsSource="{Binding AllUniversities}" SelectedItemChanged="tree_SelectedItemChanged">
                     <TreeView.ItemTemplate>
                         <HierarchicalDataTemplate ItemsSource="{Binding Path=Departments}">
-                            <TextBlock Padding="5" Margin="5" FontWeight="Bold" Text="{Binding Path=Name}" Tag="1"/>
+                            <TextBlock Padding="5" Margin="5" FontSize="18" FontWeight="Normal" Text="{Binding Path=Name}" Tag="1"/>
                             <HierarchicalDataTemplate.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Padding="5" Margin="5" Text="{Binding Path=Name}" Tag="2"/>
@@ -55,92 +70,105 @@
             </DockPanel>
         </Border>
 
-        <GridSplitter Background="#ADD8E6" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="5" Margin="1,0,0,0" />
+        <GridSplitter Background="#EEE9E9" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="2" Margin="1,0,0,0" />
 
-        <GridSplitter Background="#ADD8E6" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="top" Height="5" Margin="1,0,0,0" />
-
-        <Border Grid.Column="1" Grid.Row="0" Margin="7,0,0,0">
+        <Border Grid.Column="1" Grid.Row="0" Margin="2,0,0,0">
             <DockPanel LastChildFill="True">
                 <DockPanel DockPanel.Dock="Top" Background="#e6e6e6" Height="60" >
-                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" Width="150">
-                        <Button Margin="5,0" IsEnabled="{Binding canExecuteAddDepartment}" Command="{Binding Path=actionShowCreateDepartment , Mode=OneWay}">
-                            <Button.Template>
-                                <ControlTemplate>
-                                    <Image Source="pack://application:,,/source/iconControl/add.png" Height="40"/>
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
-                        <Button Margin="5,0" IsEnabled="{Binding canExecuteEditDepartment}" Command="{Binding Path=actionShowEditDepartment , Mode=OneWay}">
-                            <Button.Template>
-                                <ControlTemplate>
-                                    <Image Source="pack://application:,,/source/iconControl/edit.png" Height="40"/>
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
-                        <Button Margin="5,0" IsEnabled="{Binding canExecuteRemoveDepartment}" Command="{Binding Path=actionRemoveDepartment , Mode=OneWay}">
-                            <Button.Template>
-                                <ControlTemplate>
-                                    <Image Source="pack://application:,,/source/iconControl/close.png" Height="40"/>
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" Width="470">
+                        <Button Margin="5,10,50,10" Command="{Binding actionTeachersManagement}" Content="Teachers management" HorizontalAlignment="Center" Style="{StaticResource ButtonStyle}"/>
+                        <Button Margin="5,10" IsEnabled="{Binding canExecuteAddDepartment}" Command="{Binding Path=actionShowCreateDepartment , Mode=OneWay}" Content="Create" Style="{StaticResource ButtonStyle}"/>
+                        <Button Margin="5,10" IsEnabled="{Binding canExecuteEditDepartment}" Command="{Binding Path=actionShowEditDepartment , Mode=OneWay}" Content="Edit" Style="{StaticResource ButtonStyle}"/>
+                        <Button Margin="5,10" IsEnabled="{Binding canExecuteRemoveDepartment}" Command="{Binding Path=actionRemoveDepartment , Mode=OneWay}" Content="Remove" Style="{StaticResource ButtonStyle}"/>
                     </StackPanel>
-                    <TextBlock DockPanel.Dock="Left" Padding="20" FontFamily="Sans" FontSize="20" Text="{Binding CurrentUniversityName}"/>
+                    <TextBlock DockPanel.Dock="Left" Padding="30,20" FontFamily="Sans" FontSize="20" Text="{Binding CurrentUniversityName}"/>
                 </DockPanel>
                 <DockPanel DockPanel.Dock="Top">
                     <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                        <TextBlock Padding="20,20,20,10" FontFamily="Sans" FontSize="15">Department name:</TextBlock>
-                        <TextBlock Padding="10,20,10,10" FontFamily="Sans" FontSize="15" Text="{Binding CurrentDepartmentName}"/>
+                        <TextBlock Foreground="#665" Padding="20,20,20,10" FontFamily="Sans" FontSize="15">University address:</TextBlock>
+                        <TextBlock Foreground="#665" Padding="10,20,20,10" FontFamily="Sans" FontSize="15" Text="{Binding CurrentUniversityAddress}"/>
                     </StackPanel>
                     <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                        <TextBlock Padding="20,10" FontFamily="Sans" FontSize="15">Total count students in department:</TextBlock>
-                        <TextBlock Padding="10" FontFamily="Sans" FontSize="15" Text="{Binding DepartmentTotalCountStudents}"/>
+                        <TextBlock Foreground="#665" Padding="20,10" FontFamily="Sans" FontSize="15">Level of accreditation:</TextBlock>
+                        <TextBlock Foreground="#665" Padding="10" FontFamily="Sans" FontSize="15" Text="{Binding CurrentUniversityLevel}"/>
+                    </StackPanel>
+                    <Border DockPanel.Dock="Top" BorderBrush="#aaa" BorderThickness="10" Margin="20,4,20,3" Height="0"/>
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                        <TextBlock Foreground="#665" Padding="20,10" FontFamily="Sans" FontSize="15">Department name:</TextBlock>
+                        <TextBlock Foreground="#665" Padding="10" FontFamily="Sans" FontSize="15" Text="{Binding CurrentDepartmentName}"/>
                     </StackPanel>
                     <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                        <TextBlock Padding="20,10" FontFamily="Sans" FontSize="15">Average age:</TextBlock>
-                        <TextBlock Padding="10" FontFamily="Sans" FontSize="15" Text="{Binding DepartmentAverageAge}"/>
-                    </StackPanel>
-                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                        <TextBlock Padding="20,10" FontFamily="Sans" FontSize="15">Number of women:</TextBlock>
-                        <TextBlock Padding="10" FontFamily="Sans" FontSize="15" Text="{Binding DepartmentNumberOfWomen}"/>
-                    </StackPanel>
-                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                        <TextBlock Padding="20,10" FontFamily="Sans" FontSize="15">Number of men:</TextBlock>
-                        <TextBlock Padding="10" FontFamily="Sans" FontSize="15" Text="{Binding DepartmentNumberOfMen}"/>
+                        <TextBlock Foreground="#665" Padding="20,10" FontFamily="Sans" FontSize="15">Total count students in department:</TextBlock>
+                        <TextBlock Foreground="#665" Padding="10" FontFamily="Sans" FontSize="15" Text="{Binding DepartmentTotalCountStudents}"/>
                     </StackPanel>
                 </DockPanel>
             </DockPanel>
         </Border>
-        <Border Grid.Column="1" Grid.Row="1" Margin="7,5,0,0">
+        <GridSplitter Background="#EEE9E9" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="top" Height="2" Margin="1,0,0,0" />
+        <Border Grid.Column="1" Grid.Row="1" Margin="2,2,0,0">
             <DockPanel LastChildFill="true">
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Background="#eee">
-                    <TextBox Width="200" Margin="10" BorderBrush="#aaa" Padding="10" VerticalAlignment="Center" Foreground="#444" FontSize="14" FontFamily="Sans">
-                        Students filter...
-                    </TextBox>
+                    <TextBox GotFocus="StudentFilterGotFocus" Name="StudentFilter" Width="200" Margin="10" BorderBrush="#aaa" Padding="10" VerticalAlignment="Center" Foreground="#444" FontSize="14" FontFamily="Sans" Text="{Binding StudentFilter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                     <Image DockPanel.Dock="Top" Height="30" Visibility="{Binding Preloader2}" Source="pack://application:,,/source/loader.png" Margin="0"/>
                     <Button IsEnabled="{Binding canExecuteAddStudent}" Command="{Binding Path=actionShowCreateStudent , Mode=OneWay}" Content="Create" Style="{StaticResource ButtonStyle}"/>
                     <Button IsEnabled="{Binding canExecuteEditStudent}" Command="{Binding Path=actionShowEditStudent , Mode=OneWay}" Content="Edit" Style="{StaticResource ButtonStyle}"/>
                     <Button IsEnabled="{Binding canExecuteRemoveStudent}" Command="{Binding Path=actionRemoveStudent , Mode=OneWay}" Content="Remove" Style="{StaticResource ButtonStyle}"/>
-                    <Button Click="Button_Click" Content="Reload "/>
-
                 </StackPanel>
-                <ListBox DockPanel.Dock="Left" ItemsSource="{Binding AllStudents}" SelectedIndex="{Binding SelectedStudent, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#fff" Margin="2">
+                <ListBox Foreground="#828282" DockPanel.Dock="Left" ItemsSource="{Binding AllStudents}" SelectedIndex="{Binding SelectedStudent, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#fff" Margin="0">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Margin="10" FontSize="16" VerticalAlignment="Center" FontWeight="Bold" Text="#" Foreground="#073784"/>
-                                <TextBlock Margin="0,10,10,10" Width="50" FontSize="16" VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=Id}" Foreground="#073784"/>
-                                <Image Margin="10" VerticalAlignment="Center" Source="{Binding Path=Avatar}" Width="40" Height="40"/>
-                                <TextBlock Margin="10" Width="150" FontSize="16" VerticalAlignment="Center" Text="{Binding Path=Firstname}" Foreground="#073784"/>
-                                <TextBlock Margin="10" Width="150" FontSize="16" VerticalAlignment="Center" Text="{Binding Path=Lastname}" Foreground="#073784"/>
-                                <TextBlock Margin="10" Width="150" FontSize="16" VerticalAlignment="Center" Text="{Binding Path=Middlename}" Foreground="#073784"/>
-                                <TextBlock Margin="10" Width="150" FontSize="13" VerticalAlignment="Center" Text="{Binding Path=Type}" Foreground="#4A708B"/>
-                            </StackPanel>
+                            <Grid Height="100" Margin="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Rectangle Margin="5" Grid.Column="0" Grid.RowSpan="3" RadiusX="50" RadiusY="50" Width="90" Height="90">
+                                    <Rectangle.Fill>
+                                        <ImageBrush x:Name="brush" ImageSource="{Binding Path=Avatar}"/>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                                <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
+                                    <TextBlock Margin="20,0" FontSize="24" Text="{Binding Path=Lastname}" Foreground="#4F4F4F"/>
+                                    <TextBlock Margin="0" FontSize="24" Text="{Binding Path=Firstname}" Foreground="#4F4F4F"/>
+                                    <TextBlock Margin="20,0" FontSize="24" Text="{Binding Path=Middlename}" Foreground="#4F4F4F"/>
+                                </StackPanel>
+                                <TextBlock Grid.Column="1" Grid.Row="1" Margin="20,10,20,0" FontSize="16" Text="{Binding Path=Address}"/>
+                                <TextBlock Grid.Column="1" Grid.Row="2" Margin="20,0" FontSize="12" Text="{Binding Path=Type}"/>
+                            </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListBoxItem}">
+                            <Setter Property="ListBoxItem.Background" Value="#eee"/>
+                            <Setter Property="ListBoxItem.Margin" Value="0"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListBoxItem">
+                                        <Border x:Name="border">
+                                            <ContentPresenter></ContentPresenter>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="border"  Property="Background" Value="#8B8682"></Setter>
+                                                <Setter Property="Foreground" Value="#fff"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
                 </ListBox>
-
             </DockPanel>
         </Border>
+
+        <self:AllTeachers Visibility="{Binding Page}" Grid.RowSpan="2" Grid.Column="1" Margin="2,0,0,0"></self:AllTeachers>
+        
     </Grid>
 </UserControl>

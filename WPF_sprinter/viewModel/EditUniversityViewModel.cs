@@ -40,8 +40,8 @@ namespace WPF_sprinter
             {
                 AppDelegate.Instance.dataController.EditUniversity(() =>
                 {
-                    MessageBox.Show("Saved!");
                     AppDelegate.Instance.Context.ChangeLoaderVisible(false);
+                    AppDelegate.Instance.Alert.ShowAlert("University successfully edited! No errors reported.", true);
                 },
                 university);
             });
@@ -90,7 +90,11 @@ namespace WPF_sprinter
                 return _actionSave ?? (_actionSave = new CommandHandler(() =>
                 {
                     AppDelegate.Instance.Context.ChangeLoaderVisible(true);
-                    EditUniversity(new University(_universityId, _universityName, _universityAddress, _universityLevel));
+                    University data = new University(_universityId, _universityName, _universityAddress, _universityLevel);
+                    if (new Validation().Validate(data))
+                    {
+                        EditUniversity(data);
+                    }
                 }, _canExecute));
             }
         }

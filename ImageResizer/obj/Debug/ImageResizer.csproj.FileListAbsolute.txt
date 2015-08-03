@@ -1,0 +1,5 @@
+C:\Users\PavelTuhar\WPF_srpinter\ImageResizer\bin\Debug\ImageResizer.dll
+C:\Users\PavelTuhar\WPF_srpinter\ImageResizer\bin\Debug\ImageResizer.pdb
+C:\Users\PavelTuhar\WPF_srpinter\ImageResizer\obj\Debug\ImageResizer.csprojResolveAssemblyReference.cache
+C:\Users\PavelTuhar\WPF_srpinter\ImageResizer\obj\Debug\ImageResizer.dll
+C:\Users\PavelTuhar\WPF_srpinter\ImageResizer\obj\Debug\ImageResizer.pdb

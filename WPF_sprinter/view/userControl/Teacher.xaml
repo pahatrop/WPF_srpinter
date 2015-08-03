@@ -26,11 +26,13 @@
         <TextBlock FontSize="18" Margin="10" Padding="10,0,0,0" Grid.Column="0" Grid.Row="2" Text="Lastname:"/>
         <TextBlock FontSize="18" Margin="10" Padding="10,0,0,0" Grid.Column="0" Grid.Row="3" Text="Middlename:"/>
         <TextBlock FontSize="18" Margin="10" Padding="10,0,0,0" Grid.Column="0" Grid.Row="4" Text="Specialty:"/>
+        <TextBlock FontSize="18" Margin="10" Padding="10,0,0,0" Grid.Column="0" Grid.Row="5" Text="Avatar:"/>
 
         <TextBox BorderBrush="#696969" Background="#eee" Height="36" Padding="10,7" Margin="10" Grid.Column="1" Grid.Row="1" Text="{Binding teacherFirstname, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBox BorderBrush="#696969" Background="#eee" Height="36" Padding="10,7" Margin="10" Grid.Column="1" Grid.Row="2" Text="{Binding teacherLastname, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBox BorderBrush="#696969" Background="#eee" Height="36" Padding="10,7" Margin="10" Grid.Column="1" Grid.Row="3" Text="{Binding teacherMiddlename, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBox BorderBrush="#696969" Background="#eee" Height="36" Padding="10,7" Margin="10" Grid.Column="1" Grid.Row="4" Text="{Binding teacherSpecialty, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Height="28" Width="80" Padding="3" Margin="10" Grid.Column="1" Grid.Row="5" Command="{Binding Path=actionAvatar, Mode=OneWay}" Content="Browse..."/>
 
     </Grid>
 </UserControl>

@@ -6,95 +6,80 @@ using Models;
 using System.Net;
 using System.IO;
 using System.Runtime.Serialization.Json;
+using System.Windows.Forms;
+using RestDataProvider;
 
 namespace RESTDataProvider
 {
     public class RestDataProvider2 : IDataProvider
     {
-        
-        private static string host = "http://192.168.2.74:8888"; // REST server
-
         private static void PostHandler(string url, string data)
         {
-            System.Net.WebRequest req = System.Net.WebRequest.Create(url);
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
             req.Method = "POST";
-            req.Timeout = 100000;
+            req.Timeout = CommonSettings.GetTimeOut();
             req.ContentType = "application/x-www-form-urlencoded";
-            byte[] sentData = Encoding.GetEncoding(1251).GetBytes(data);
+            byte[] sentData = Encoding.UTF8.GetBytes(data);
             req.ContentLength = sentData.Length;
             System.IO.Stream sendStream = req.GetRequestStream();
             sendStream.Write(sentData, 0, sentData.Length);
             sendStream.Close();
         }
 
-        public static string GET(string url)
+        public static string GetHandler(string url)
         {
+            string data = "";
             try
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.ProtocolVersion = HttpVersion.Version10;
+                request.Timeout = CommonSettings.GetTimeOut();
+                request.KeepAlive = false;
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 Stream stream = response.GetResponseStream();
                 StreamReader reader = new StreamReader(stream);
-                string data = reader.ReadToEnd();
+                data = reader.ReadToEnd();
                 reader.Close();
                 stream.Close();
                 return data;
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                MessageBox.Show("When you connect to the server had problems! Restart the application and try again.");
+                return data;
             }
-
             return null;
+        }
+
+        public static string UploadFile(string url, string file)
+        {
+            WebClient wc = new WebClient();
+            byte[] barray = Encoding.UTF8.GetBytes(url);
+            string str = Encoding.UTF8.GetString(barray);
+            byte[] responseArray = wc.UploadFile(str, "post", file);
+            string respon = Encoding.UTF8.GetString(responseArray);
+            return respon;
         }
 
         public List<University> GetAllUniversities()
         {
-            string result;
-            try
-            {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(host + "/api/get?request=University");
-                if (request != null)
-                {
-                        using (var response = request.GetResponse())
-                        {
-                            using (var responseStream = response.GetResponseStream())
-                            {
-                                using (var stream = new StreamReader(responseStream))
-                                {
-                                    result = stream.ReadToEnd();
-                                    DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(List<University>));
-                                    MemoryStream ms = new MemoryStream(System.Text.ASCIIEncoding.ASCII.GetBytes(result));
-                                    List<University> mm = (List<University>)js.ReadObject(ms);
-                                    response.Dispose();
-                                    response.Close();
-                                    stream.Close();
-                                    return mm;
-                                }
-                            }
-                        }
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
+            string result = GetHandler(CommonSettings.GetAllUniversitiesString());
+            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(List<University>));
+            MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(result));
+            List<University> mm = (List<University>)js.ReadObject(ms);
+            return mm;
         }
         public void CreateNewUniversity(University university)
         {
-            PostHandler(host + "/api/create", "queryName=University&name=" + university.Name + "&address=" + university.Address + "&level=" + university.Level);
+            PostHandler(CommonSettings.CreateNewUniversityUrlString(), CommonSettings.CreateNewUniversityDataString(university));
         }
         public void EditUniversity(University university)
         {
-            PostHandler(host + "/api/edit", "queryName=University&id=" + university.Id + "&name=" + university.Name + "&address=" + university.Address + "&level=" + university.Level);
+            PostHandler(CommonSettings.EditUniversityUrlString(), CommonSettings.EditUniversityDataString(university));
         }
         public void RemoveUniversity(int id)
         {
-            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(host + "/api/remove?request=University&id="+id);
+            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(CommonSettings.RemoveUniversityString(id));
             HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
             using (StreamReader stream = new StreamReader(
             resp.GetResponseStream(), Encoding.UTF8))
@@ -106,15 +91,7 @@ namespace RESTDataProvider
         public List<Department> GetAllDepartments(int id = -1)
         {
             string result;
-            string address;
-            if(id==-1)
-            {
-                address = host + "/api/get?request=Department";
-            }
-            else
-            {
-                address = host + "/api/get?request=Department&id="+id;
-            }
+            string address = CommonSettings.GetAllDepartmentsString(id);
             HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(address);
             HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
             using (StreamReader stream = new StreamReader(
@@ -124,34 +101,34 @@ namespace RESTDataProvider
                 if (result == "[]") return new List<Department>();
             }
             DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(List<Department>));
-            MemoryStream ms = new MemoryStream(System.Text.ASCIIEncoding.ASCII.GetBytes(result));
+            MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(result));
             List<Department> mm = (List<Department>)js.ReadObject(ms);
+            resp.Close();
             return mm;
         }
         public void CreateNewDepartment(Department department)
         {
-            PostHandler(host + "/api/create", "queryName=Department&Name=" + department.Name + "&Parent=" + department.Parent);
+            PostHandler(CommonSettings.CreateNewDepartmentUrlString(),CommonSettings.CreateNewDepartmentDataString(department));
         }
         public void EditDepartment(Department department)
         {
-            PostHandler(host + "/api/edit", "queryName=Department&id=" + department.Id + "&Name=" + department.Name + "&Parent=" + department.Parent);
+            PostHandler(CommonSettings.EditDepartmentUrlString(),CommonSettings.EditDepartmentDataString(department));
         }
         public void RemoveDepartment(int id)
         {
+            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(CommonSettings.RemoveDepartmentString(id));
+            HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
+            using (StreamReader stream = new StreamReader(
+            resp.GetResponseStream(), Encoding.UTF8))
+            {
+                stream.ReadToEnd();
+            }
         }
 
-        public List<Student> GetAllStudents(int id)
+        public List<Student> GetAllStudents(int id = -1)
         {
             string result;
-            string address;
-            if (id == -1)
-            {
-                address = host + "/api/get?request=Student";
-            }
-            else
-            {
-                address = host + "/api/get?request=Student&id=" + id;
-            }
+            string address = CommonSettings.GetAllStudentsString(id);
             HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(address);
             HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
             using (StreamReader stream = new StreamReader(
@@ -160,21 +137,31 @@ namespace RESTDataProvider
                 result = stream.ReadToEnd();
             }
             DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(List<Student>));
-            MemoryStream ms = new MemoryStream(System.Text.ASCIIEncoding.ASCII.GetBytes(result));
+            MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(result));
             List<Student> mm = (List<Student>)js.ReadObject(ms);
+            resp.Close();
+            foreach (Student student in mm)
+            {
+                student.RealAvatar = student.Avatar;
+                student.Avatar = CommonSettings.Host + student.Avatar;
+            }
             return mm;
         }
         public void CreateNewStudent(Student student)
         {
-            PostHandler(host + "/api/create", "queryName=Student&Firstname="+student.Firstname+"&Lastname="+student.Lastname+"&Middlename="+student.Middlename+"&Cource="+student.Cource+"&Type="+student.Type+"&Parent="+student.Parent+"&Avatar="+student.Avatar);
+            if (student.Avatar == "default")
+            {
+                student.Avatar = CommonSettings.GetDefaultAvatar(student.Sex);
+            }
+            PostHandler(CommonSettings.CreateNewStudentUrlString(), CommonSettings.CreateNewStudentDataString(student));
         }
         public void EditStudent(Student student)
         {
-            PostHandler(host + "/api/edit", "queryName=Student&id="+student.Id+"&Firstname=" + student.Firstname + "&Lastname=" + student.Lastname + "&Middlename=" + student.Middlename + "&Cource=" + student.Cource + "&Type=" + student.Type + "&Parent=" + student.Parent + "&Avatar=" + student.Avatar);
+            PostHandler(CommonSettings.EditStudentUrlString(),CommonSettings.EditStudentDataString(student));
         }
         public void RemoveStudent(int id)
         {
-            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(host + "/api/remove?request=Student&id=" + id);
+            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(CommonSettings.RemoveStudentString(id));
             HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
             using (StreamReader stream = new StreamReader(
             resp.GetResponseStream(), Encoding.UTF8))
@@ -185,16 +172,54 @@ namespace RESTDataProvider
 
         public List<Teacher> GetAllTeachers(int id)
         {
-            return new List<Teacher>();
+            string result;
+            string address = CommonSettings.GetAllTeachersString(id);
+            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(address);
+            HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
+            using (StreamReader stream = new StreamReader(
+            resp.GetResponseStream(), Encoding.UTF8))
+            {
+                result = stream.ReadToEnd();
+                if (result == "[]") return new List<Teacher>();
+            }
+            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(List<Teacher>));
+            MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(result));
+            List<Teacher> mm = (List<Teacher>)js.ReadObject(ms);
+            resp.Close();
+            foreach (Teacher teacher in mm)
+            {
+                teacher.RealAvatar = teacher.Avatar;
+                teacher.Avatar = CommonSettings.Host + teacher.Avatar;
+            }
+            return mm;
         }
         public void CreateNewTeacher(Teacher teacher)
         {
+            if (teacher.Avatar == "default")
+            {
+                teacher.Avatar = CommonSettings.GetDefaultAvatar(0);
+            }
+            PostHandler(CommonSettings.CreateNewTeacherUrlString(), CommonSettings.CreateNewTeacherDataString(teacher));
         }
         public void EditTeacher(Teacher teacher)
         {
+            PostHandler(CommonSettings.EditTeacherUrlString(), CommonSettings.EditTeacherDataString(teacher));
         }
         public void RemoveTeacher(int id)
         {
+            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(CommonSettings.RemoveTeacherString(id));
+            HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
+            using (StreamReader stream = new StreamReader(
+            resp.GetResponseStream(), Encoding.UTF8))
+            {
+                stream.ReadToEnd();
+            }
+        }
+
+        public string SendImage(string image, int id, int type)
+        {
+            string resp = UploadFile(CommonSettings.UploadImageToServerUrl(id, type),image);
+            return resp;
         }
     }
 }

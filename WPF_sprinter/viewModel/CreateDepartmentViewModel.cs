@@ -50,8 +50,8 @@ namespace WPF_sprinter
             {
                 AppDelegate.Instance.dataController.CreateNewDepartment(() =>
                 {
-                    MessageBox.Show("Saved!");
                     AppDelegate.Instance.Context.ChangeLoaderVisible(false);
+                    AppDelegate.Instance.Alert.ShowAlert("Department successfully created! No errors reported.", true);
                 },
                 department);
             });
@@ -70,7 +70,11 @@ namespace WPF_sprinter
                 return _actionSave ?? (_actionSave = new CommandHandler(() =>
                 {
                     AppDelegate.Instance.Context.ChangeLoaderVisible(true);
-                    CreateNewDepartment(new Department(-1, _departmentName, _departmentUniversity));
+                    Department data = new Department(-1, _departmentName, _departmentUniversity);
+                    if (new Validation().Validate(data))
+                    {
+                        CreateNewDepartment(data);
+                    }
                 }, _canExecute));
             }
         }

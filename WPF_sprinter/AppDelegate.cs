@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using XMLDataProvider;
 using DataContracts;
 using RESTDataProvider;
+using Models;
 
 namespace WPF_sprinter
 {
@@ -18,6 +19,8 @@ namespace WPF_sprinter
         public MainViewModel Context;
 
         public MainWindowViewModel MW;
+
+        public PopUp Alert = new PopUp();
         
         static AppDelegate() { }
         

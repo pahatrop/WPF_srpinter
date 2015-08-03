@@ -32,8 +32,8 @@ namespace WPF_sprinter
             {
                 AppDelegate.Instance.dataController.EditDepartment(() =>
                 {
-                    MessageBox.Show("Saved!");
                     AppDelegate.Instance.Context.ChangeLoaderVisible(false);
+                    AppDelegate.Instance.Alert.ShowAlert("Department successfully edited! No errors reported.", true);
                 },
                 department);
             });
@@ -73,7 +73,11 @@ namespace WPF_sprinter
                 return _actionSave ?? (_actionSave = new CommandHandler(() =>
                 {
                     AppDelegate.Instance.Context.ChangeLoaderVisible(true);
-                    EditDepartment(new Department(_departmentId, _departmentName, _departmentUniversity));
+                    Department data = new Department(_departmentId, _departmentName, _departmentUniversity);
+                    if (new Validation().Validate(data))
+                    {
+                        EditDepartment(data);
+                    }
                 }, _canExecute));
             }
         }

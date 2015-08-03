@@ -28,5 +28,7 @@ namespace DataContracts
         void CreateNewTeacher(Teacher te);
         void RemoveTeacher(int id);
         void EditTeacher(Teacher te);
+
+        string SendImage(string image, int id, int type);
     }
 }

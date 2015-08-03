@@ -90,11 +90,8 @@ namespace WPF_sprinter
                 {
                     //AppDelegate.Instance.MW = new MainWindowViewModel();
                     AppDelegate.Instance.Context.CurrentPageViewModel = AppDelegate.Instance.MW;
-                    Dispatcher.Invoke(new Action(() =>
-                    {
-                        AppDelegate.Instance.MW.UniversitiesViewModel();
-                        AppDelegate.Instance.Context.UpdateTitle();
-                    }
+                    AppDelegate.Instance.MW.UniversitiesViewModel();
+                    AppDelegate.Instance.Context.UpdateTitle();
                 }, true));
             }
         }

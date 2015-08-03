@@ -53,12 +53,10 @@ namespace WPF_sprinter
             action();
         }
 
-        public async Task<List<Department>> GetAllDepartments(Action<List<Department>> action, int id)
+        public async Task GetAllDepartments(Action<List<Department>> action, int id)
         {
-            System.Threading.Thread.Sleep(5000);
             List<Department> departments = dataProvider.GetAllDepartments(id);
             action(departments);
-            return departments;
         }
         public List<Department> GetAllDepartments(int id)
         {
@@ -92,13 +90,29 @@ namespace WPF_sprinter
         }
         public async Task CreateNewStudent(Action action, Student student)
         {
-            //System.Threading.Thread.Sleep(t);
-            dataProvider.CreateNewStudent(student);
+            if(student.Avatar!= "default")
+            {
+                student.Avatar = SendImage(student.Avatar, student.Id, 1);
+            }
+            try {
+                dataProvider.CreateNewStudent(student);
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
             action();
         }
         public async Task EditStudent(Action action, Student student)
         {
-            //System.Threading.Thread.Sleep(t);
+            try
+            {
+                student.Avatar = SendImage(student.Avatar, student.Id, 1);
+            }
+            catch (Exception e)
+            {
+                
+            }
             dataProvider.EditStudent(student);
             action();
         }
@@ -111,19 +125,35 @@ namespace WPF_sprinter
 
         public async Task GetAllTeachers(Action<List<Teacher>> action, int id)
         {
-            //System.Threading.Thread.Sleep(t);
             List<Teacher> teachers = dataProvider.GetAllTeachers(id);
             action(teachers);
         }
         public async Task CreateNewTeacher(Action action, Teacher teacher)
         {
-            //System.Threading.Thread.Sleep(t);
-            dataProvider.CreateNewTeacher(teacher);
+            if (teacher.Avatar != "default")
+            {
+                teacher.Avatar = SendImage(teacher.Avatar, teacher.Id, 1);
+            }
+            try
+            {
+                dataProvider.CreateNewTeacher(teacher);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
             action();
         }
         public async Task EditTeacher(Action action, Teacher teacher)
         {
-            //System.Threading.Thread.Sleep(t);
+            try
+            {
+                teacher.Avatar = SendImage(teacher.Avatar, teacher.Id, 1);
+            }
+            catch (Exception e)
+            {
+
+            }
             dataProvider.EditTeacher(teacher);
             action();
         }
@@ -134,5 +164,10 @@ namespace WPF_sprinter
             action();
         }
 
+        public string SendImage(string image, int id, int type)
+        {
+            new ImageResizer(image, @"c:\Users\PavelTuhar\Pictures\icons\NoAvatar\new.jpg");
+            return dataProvider.SendImage(@"c:\Users\PavelTuhar\Pictures\icons\NoAvatar\new.jpg", id, type);
+        }
     }
 }

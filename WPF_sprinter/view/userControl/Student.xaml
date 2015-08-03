@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="600" d:DesignWidth="300">
     <Grid Margin="0,0,0,-34">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="152"/>
@@ -19,6 +19,11 @@
             <RowDefinition Height="55"/>
             <RowDefinition Height="55"/>
             <RowDefinition Height="55"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="55"/>
             <RowDefinition Height="55*"/>
         </Grid.RowDefinitions>
 
@@ -27,13 +32,28 @@
         <TextBlock FontSize="18" Padding="10,0,0,0" Margin="10" Grid.Column="0" Grid.Row="3" Text="Middlename:"/>
         <TextBlock FontSize="18" Padding="10,0,0,0" Margin="10" Grid.Column="0" Grid.Row="4" Text="Cource:"/>
         <TextBlock FontSize="18" Padding="10,0,0,0" Margin="10" Grid.Column="0" Grid.Row="5" Text="Type:"/>
-        <TextBlock FontSize="18" Padding="10,0,0,0" Margin="10" Grid.Column="0" Grid.Row="6" Text="Avatar:"/>
+        <TextBlock FontSize="18" Padding="10,0,0,0" Margin="10" Grid.Column="0" Grid.Row="6" Text="Phone:"/>
+        <TextBlock FontSize="18" Padding="10,0,0,0" Margin="10" Grid.Column="0" Grid.Row="7" Text="Passport:"/>
+        <TextBlock FontSize="18" Padding="10,0,0,0" Margin="10" Grid.Column="0" Grid.Row="8" Text="Sex:"/>
+        <TextBlock FontSize="18" Padding="10,0,0,0" Margin="10" Grid.Column="0" Grid.Row="9" Text="Date of Birth:"/>
+        <TextBlock FontSize="18" Padding="10,0,0,0" Margin="10" Grid.Column="0" Grid.Row="10" Text="Address:"/>
+        <TextBlock FontSize="18" Padding="10,0,0,0" Margin="10" Grid.Column="0" Grid.Row="11" Text="Avatar:"/>
 
         <TextBox BorderBrush="#696969" Background="#eee" Height="36" Padding="10,7" Margin="10" Grid.Column="1" Grid.Row="1" Text="{Binding studentFirstname, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBox BorderBrush="#696969" Background="#eee" Height="36" Padding="10,7" Margin="10" Grid.Column="1" Grid.Row="2" Text="{Binding studentLastname, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBox BorderBrush="#696969" Background="#eee" Height="36" Padding="10,7" Margin="10" Grid.Column="1" Grid.Row="3" Text="{Binding studentMiddlename, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBox BorderBrush="#696969" Background="#eee" Height="36" Padding="10,7" Margin="10" Grid.Column="1" Grid.Row="4" Text="{Binding studentCource, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBox BorderBrush="#696969" Background="#eee" Height="36" Padding="10,7" Margin="10" Grid.Column="1" Grid.Row="5" Text="{Binding studentType, UpdateSourceTrigger=PropertyChanged}"/>
-        <Button Height="36" Padding="10,7" Margin="10" Grid.Column="1" Grid.Row="6" Command="{Binding Path=actionAvatar, Mode=OneWay}" Content="Change..."/>
+        <TextBox BorderBrush="#696969" Background="#eee" Height="36" Padding="10,7" Margin="10" Grid.Column="1" Grid.Row="6" Text="{Binding studentPhone, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox BorderBrush="#696969" Background="#eee" Height="36" Padding="10,7" Margin="10" Grid.Column="1" Grid.Row="7" Text="{Binding studentPassport, UpdateSourceTrigger=PropertyChanged}"/>
+        
+        <!--TextBox BorderBrush="#696969" Background="#eee" Height="36" Padding="10,7" Margin="10" Grid.Column="1" Grid.Row="8" Text="{Binding studentSex, UpdateSourceTrigger=PropertyChanged}"/-->
+        <ComboBox BorderBrush="#696969" Height="36" Padding="10,7" Margin="10" Grid.Column="1" Grid.Row="8" ItemsSource="{Binding Path=SexVariant}" SelectedValue="{Binding SexSelected}" IsSynchronizedWithCurrentItem="True">
+            
+        </ComboBox>
+        
+        <TextBox BorderBrush="#696969" Background="#eee" Height="36" Padding="10,7" Margin="10" Grid.Column="1" Grid.Row="9" Text="{Binding studentBirthDate, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox BorderBrush="#696969" Background="#eee" Height="36" Padding="10,7" Margin="10" Grid.Column="1" Grid.Row="10" Text="{Binding studentAddress, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Height="28" Width="80" Padding="5" Margin="10" Grid.Column="1" Grid.Row="11" Command="{Binding Path=actionAvatar, Mode=OneWay}" Content="Browse..."/>
     </Grid>
 </UserControl>

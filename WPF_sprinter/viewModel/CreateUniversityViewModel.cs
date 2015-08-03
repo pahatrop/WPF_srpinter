@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Models;
+using WPF_sprinter.view.popUp;
 
 namespace WPF_sprinter
 {
@@ -33,12 +34,11 @@ namespace WPF_sprinter
             {
                 AppDelegate.Instance.dataController.CreateNewUniversity(() =>
                 {
-                    MessageBox.Show("Saved!");
+                    AppDelegate.Instance.Alert.ShowAlert("University successfully created! No errors reported.", true);
                 },
                 university);
             });
         }
-
         
         public string universityName
         {
@@ -79,10 +79,13 @@ namespace WPF_sprinter
                 return _actionSave ?? (_actionSave = new CommandHandler(() =>
                 {
                     AppDelegate.Instance.Context.ChangeLoaderVisible(true);
-                    CreateNewUniversity(new University(-1, _universityName, _universityAddress, _universityLevel));
+                    University data = new University(-1, _universityName, _universityAddress, _universityLevel);
+                    if (new Validation().Validate(data))
+                    {
+                        CreateNewUniversity(data);
+                    }
                 }, _canExecute));
             }
         }
-
     }
 }

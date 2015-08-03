@@ -4,7 +4,6 @@ C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\bin\Debug\WPF_sprinter.pdb
 C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\WPF_sprinter.csprojResolveAssemblyReference.cache
 C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\App.g.cs
 C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\WPF_sprinter_MarkupCompile.cache
-C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\WPF_sprinter.g.resources
 C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\WPF_sprinter.Properties.Resources.resources
 C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\WPF_sprinter.csproj.GenerateResource.Cache
 C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\WPF_sprinter.exe
@@ -101,3 +100,12 @@ C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\Departm
 C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\Student.g.cs
 C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\view\userControl\Teacher.g.cs
 C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\WPF_sprinter_Content.g.cs
+C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\view\AllTeachers.g.cs
+C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\view\AllTeachers.baml
+C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\view\popUp\Alert.g.cs
+C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\view\popUp\Alert.baml
+C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\view\popUp\ConfirmedAlert.g.cs
+C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\view\popUp\ConfirmedAlert.baml
+C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\bin\Debug\en-US\WPF_sprinter.resources.dll
+C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\WPF_sprinter.g.en-US.resources
+C:\Users\PavelTuhar\WPF_srpinter\WPF_sprinter\obj\Debug\en-US\WPF_sprinter.resources.dll

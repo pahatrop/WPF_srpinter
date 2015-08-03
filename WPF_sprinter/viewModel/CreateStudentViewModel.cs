@@ -28,9 +28,23 @@ namespace WPF_sprinter
         private int _studentCource;
         private string _studentType;
         private int _studentDepartment;
+        private string _studentPhone;
+        private string _studentPassport;
+        private int _studentSex = 0;
+        private string _studentBirthDate;
+        private string _studentAddress;
         private string _studentAvatar;
 
         private bool _canExecute;
+
+        private List<string> sexVariant;
+        public List<string> SexVariant
+        {
+            get
+            {
+                return sexVariant;
+            }
+        }
 
         public async Task CreateNewStudent(Student student)
         {
@@ -38,8 +52,8 @@ namespace WPF_sprinter
             {
                 AppDelegate.Instance.dataController.CreateNewStudent(() =>
                 {
-                    MessageBox.Show("Saved!");
                     AppDelegate.Instance.Context.ChangeLoaderVisible(false);
+                    AppDelegate.Instance.Alert.ShowAlert("Student successfully created! No errors reported.", true);
                 },
                 student);
             });
@@ -85,20 +99,72 @@ namespace WPF_sprinter
                 _studentType = value;
             }
         }
+        public string studentPhone
+        {
+            get { return _studentPhone; }
+            set
+            {
+                _studentPhone = value;
+            }
+        }
+        public string studentPassport
+        {
+            get { return _studentPassport; }
+            set
+            {
+                _studentPassport = value;
+            }
+        }
+        public int studentSex
+        {
+            get { return _studentSex; }
+            set
+            {
+                _studentSex = value;
+            }
+        }
+        public string studentBirthDate
+        {
+            get { return _studentBirthDate; }
+            set
+            {
+                _studentBirthDate = value;
+            }
+        }
+        public string studentAddress
+        {
+            get { return _studentAddress; }
+            set
+            {
+                _studentAddress = value;
+            }
+        }
 
         private ICommand _actionSave;
         private ICommand _actionAvatar;
 
-
         public CreateStudentViewModel(int u)
         {
-            _studentAvatar = "default.png";
+            _studentAvatar = "default";
             _canExecute = true;
             _studentDepartment = u;
+            sexVariant = new List<string>();
+            sexVariant.Add("Male");
+            sexVariant.Add("Famale");
         }
-
-        private string targetPath = Directory.GetCurrentDirectory() + "\\data\\images\\";
-        private string sourcePath;
+        public string SexSelected
+        {
+            set
+            {
+                for(int i = 0; i < sexVariant.Count; i++)
+                {
+                    if (value == sexVariant[i])
+                    {
+                        _studentSex = i;
+                    }
+                }
+            }
+        }
 
         public ICommand actionAvatar
         {
@@ -109,11 +175,7 @@ namespace WPF_sprinter
                     OpenFileDialog openFileDialog = new OpenFileDialog();
                     if (openFileDialog.ShowDialog() == true)
                     {
-                        sourcePath = openFileDialog.FileName;
-                        if (!System.IO.Directory.Exists(targetPath))
-                        {
-                            System.IO.Directory.CreateDirectory(targetPath);
-                        }
+                        _studentAvatar = openFileDialog.FileName;
                     }
                 }, _canExecute));
             }
@@ -125,18 +187,13 @@ namespace WPF_sprinter
                 return _actionSave ?? (_actionSave = new CommandHandler(() =>
                 {
                     AppDelegate.Instance.Context.ChangeLoaderVisible(true);
-                    try
+                    Student data = new Student(-1, _studentFirstname, _studentLastname, _studentMiddlename, _studentCource, _studentType, _studentDepartment, _studentPhone, _studentPassport, _studentSex, _studentBirthDate, _studentAddress, _studentAvatar);
+                    if (new Validation().Validate(data))
                     {
-                        File.Copy(sourcePath, targetPath + _studentAvatar, true);
+                        CreateNewStudent(data);
                     }
-                    catch(Exception e)
-                    {
-
-                    }
-                    CreateNewStudent(new Student(-1, _studentFirstname, _studentLastname, _studentMiddlename, _studentCource, _studentType, _studentDepartment, _studentAvatar));
                 }, _canExecute));
             }
         }
-
     }
 }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Models;
+using Microsoft.Win32;
 
 namespace WPF_sprinter
 {
@@ -25,6 +26,7 @@ namespace WPF_sprinter
         private string _teacherMiddlename;
         private string _teacherSpecialty;
         private int _teacherDepartment;
+        private string _teacherAvatar;
 
         private bool _canExecute;
 
@@ -34,8 +36,8 @@ namespace WPF_sprinter
             {
                 AppDelegate.Instance.dataController.CreateNewTeacher(() =>
                 {
-                    MessageBox.Show("Saved!");
                     AppDelegate.Instance.Context.ChangeLoaderVisible(false);
+                    AppDelegate.Instance.Alert.ShowAlert("Teacher successfully created! No errors reported.", true);
                 },
                 teacher);
             });
@@ -75,13 +77,29 @@ namespace WPF_sprinter
         }
 
         private ICommand _actionSave;
+        private ICommand _actionAvatar;
 
         public CreateTeacherViewModel(int u)
         {
             _canExecute = true;
+            _teacherAvatar = "default";
             _teacherDepartment = u;
         }
 
+        public ICommand actionAvatar
+        {
+            get
+            {
+                return _actionAvatar ?? (_actionAvatar = new CommandHandler(() =>
+                {
+                    OpenFileDialog openFileDialog = new OpenFileDialog();
+                    if (openFileDialog.ShowDialog() == true)
+                    {
+                        _teacherAvatar = openFileDialog.FileName;
+                    }
+                }, _canExecute));
+            }
+        }
         public ICommand actionSave
         {
             get
@@ -89,7 +107,11 @@ namespace WPF_sprinter
                 return _actionSave ?? (_actionSave = new CommandHandler(() =>
                 {
                     AppDelegate.Instance.Context.ChangeLoaderVisible(true);
-                    CreateNewTeacher(new Teacher(-1, _teacherFirstname, _teacherLastname, _teacherMiddlename, _teacherSpecialty, _teacherDepartment));
+                    Teacher data = new Teacher(-1, _teacherFirstname, _teacherLastname, _teacherMiddlename, _teacherSpecialty, _teacherDepartment, _teacherAvatar);
+                    if (new Validation().Validate(data))
+                    {
+                        CreateNewTeacher(data);
+                    }
                 }, _canExecute));
             }
         }

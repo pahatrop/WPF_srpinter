@@ -2,6 +2,7 @@
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+	<UICulture>en-US</UICulture>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{39AD2FE1-B946-4EDC-8B58-B10F315E5035}</ProjectGuid>
@@ -36,6 +37,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,10 +58,17 @@
     </ApplicationDefinition>
     <Compile Include="AppDelegate.cs" />
     <Compile Include="CommandHandler.cs" />
+    <Compile Include="CommonApplicationSettings.cs" />
     <Compile Include="DataController.cs" />
+    <Compile Include="ImageResizer.cs" />
     <Compile Include="IPageViewModel.cs" />
     <Compile Include="ObservableObject.cs" />
+    <Compile Include="PopUp.cs" />
+    <Compile Include="Validation.cs" />
     <Compile Include="viewModel\MainViewModel.cs" />
+    <Compile Include="view\AllTeachers.xaml.cs">
+      <DependentUpon>AllTeachers.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\EditTeacher.xaml.cs">
       <DependentUpon>EditTeacher.xaml</DependentUpon>
     </Compile>
@@ -98,6 +108,12 @@
     <Compile Include="viewModel\EditDepartmentViewModel.cs" />
     <Compile Include="viewModel\EditUniversityViewModel.cs" />
     <Compile Include="viewModel\MainWindowViewModel.cs" />
+    <Compile Include="view\popUp\Alert.xaml.cs">
+      <DependentUpon>Alert.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\popUp\ConfirmedAlert.xaml.cs">
+      <DependentUpon>ConfirmedAlert.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\userControl\Department.xaml.cs">
       <DependentUpon>Department.xaml</DependentUpon>
     </Compile>
@@ -113,6 +129,10 @@
     <Compile Include="view\userControl\University.xaml.cs">
       <DependentUpon>University.xaml</DependentUpon>
     </Compile>
+    <Page Include="view\AllTeachers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="view\EditTeacher.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -156,6 +176,14 @@
     <Page Include="view\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="view\popUp\Alert.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\popUp\ConfirmedAlert.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="view\userControl\Department.xaml">
       <SubType>Designer</SubType>
@@ -243,8 +271,10 @@
     <Resource Include="source\iconControl\add.png" />
     <Resource Include="source\iconControl\close.png" />
     <Resource Include="source\iconControl\edit.png" />
+    <Resource Include="source\iconControl\arrow-left.png" />
     <Content Include="source\university.svg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

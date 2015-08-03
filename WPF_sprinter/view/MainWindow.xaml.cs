@@ -24,6 +24,8 @@ namespace WPF_sprinter
         public MainWindow()
         {
             InitializeComponent();
+            UniversityFilter.Text = CommonApplicationSettings.UniversityFilterDefaultString;
+            StudentFilter.Text = CommonApplicationSettings.StudentFilterDefaultString;
         }
 
         private void tree_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
@@ -46,9 +48,13 @@ namespace WPF_sprinter
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void UniversityFilterGotFocus(object sender, RoutedEventArgs e)
         {
-            AppDelegate.Instance.MW.UniversitiesViewModel();
+            UniversityFilter.Text = "";
+        }
+        private void StudentFilterGotFocus(object sender, RoutedEventArgs e)
+        {
+            StudentFilter.Text = "";
         }
     }
 }

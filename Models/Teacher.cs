@@ -13,19 +13,20 @@ namespace Models
         public string Lastname { get; set; }
         public string Middlename { get; set; }
         public string Specialty { get; set; }
-        public int University { get; set; }
+        public int Parent { get; set; }
         public string Avatar { get; set; }
+        public string RealAvatar { get; set; }
         public Teacher()
         {
         }
-        public Teacher(int id, string firstname, string lastname, string middlename, string specialty, int university, string avatar = "default.png")
+        public Teacher(int id, string firstname, string lastname, string middlename, string specialty, int university, string avatar = "default")
         {
             Id = id;
             Firstname = firstname;
             Lastname = lastname;
             Middlename = middlename;
             Specialty = specialty;
-            University = university;
+            Parent = university;
             Avatar = avatar;
         }
     }

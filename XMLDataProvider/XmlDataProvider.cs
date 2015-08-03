@@ -263,7 +263,7 @@ namespace XMLDataProvider
                 }
                 foreach (Teacher teacher in r)
                 {
-                    if(teacher.University==id || id==-1) teachers.Add(teacher);
+                    if(teacher.Parent==id || id==-1) teachers.Add(teacher);
                 }
                 return teachers;
             }
@@ -306,6 +306,9 @@ namespace XMLDataProvider
             RemoveTeacher(teacher.Id);
             CreateNewTeacher(teacher);
         }
-        
+        public string SendImage(string image, int id, int type)
+        {
+            return "str";
+        }
     }
 }
