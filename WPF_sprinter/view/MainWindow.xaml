@@ -101,6 +101,10 @@
                         <TextBlock Foreground="#665" Padding="20,10" FontFamily="Sans" FontSize="15">Total count students in department:</TextBlock>
                         <TextBlock Foreground="#665" Padding="10" FontFamily="Sans" FontSize="15" Text="{Binding DepartmentTotalCountStudents}"/>
                     </StackPanel>
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                        <TextBlock Foreground="#665" Padding="20,10" FontFamily="Sans" FontSize="15">Time left until the end of the year:</TextBlock>
+                        <TextBlock Foreground="#665" Padding="10" FontFamily="Sans" FontSize="15" Text="{Binding TimeLeft}"/>
+                    </StackPanel>
                 </DockPanel>
             </DockPanel>
         </Border>

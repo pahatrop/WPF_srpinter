@@ -15,15 +15,18 @@ namespace Models
         public int Level { get; set; }
         public string Identification { get { return "University"; } }
         public List<Department> Departments { get; set; }
+        public string EndYear { get { return EndYearDate.ToString(); } set { EndYearDate = Convert.ToDateTime(value); } }
+        public DateTime EndYearDate { get; set; }
         public University()
         {
         }
-        public University(int id, string name, string address, int level)
+        public University(int id, string name, string address, int level, string endyear)
         {
             Id = id;
             Name = name;
             Address = address;
             Level = level;
+            EndYear = endyear;
         }
     }
 }

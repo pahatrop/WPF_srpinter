@@ -5,6 +5,8 @@ using System.Windows;
 using System.Windows.Input;
 using Models;
 using System.IO;
+using System.Threading;
+using System.Timers;
 
 namespace WPF_sprinter
 {
@@ -27,7 +29,6 @@ namespace WPF_sprinter
         public List<Department> AllDepartments { get { return allDepartments; } }
         public List<Student> AllStudents { get { return allStudents; } }
         public List<Teacher> AllTeachers { get { return allTeachers; } }
-
         public void SelectedUniversityChanged(University u)
         {
             currentUniversityId = u.Id;
@@ -39,7 +40,6 @@ namespace WPF_sprinter
             }
             DepartmentsViewModel();
         }
-
         public void SelectedDepartmentChanged(Department d)
         {
             currentDepartmentId = d.Id;
@@ -51,7 +51,6 @@ namespace WPF_sprinter
             }
             DepartmentsViewModel(d);
         }
-
         private Visibility page = Visibility.Hidden;
         public Visibility Page
         {
@@ -64,6 +63,7 @@ namespace WPF_sprinter
                 page = value;
             }
         }
+
         private void CurrentPageInMainWindow(int n)
         {
             if(n==1)
@@ -76,7 +76,6 @@ namespace WPF_sprinter
             }
             RaisePropertyChanged("Page");
         }
-
         private string universityFilter = CommonApplicationSettings.UniversityFilterDefaultString;
         private string studentFilter = CommonApplicationSettings.StudentFilterDefaultString;
         public string UniversityFilter
@@ -105,7 +104,6 @@ namespace WPF_sprinter
                 }
             }
         }
-
         public string StudentFilter
         {
             get
@@ -136,16 +134,23 @@ namespace WPF_sprinter
         private int departmentSelected = 0;
         private int studentSelected = 0;
         private int teacherSelected = 0;
-
         public int currentUniversityId = 0;
         private int currentDepartmentId = 0;
         private int currentStudentId;
         private int currentTeacherId;
-
         private string currentUniversityName;
         private string currentUniversityAddress;
-
         private string currentDepartmentName;
+        public string timeLeft;
+
+        public string TimeLeft
+        {
+            get { return timeLeft; }
+            set
+            {
+                timeLeft = value;
+            }
+        }
 
         public string CurrentUniversityName
         {
@@ -373,6 +378,18 @@ namespace WPF_sprinter
             });
         }
         
+        public void UpdTime()
+        {
+            timeLeft = DateTime.Now.Subtract(TimeZoneInfo.ConvertTimeToUtc(allUniversities[universitySelected].EndYearDate)).ToString(@"dd\ \d\a\y\s\ hh\:mm\:ss");
+            //Console.WriteLine("r "+allUniversities[universitySelected].EndYearDate.ToString());
+            //Console.WriteLine("l "+ TimeZoneInfo.ConvertTimeToUtc(allUniversities[universitySelected].EndYearDate).ToString());
+            RaisePropertyChanged("TimeLeft");
+        }
+        private static void OnTimedEvent(object source, ElapsedEventArgs e)
+        {
+            AppDelegate.Instance.MW.UpdTime();
+            //.Now.Subtract(allUniversities[universitySelected].EndYearDate.ToLocalTime()).ToString(@"dd\ \d\a\y\s\ hh\:mm\:ss");
+        }
         public async Task UniversitiesViewModel()
         {
             _loader1 = Visibility.Visible;
@@ -423,6 +440,10 @@ namespace WPF_sprinter
         {
             currentUniversityName = allUniversities[universitySelected].Name;
             currentUniversityAddress = allUniversities[universitySelected].Address;
+            System.Timers.Timer aTimer = new System.Timers.Timer(1000);
+            aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+            aTimer.Interval = 1000;
+            aTimer.Enabled = true;
             CurrentPageInMainWindow(1);
             if (allUniversities[universitySelected].Departments.Count > 0)
             {

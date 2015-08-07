@@ -90,7 +90,7 @@ namespace WPF_sprinter
                 return _actionSave ?? (_actionSave = new CommandHandler(() =>
                 {
                     AppDelegate.Instance.Context.ChangeLoaderVisible(true);
-                    University data = new University(_universityId, _universityName, _universityAddress, _universityLevel);
+                    University data = new University(_universityId, _universityName, _universityAddress, _universityLevel, null);
                     if (new Validation().Validate(data))
                     {
                         EditUniversity(data);
